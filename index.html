@@ -1,388 +1,223 @@
-/************************************************************
-   S3 AI CHATBOT — Warm & Friendly Gift Assistant
-   Supports:
-   - Greeting detection
-   - Relationship detection (wifs → wife, etc.)
-   - Holiday detection (birthday, bday, xmas, etc.)
-   - Age extraction
-   - Hobby extraction
-   - Spanish mode
-   - Business Q&A
-   - Dynamic recommendations (1–5 gifts)
-************************************************************/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>22 Celebration Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-const bubble = document.getElementById("chatbotBubble");
-const win = document.getElementById("chatbotWindow");
-const closeBtn = document.getElementById("chatClose");
-const msgs = document.getElementById("chatMessages");
-const input = document.getElementById("chatInput");
-const sendBtn = document.getElementById("chatSend");
+  <!-- Your existing theme (unchanged) -->
+  <link rel="stylesheet" href="style.css" />
 
-let typingDiv = null;
-
-/* -------------------------------------------
-   Utilities
---------------------------------------------*/
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function addTyping() {
-  removeTyping();
-  typingDiv = document.createElement("div");
-  typingDiv.className = "typing-indicator chat-msg bot";
-  typingDiv.textContent = "✨ Gift Finder is typing…";
-  msgs.appendChild(typingDiv);
-  msgs.scrollTop = msgs.scrollHeight;
-}
-
-function removeTyping() {
-  if (typingDiv) {
-    typingDiv.remove();
-    typingDiv = null;
-  }
-}
-
-async function botSay(text) {
-  addTyping();
-  await sleep(700 + Math.random() * 600);
-  removeTyping();
-
-  const div = document.createElement("div");
-  div.className = "chat-msg bot";
-  div.textContent = text;
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-}
-
-/* -------------------------------------------
-   Conversation memory
---------------------------------------------*/
-
-const convo = {
-  spanish: false,
-  relationship: null,
-  holiday: null,
-  age: null,
-  hobbies: null
-};
-
-/* -------------------------------------------
-   Word detection lists
---------------------------------------------*/
-
-const greetingWords = [
-  "hello","hi","hey","hola","buenas","sup","what’s up","whats up",
-  "good morning","good evening","good afternoon"
-];
-
-const relationshipMap = {
-  wif: "wife",
-  wife: "wife",
-  hubby: "husband",
-  husband: "husband",
-  mom: "mom",
-  mother: "mom",
-  "mother in law": "mother-in-law",
-  dad: "dad",
-  father: "dad",
-  "father in law": "father-in-law",
-  sister: "sister",
-  bro: "brother",
-  brother: "brother",
-  girlfriend: "girlfriend",
-  boyfriend: "boyfriend",
-  fiance: "fiancé",
-  fiancé: "fiancé",
-  aunt: "aunt",
-  uncle: "uncle",
-  grandma: "grandmother",
-  grandpa: "grandfather",
-  friend: "friend",
-  boss: "boss",
-  coworker: "coworker"
-};
-
-const holidayMap = {
-  birthday: "Birthday",
-  bday: "Birthday",
-  "b-day": "Birthday",
-  xmas: "Christmas",
-  christmas: "Christmas",
-  chrismas: "Christmas",
-  "valentine": "Valentine’s Day",
-  valentines: "Valentine’s Day",
-  "valentines day": "Valentine’s Day",
-  easter: "Easter",
-  thanksgiving: "Thanksgiving",
-  halloween: "Halloween",
-  "4th": "Fourth of July",
-  "4th of july": "Fourth of July",
-  graduation: "Graduation",
-  hanukkah: "Hanukkah",
-  kwanzaa: "Kwanzaa",
-  "mother": "Mother’s Day",
-  "father": "Father’s Day",
-  retirement: "Retirement",
-  wedding: "Wedding",
-  anniversary: "Anniversary",
-  shower: "Baby Shower",
-  "back to school": "Back to School"
-};
-
-/* -------------------------------------------
-   NLP: Detect greeting
---------------------------------------------*/
-function detectGreeting(text) {
-  text = text.toLowerCase();
-  return greetingWords.some(g => text.includes(g));
-}
-
-/* -------------------------------------------
-   NLP: Relationship detection
---------------------------------------------*/
-function detectRelationship(text) {
-  text = text.toLowerCase();
-  for (const key in relationshipMap) {
-    if (text.includes(key)) {
-      return relationshipMap[key];
+  <style>
+    /* CHAT BUBBLE */
+    #chatbotBubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: #1abc9c;
+      border: 2px solid #d4af37;
+      color: #ffffff;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      z-index: 9999;
+      transition: opacity 0.25s ease;
     }
-  }
-  return null;
-}
 
-/* -------------------------------------------
-   NLP: Holiday detection
---------------------------------------------*/
-function detectHoliday(text) {
-  text = text.toLowerCase();
-  for (const key in holidayMap) {
-    if (text.includes(key)) {
-      return holidayMap[key];
+    /* CHAT WINDOW */
+    #chatbotWindow {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 340px;
+      height: 420px;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 2px solid #d4af37;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      display: flex;
+      flex-direction: column;
+      z-index: 9998;
+
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
-  }
-  return null;
-}
 
-/* -------------------------------------------
-   NLP: Age extraction
---------------------------------------------*/
-function extractAge(text) {
-  const match = text.match(/\d+/g);
-  if (!match) return null;
-  return Math.max(...match.map(n => parseInt(n)));
-}
-
-/* -------------------------------------------
-   NLP: Hobby extraction (soft)
---------------------------------------------*/
-function extractHobbies(text) {
-  const hobbyWords = [
-    "coffee","candle","spa","sports","movies","gaming","art","baking","gardening","reading",
-    "music","fashion","beauty","relax","cook","tech","travel"
-  ];
-  const t = text.toLowerCase();
-  return hobbyWords.filter(h => t.includes(h));
-}
-
-/* -------------------------------------------
-   Business Q&A
---------------------------------------------*/
-async function handleBusinessQA(text) {
-  const t = text.toLowerCase();
-
-  if (t.includes("phone") || t.includes("number") || t.includes("call")) {
-    await botSay("You can reach us anytime at **(770) 820-1456**.");
-    return true;
-  }
-
-  if (t.includes("location") || t.includes("where are you")) {
-    await botSay("We operate online and ship **anywhere in the United States.**");
-    return true;
-  }
-
-  if (t.includes("contact") || t.includes("form") || t.includes("email")) {
-    await botSay("You can contact us here: **contact.html**. The form goes directly to us.");
-    return true;
-  }
-
-  if (t.includes("ship") || t.includes("shipping") || t.includes("deliver")) {
-    await botSay("We ship **anywhere in the United States!** 🇺🇸");
-    return true;
-  }
-
-  if (t.includes("custom")) {
-    await botSay("Yes! We offer fully **custom gift baskets**. For example, a $40 custom basket is priced at **$80**. Just tell me who it’s for and what theme you'd like.");
-    return true;
-  }
-
-  return false;
-}
-
-/* -------------------------------------------
-   Recommendation Engine — Dynamic R3
---------------------------------------------*/
-function getRecommendations() {
-  let list = products.slice();
-
-  if (convo.holiday) {
-    list = list.filter(p =>
-      p.occasions.some(o =>
-        o.toLowerCase().includes(convo.holiday.toLowerCase())
-      )
-    );
-  }
-
-  if (convo.relationship) {
-    const female = ["wife","girlfriend","mom","mother","mother-in-law","sister","daughter","aunt","grandmother"];
-    const male = ["husband","dad","father","father-in-law","brother","son","uncle","grandfather","boyfriend"];
-
-    if (female.includes(convo.relationship)) {
-      list = list.filter(p => p.gender === "female" || p.gender === "unisex");
+    #chatbotWindow.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
-    if (male.includes(convo.relationship)) {
-      list = list.filter(p => p.gender === "male" || p.gender === "unisex");
+
+    .chat-header {
+      padding: 10px;
+      background: #1abc9c;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
     }
-  }
 
-  if (convo.age) {
-    list = list.filter(p => p.maxAge >= convo.age);
-  }
+    .chat-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
 
-  if (convo.hobbies && convo.hobbies.length > 0) {
-    list = list.filter(p =>
-      convo.hobbies.some(h =>
-        p.name.toLowerCase().includes(h.toLowerCase())
-      )
-    );
-  }
+    .chat-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      background: #fafafa;
+      font-size: 14px;
+    }
 
-  if (list.length === 0) {
-    return products.slice(0, 3);
-  }
+    .chat-msg {
+      margin-bottom: 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
 
-  if (list.length > 5) {
-    return list.slice(0, 5);
-  }
+    .chat-msg.bot {
+      background: #e8faf6;
+      align-self: flex-start;
+    }
 
-  return list.slice(0, Math.min(list.length, 5));
-}
+    .chat-msg.user {
+      background: #f0f0f0;
+      align-self: flex-end;
+    }
 
-/* -------------------------------------------
-   Main handler
---------------------------------------------*/
-async function handleUserMessage() {
-  const text = input.value.trim();
-  if (!text) return;
+    .typing-indicator {
+      font-style: italic;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
 
-  const userMsg = document.createElement("div");
-  userMsg.className = "chat-msg user";
-  userMsg.textContent = text;
-  msgs.appendChild(userMsg);
-  msgs.scrollTop = msgs.scrollHeight;
+    .chat-input-row {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
 
-  input.value = "";
+    #chatInput {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+    }
 
-  const lower = text.toLowerCase();
+    #chatSend {
+      padding: 0 14px;
+      border: none;
+      background: #d4af37;
+      color: #000;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
 
-  // Spanish mode
-  if (lower.startsWith("espanol") || lower.startsWith("español")) {
-    convo.spanish = true;
-    await botSay("¡Claro! ¿Para quién es el regalo y cuál es la ocasión?");
-    return;
-  }
+<body>
 
-  // Greeting
-  if (detectGreeting(lower)) {
-    await botSay("Hi there! 😊 How can I help you find the perfect gift today?");
-    return;
-  }
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="logo">
+      <span class="logo-mark">22</span>
+      <span class="logo-text">Celebration Co.</span>
+    </div>
 
-  // Business Q&A
-  if (await handleBusinessQA(lower)) return;
+    <nav class="main-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="store.html">Shop</a>
+      <a href="contact.html">Contact</a>
+    </nav>
 
-  // Detect relationship / holiday / age / hobbies
-  const rel = detectRelationship(lower);
-  if (rel) convo.relationship = rel;
+    <a href="tel:17708201456" class="btn-phone">(770) 820-1456</a>
+  </header>
 
-  const hol = detectHoliday(lower);
-  if (hol) convo.holiday = hol;
+  <main>
+    <section class="section hero">
+      <h1 class="section-title">
+        Elegant Gifts for All 22 Celebrations & More
+      </h1>
+      <p class="section-subtitle">
+        Theme-oriented gift boxes & baskets for every meaningful occasion.
+      </p>
+    </section>
 
-  const age = extractAge(lower);
-  if (age) convo.age = age;
+    <section class="section">
+      <h2 class="section-title">We Cover These Occasions</h2>
+      <p class="section-subtitle">
+        Every holiday & milestone deserves a personal touch.
+      </p>
 
-  const hobbyList = extractHobbies(lower);
-  if (hobbyList.length > 0) convo.hobbies = hobbyList;
+      <div class="holiday-grid">
+        <div class="holiday-card">🎄 Christmas</div>
+        <div class="holiday-card">🎉 New Year</div>
+        <div class="holiday-card">❤️ Valentine’s Day</div>
+        <div class="holiday-card">🍀 St. Patrick’s Day</div>
+        <div class="holiday-card">🐣 Easter</div>
+        <div class="holiday-card">👩‍👧 Mother’s Day</div>
+        <div class="holiday-card">👨 Father’s Day</div>
+        <div class="holiday-card">🎓 Graduation</div>
+        <div class="holiday-card">🇺🇸 4th of July</div>
+        <div class="holiday-card">📚 Back to School</div>
+        <div class="holiday-card">🎃 Halloween</div>
+        <div class="holiday-card">🦃 Thanksgiving</div>
+        <div class="holiday-card">🕎 Hanukkah</div>
+        <div class="holiday-card">🟥🟩 Kwanzaa</div>
+        <div class="holiday-card">🎂 Birthdays</div>
+        <div class="holiday-card">👶 Baby Shower</div>
+        <div class="holiday-card">💍 Wedding</div>
+        <div class="holiday-card">💞 Anniversary</div>
+        <div class="holiday-card">🎉 Retirement</div>
+      </div>
+    </section>
+  </main>
 
-  // Step logic
-  if (!convo.relationship && !convo.holiday) {
-    await botSay("Got it! Who is the gift for, and is it for a holiday or special occasion?");
-    return;
-  }
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
+  </footer>
 
-  if (convo.relationship && !convo.holiday) {
-    await botSay(`Great! A gift for your ${convo.relationship}. What occasion is it for? Birthday, Christmas, anniversary, or something else?`);
-    return;
-  }
+  <!-- CHAT BUBBLE -->
+  <div id="chatbotBubble">💬</div>
 
-  if (convo.holiday && !convo.relationship) {
-    await botSay(`Nice! A ${convo.holiday} gift. Who is this gift for?`);
-    return;
-  }
+  <!-- CHAT WINDOW -->
+  <div id="chatbotWindow">
+    <div class="chat-header">
+      ✨ Gift Finder by 22 Celebrations Co.
+      <button id="chatClose" class="chat-close">✖</button>
+    </div>
 
-  if (!convo.age) {
-    await botSay("About how old are they? (You can say something like 25 or 9–12.)");
-    return;
-  }
+    <div id="chatMessages" class="chat-messages"></div>
 
-  if (!convo.hobbies) {
-    await botSay("Tell me a few things they enjoy—coffee, candles, movies, sports, spa nights, anything!");
-    return;
-  }
+    <div class="chat-input-row">
+      <input id="chatInput" type="text" placeholder="Type a message..." />
+      <button id="chatSend">Send</button>
+    </div>
+  </div>
 
-  // We have enough → recommend
-  const recs = getRecommendations();
+  <script src="products.js"></script>
+  <script src="chatbot.js"></script>
 
-  await botSay(
-    `Perfect! I think I found some great options for a ${convo.holiday} gift for your ${convo.relationship}.`
-  );
-
-  for (const r of recs) {
-    await botSay(`🎁 ${r.name} — $${r.price.toFixed(2)}`);
-  }
-
-  await botSay("If you'd like more ideas, just tell me anything else about them!");
-}
-
-/* -------------------------------------------
-   Events
---------------------------------------------*/
-
-sendBtn.addEventListener("click", handleUserMessage);
-input.addEventListener("keypress", e => {
-  if (e.key === "Enter") handleUserMessage();
-});
-
-window.addEventListener("load", async () => {
-  bubble.style.display = "none";
-  win.classList.add("visible");
-
-  await botSay("Hi there! 👋 I'm your friendly gift assistant from 22 Celebration Co.");
-  await botSay("I can help you find the perfect gift for any of our 22 special occasions. Who’s the gift for?");
-
-  setTimeout(() => {
-    win.classList.remove("visible");
-    bubble.style.display = "flex";
-  }, 2600);
-});
-
-bubble.addEventListener("click", () => {
-  bubble.style.display = "none";
-  win.classList.add("visible");
-});
-
-closeBtn.addEventListener("click", () => {
-  win.classList.remove("visible");
-  bubble.style.display = "flex";
-});
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
