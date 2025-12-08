@@ -6,16 +6,96 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="style.css">
-
-  <!-- Product Data -->
   <script src="products.js" defer></script>
+  <script defer>
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    const productGrid = document.getElementById("productGrid");
+    const searchInput = document.getElementById("searchInput");
+    const categorySelect = document.getElementById("categorySelect");
+    const searchBtn = document.getElementById("searchBtn");
+
+    // Load ALL products initially
+    renderProducts(products);
+
+    // Search + category filter
+    searchBtn.addEventListener("click", () => {
+      runSearch();
+    });
+
+    searchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") runSearch();
+    });
+
+    categorySelect.addEventListener("change", runSearch);
+
+    function runSearch() {
+      const keyword = searchInput.value.toLowerCase();
+      const selectedCategory = categorySelect.value;
+
+      const filtered = products.filter(p => {
+        const matchesKeyword =
+          p.name.toLowerCase().includes(keyword) ||
+          p.occasions.join(" ").toLowerCase().includes(keyword);
+
+        const matchesCategory =
+          selectedCategory === "all" ||
+          p.occasions.includes(selectedCategory);
+
+        return matchesKeyword && matchesCategory;
+      });
+
+      renderProducts(filtered);
+    }
+
+    // RENDER PRODUCTS TO THE GRID
+    function renderProducts(list) {
+      productGrid.innerHTML = "";
+
+      if (list.length === 0) {
+        productGrid.innerHTML = `
+          <p style="color:var(--text-muted);font-size:1.2rem;">
+            No products found.
+          </p>`;
+        return;
+      }
+
+      list.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+
+        card.innerHTML = `
+          <div class="product-image">Image Coming Soon</div>
+
+          <div class="product-info">
+            <h3 class="product-name">${item.name}</h3>
+            <p class="product-meta">
+              Occasions: ${item.occasions.join(", ")}
+            </p>
+            <p class="product-meta">
+              For: ${item.gender} &nbsp;•&nbsp; Max Age: ${item.maxAge}
+            </p>
+            <p class="product-price">$${item.price.toFixed(2)}</p>
+
+            <button class="btn-primary" onclick="alert('Added to cart!')">
+              Add to Cart
+            </button>
+          </div>
+        `;
+
+        productGrid.appendChild(card);
+      });
+    }
+
+  });
+
+  </script>
 </head>
 
 <body>
 
-<!-- ====================================================== -->
 <!-- HEADER -->
-<!-- ====================================================== -->
 <header class="site-header">
   <div class="logo">
     <span class="logo-mark">22</span>
@@ -25,7 +105,7 @@
   <nav class="main-nav">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
-    <a href="store.html" class="active">Shop</a>
+    <a class="active" href="store.html">Shop</a>
     <a href="contact.html">Contact</a>
   </nav>
 
@@ -34,162 +114,76 @@
 
 
 
-<!-- ====================================================== -->
 <!-- MAIN CONTENT -->
-<!-- ====================================================== -->
 <main>
 
 <section class="section">
-  <h1 class="section-title">Shop Gift Boxes & Baskets</h1>
-  <p class="section-subtitle">
-    Browse pre-packaged favorites or find the perfect option based on the holiday.
+  <h1 class="section-title">Shop Our Celebration Boxes</h1>
+  <p class="section-subtitle" style="max-width:800px;">
+    Browse curated gift boxes for all major holidays and occasions.  
+    Use the search + category filters to quickly find the perfect gift.
   </p>
 </section>
 
 
-<!-- ====================================================== -->
 <!-- FILTER BAR -->
-<!-- ====================================================== -->
-<section class="section">
-  <div class="filter-bar">
+<section class="section store-filters">
 
-    <!-- SEARCH -->
-    <div class="filter-group" style="flex:1;">
-      <label>Search</label>
-      <input id="searchInput" type="text" placeholder="Search gifts…">
-    </div>
+  <input 
+    type="text" 
+    id="searchInput"
+    class="search-input"
+    placeholder="Search gifts...">
 
-    <!-- CATEGORY -->
-    <div class="filter-group">
-      <label>Occasion</label>
-      <select id="categorySelect">
-        <option value="">All Occasions</option>
-        <option>New Year</option>
-        <option>Valentine's Day</option>
-        <option>St. Patrick's Day</option>
-        <option>Easter</option>
-        <option>Mother's Day</option>
-        <option>Father's Day</option>
-        <option>Graduation</option>
-        <option>Fourth of July</option>
-        <option>Back to School</option>
-        <option>Halloween</option>
-        <option>Thanksgiving</option>
-        <option>Christmas</option>
-        <option>Hanukkah</option>
-        <option>Kwanzaa</option>
-        <option>Birthday - Him</option>
-        <option>Birthday - Her</option>
-        <option>Birthday - Kids</option>
-        <option>Baby Shower</option>
-        <option>Wedding</option>
-        <option>Anniversary</option>
-        <option>Retirement</option>
-        <option>Housewarming</option>
-      </select>
-    </div>
+  <select id="categorySelect" class="search-select">
+    <option value="all">All Occasions</option>
+    <option value="New Year">New Year</option>
+    <option value="Valentine's Day">Valentine's Day</option>
+    <option value="St. Patrick's Day">St. Patrick's Day</option>
+    <option value="Easter">Easter</option>
+    <option value="Mother's Day">Mother's Day</option>
+    <option value="Father's Day">Father's Day</option>
+    <option value="Graduation">Graduation</option>
+    <option value="Fourth of July">Fourth of July</option>
+    <option value="Back to School">Back to School</option>
+    <option value="Halloween">Halloween</option>
+    <option value="Thanksgiving">Thanksgiving</option>
+    <option value="Christmas">Christmas</option>
+    <option value="Hanukkah">Hanukkah</option>
+    <option value="Kwanzaa">Kwanzaa</option>
+    <option value="Birthday - Him">Birthday - Him</option>
+    <option value="Birthday - Her">Birthday - Her</option>
+    <option value="Birthday - Kids">Birthday - Kids</option>
+    <option value="Baby Shower">Baby Shower</option>
+    <option value="Wedding">Wedding</option>
+    <option value="Anniversary">Anniversary</option>
+    <option value="Retirement">Retirement</option>
+  </select>
 
-  </div>
+  <button id="searchBtn" class="btn-primary" style="height:50px;">
+    Search
+  </button>
+
 </section>
 
 
 
-<!-- ====================================================== -->
 <!-- PRODUCT GRID -->
-<!-- ====================================================== -->
 <section class="section">
-  <div id="productGrid" class="products-grid"></div>
+  <div id="productGrid" class="product-grid"></div>
 </section>
 
 </main>
 
 
 
-<!-- ====================================================== -->
 <!-- FOOTER -->
-<!-- ====================================================== -->
 <footer class="site-footer">
   <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
 </footer>
 
-
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
-
-
-// ================================================================
-// RENDER PRODUCTS
-// ================================================================
-document.addEventListener("DOMContentLoaded", () => {
-
-  const grid = document.getElementById("productGrid");
-  const searchInput = document.getElementById("searchInput");
-  const categorySelect = document.getElementById("categorySelect");
-
-  // Safety: ensure products.js loaded
-  let allProducts = Array.isArray(products) ? products : [];
-
-  // Render product card template
-  function renderItem(p) {
-    return `
-      <div class="product-card">
-        <div class="product-image-placeholder">Image Coming Soon</div>
-
-        <div class="product-body">
-          <h3>${p.name}</h3>
-          <p class="product-occasion">${p.occasions.join(", ")}</p>
-
-          <div class="product-meta">
-            <span>${p.gender}</span>
-            <span>Age ≤ ${p.maxAge}</span>
-          </div>
-
-          <p class="product-price">$${p.price}</p>
-
-          <button class="btn-primary" style="margin-top:.5rem;">Add to Cart</button>
-        </div>
-      </div>
-    `;
-  }
-
-  // Main render function
-  function renderProducts(list) {
-    grid.innerHTML = list.map(renderItem).join("");
-  }
-
-  // Initial render
-  renderProducts(allProducts);
-
-
-  // ================================================================
-  // FILTER FUNCTION
-  // ================================================================
-  function applyFilters() {
-    let filtered = [...allProducts];
-
-    const text = searchInput.value.toLowerCase();
-    const cat = categorySelect.value;
-
-    // Search filter
-    if (text) {
-      filtered = filtered.filter(p =>
-        p.name.toLowerCase().includes(text) ||
-        p.occasions.some(o => o.toLowerCase().includes(text))
-      );
-    }
-
-    // Category filter
-    if (cat) {
-      filtered = filtered.filter(p => p.occasions.includes(cat));
-    }
-
-    renderProducts(filtered);
-  }
-
-  searchInput.addEventListener("input", applyFilters);
-  categorySelect.addEventListener("change", applyFilters);
-
-});
 </script>
 
 </body>
