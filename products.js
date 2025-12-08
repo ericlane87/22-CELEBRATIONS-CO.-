@@ -1,17 +1,18 @@
 // products.js
-// Each product: id, name, occasions[], gender (male/female/unisex), maxAge, price
+// FULL CORRECTED VERSION — Contains all 210 products + proper array closure
 
 const products = [
+
   // New Year (1–10)
-  { id: 1,  name: "New Year Sparkle Box", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 49.99 },
-  { id: 2,  name: "Midnight Countdown Basket", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 69.99 },
-  { id: 3,  name: "New Year Snack Bash", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 39.99 },
-  { id: 4,  name: "New Year Essentials Mini Box", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 29.99 },
-  { id: 5,  name: "Champagne & Chocolate Box", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 59.99 },
-  { id: 6,  name: "New Year Self-Care Set", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 54.99 },
-  { id: 7,  name: "Family New Year Party Kit", occasions: ["New Year"], gender: "unisex", maxAge: 17, price: 64.99 },
-  { id: 8,  name: "New Year Resolution Journal Box", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 34.99 },
-  { id: 9,  name: "New Year Movie Night Basket", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 44.99 },
+  { id: 1, name: "New Year Sparkle Box", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 49.99 },
+  { id: 2, name: "Midnight Countdown Basket", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 69.99 },
+  { id: 3, name: "New Year Snack Bash", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 39.99 },
+  { id: 4, name: "New Year Essentials Mini Box", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 29.99 },
+  { id: 5, name: "Champagne & Chocolate Box", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 59.99 },
+  { id: 6, name: "New Year Self-Care Set", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 54.99 },
+  { id: 7, name: "Family New Year Party Kit", occasions: ["New Year"], gender: "unisex", maxAge: 17, price: 64.99 },
+  { id: 8, name: "New Year Resolution Journal Box", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 34.99 },
+  { id: 9, name: "New Year Movie Night Basket", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 44.99 },
   { id: 10, name: "New Year Office Celebration Box", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 79.99 },
 
   // Valentine’s Day (11–20)
@@ -252,6 +253,8 @@ const products = [
   { id: 207, name: "Retirement Golf Lover Box", occasions: ["Retirement"], gender: "male", maxAge: 99, price: 89.99 },
   { id: 208, name: "Retirement Garden Lover Box", occasions: ["Retirement"], gender: "unisex", maxAge: 99, price: 74.99 },
   { id: 209, name: "Retirement Office Farewell Box", occasions: ["Retirement"], gender: "unisex", maxAge: 99, price: 49.99 },
-  { id: 210, name: "Retirement Cozy Home Box", occasions: ["Retirement"], gender: "unisex", maxAge: 99, price: 79.99 },
+  { id: 210, name: "Retirement Cozy Home Box", occasions: ["Retirement"], gender: "unisex", maxAge: 99, price: 79.99 }
 
-  //
+];
+
+// END OF FILE — FULLY CLOSED, NO SYNTAX ERRORS
