@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>22 Celebration Co.</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Products for chatbot recommendations -->
   <script src="products.js" defer></script>
 </head>
 
@@ -76,15 +78,12 @@
 
 
 
+<!-- CHATBOT UI -->
 
-<!-- ----------------------------------------------------------- -->
-<!-- CHATBOT UI ELEMENTS -->
-<!-- ----------------------------------------------------------- -->
-
-<!-- Chat Bubble -->
+<!-- Floating bubble -->
 <div id="chatbotBubble" class="chatbot-bubble">💬</div>
 
-<!-- Chat Window -->
+<!-- Chat window -->
 <div id="chatbotWindow" class="chatbot-window">
   <div class="chat-header">
     <span>🎁 Gift Assistant</span>
@@ -94,29 +93,25 @@
   <div id="chatMessages" class="chat-messages"></div>
 
   <div class="chat-input-row">
-    <input id="chatInput" type="text" placeholder="Type message...">
+    <input id="chatInput" type="text" placeholder="Type a message..." />
     <button id="chatSend" class="btn-primary">Send</button>
   </div>
 </div>
 
 
 
-
-<!-- ----------------------------------------------------------- -->
-<!-- CHATBOT LOGIC (FULL SMART VERSION) -->
-<!-- ----------------------------------------------------------- -->
-
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// UI References
-const botBubble = document.getElementById("chatbotBubble");
-const botWindow = document.getElementById("chatbotWindow");
+// Chatbot references
+const botBubble   = document.getElementById("chatbotBubble");
+const botWindow   = document.getElementById("chatbotWindow");
 const botMessages = document.getElementById("chatMessages");
-const botInput = document.getElementById("chatInput");
-const botSend = document.getElementById("chatSend");
+const botInput    = document.getElementById("chatInput");
+const botSend     = document.getElementById("chatSend");
+const chatClose   = document.getElementById("chatClose");
 
-// Conversation State
+// Conversation state
 let convo = {
   relationship: null,
   holiday: null,
@@ -140,139 +135,210 @@ const holidays = [
   "st patrick","back to school"
 ];
 
+// Message helpers
 function botSay(msg) {
-  let box = document.createElement("div");
-  box.className = "chat-msg bot";
-  box.innerText = msg;
-  botMessages.appendChild(box);
+  const div = document.createElement("div");
+  div.className = "chat-msg bot";
+  div.innerText = msg;
+  botMessages.appendChild(div);
   botMessages.scrollTop = botMessages.scrollHeight;
 }
 
 function userSay(msg) {
-  let box = document.createElement("div");
-  box.className = "chat-msg user";
-  box.innerText = msg;
-  botMessages.appendChild(box);
+  const div = document.createElement("div");
+  div.className = "chat-msg user";
+  div.innerText = msg;
+  botMessages.appendChild(div);
   botMessages.scrollTop = botMessages.scrollHeight;
 }
 
-function detectRelationship(msg) {
-  msg = msg.toLowerCase();
-  return relationships.find(r => msg.includes(r)) || null;
+// Detectors
+function detectRelationship(text) {
+  const t = text.toLowerCase();
+  return relationships.find(r => t.includes(r)) || null;
 }
 
-function detectHoliday(msg) {
-  msg = msg.toLowerCase();
-  return holidays.find(h => msg.includes(h)) || null;
+function detectHoliday(text) {
+  const t = text.toLowerCase();
+  return holidays.find(h => t.includes(h)) || null;
 }
 
-// RECOMMEND PRODUCTS
+// Gift recommendation
 function recommendGifts() {
+  if (!Array.isArray(products)) {
+    botSay("I’m having trouble loading gift options right now.");
+    return;
+  }
+
   let list = products;
 
+  // Holiday filter first (if we have one)
   if (convo.holiday) {
-    list = list.filter(p => 
+    list = list.filter(p =>
       p.occasions.some(o => o.toLowerCase().includes(convo.holiday))
     );
   }
 
+  // Relationship → gender filter
   if (convo.relationship) {
-    const femaleList = ["wife","mom","mother","mother-in-law","girlfriend","daughter","sister","grandma","aunt"];
-    const maleList   = ["husband","dad","father","father-in-law","boyfriend","son","brother","grandpa","uncle"];
+    const femaleRels = ["wife","mom","mother","mother-in-law","girlfriend","daughter","sister","grandma","grandmother","aunt"];
+    const maleRels   = ["husband","dad","father","father-in-law","boyfriend","son","brother","grandpa","grandfather","uncle"];
 
-    if (femaleList.includes(convo.relationship))
+    if (femaleRels.includes(convo.relationship)) {
       list = list.filter(p => p.gender === "female" || p.gender === "unisex");
-
-    if (maleList.includes(convo.relationship))
+    } else if (maleRels.includes(convo.relationship)) {
       list = list.filter(p => p.gender === "male" || p.gender === "unisex");
+    }
   }
 
+  // Age filter
   if (convo.age) {
     list = list.filter(p => p.maxAge >= convo.age);
   }
 
+  // Hobbies filter (very light)
   if (convo.hobbies) {
+    const h = convo.hobbies;
     list = list.filter(p =>
-      p.name.toLowerCase().includes(convo.hobbies) ||
-      p.occasions.join(" ").toLowerCase().includes(convo.hobbies)
+      p.name.toLowerCase().includes(h) ||
+      p.occasions.join(" ").toLowerCase().includes(h)
     );
   }
 
-  let finalList = list.slice(0, 3);
+  // Fallback if too narrow
+  if (list.length === 0) {
+    list = products.slice(0, 3);
+  } else {
+    list = list.slice(0, 3);
+  }
 
-  botSay("Here are some gift ideas:");
-  finalList.forEach(p => {
-    botSay(`🎁 ${p.name} — $${p.price}`);
+  botSay("Here are some gift ideas I recommend:");
+  list.forEach(p => {
+    botSay(`🎁 ${p.name} — $${p.price.toFixed(2)}`);
   });
 }
 
-// MAIN MESSAGE HANDLER
+// Handle user messages
 function handleMessage() {
   const msg = botInput.value.trim();
   if (!msg) return;
+
   userSay(msg);
   botInput.value = "";
 
-  const low = msg.toLowerCase();
+  const lower = msg.toLowerCase();
 
-  let h = detectHoliday(low);
-  let r = detectRelationship(low);
+  // Detect holiday (takes precedence)
+  const h = detectHoliday(lower);
+  if (h) {
+    convo.holiday = h;
+  }
 
-  if (h) convo.holiday = h;
-  if (r) convo.relationship = r;
+  // Detect relationship
+  const r = detectRelationship(lower);
+  if (r) {
+    convo.relationship = r;
+  }
 
+  // If we already know both relationship + holiday but not age → ask for age
   if (convo.relationship && convo.holiday && !convo.age) {
     botSay(`Nice! A ${convo.holiday} gift for your ${convo.relationship}. How old are they?`);
     return;
   }
 
-  // Age
+  // If we know they want a gift for someone (relationship) but no holiday yet
+  if (convo.relationship && !convo.holiday && !convo.age) {
+    botSay(`Got it — a gift for your ${convo.relationship}. Is this for a specific occasion, like Christmas, birthday, or anniversary?`);
+    return;
+  }
+
+  // Try to parse age
   if (!convo.age) {
-    let ageNum = parseInt(msg.replace(/\D/g, ""));
-    if (!isNaN(ageNum)) {
-      convo.age = ageNum;
-      botSay("Great! What hobbies or interests do they have?");
+    const num = parseInt(msg.replace(/\D/g, ""));
+    if (!isNaN(num)) {
+      convo.age = num;
+      botSay("Perfect. What kind of hobbies or interests do they have?");
+      return;
+    } else {
+      botSay("About how old are they? (You can just give me a number like 25 or 9–12.)");
       return;
     }
   }
 
   // Hobbies
   if (!convo.hobbies) {
-    convo.hobbies = msg.toLowerCase();
-    botSay("Let me find gift matches...");
-    setTimeout(recommendGifts, 1200);
+    convo.hobbies = lower;
+    botSay("Great, let me find some matching gifts for you...");
+    setTimeout(recommendGifts, 1000);
     return;
   }
+
+  // After recommendation flow, if they keep talking, gently redirect
+  botSay("If you’d like another suggestion, tell me who the gift is for and the occasion.");
 }
 
-// Button + Enter Key
-botSend.onclick = handleMessage;
+// Wire up events
+botSend.addEventListener("click", handleMessage);
 botInput.addEventListener("keypress", e => {
   if (e.key === "Enter") handleMessage();
 });
 
-// Auto-open then auto-minimize
+// ---------- POPUP / MINIMIZE BEHAVIOR (SMOOTH & STABLE) ----------
+
+// Initial states
+botBubble.style.display = "none";      // hidden until window minimizes
+botWindow.style.display = "flex";      // visible on first load
+botWindow.style.opacity = "0";
+botWindow.style.transform = "translateY(40px) scale(0.95)";
+botWindow.style.transition = "transform 0.35s ease, opacity 0.35s ease";
+
+// Show intro after short delay
 setTimeout(() => {
-  botWindow.style.display = "flex";
+  botWindow.style.opacity = "1";
+  botWindow.style.transform = "translateY(0) scale(1)";
   botSay("Hello! 👋");
-  setTimeout(() => botSay("I can help you find the perfect gift."), 600);
+  setTimeout(() => {
+    botSay("I can help you find the perfect gift. Tell me who you're shopping for and the occasion.");
+  }, 600);
+}, 600);
+
+// After a couple seconds, minimize to bubble (but keep bubble visible)
+setTimeout(() => {
+  // animate window out
+  botWindow.style.opacity = "0";
+  botWindow.style.transform = "translateY(40px) scale(0.95)";
+
   setTimeout(() => {
     botWindow.style.display = "none";
     botBubble.style.display = "flex";
-  }, 2000);
-}, 1000);
+  }, 400); // wait for transition to finish
+}, 3500);
 
-// Open bubble
-botBubble.onclick = () => {
+// Bubble → open window
+botBubble.addEventListener("click", () => {
   botBubble.style.display = "none";
-  botWindow.style.display = "flex";
-};
 
-// Close window
-document.getElementById("chatClose").onclick = () => {
-  botWindow.style.display = "none";
-  botBubble.style.display = "flex";
-};
+  botWindow.style.display = "flex";
+  botWindow.style.opacity = "0";
+  botWindow.style.transform = "translateY(40px) scale(0.95)";
+
+  // slight timeout so transition applies cleanly
+  setTimeout(() => {
+    botWindow.style.opacity = "1";
+    botWindow.style.transform = "translateY(0) scale(1)";
+  }, 20);
+});
+
+// Close button → minimize back to bubble
+chatClose.addEventListener("click", () => {
+  botWindow.style.opacity = "0";
+  botWindow.style.transform = "translateY(40px) scale(0.95)";
+
+  setTimeout(() => {
+    botWindow.style.display = "none";
+    botBubble.style.display = "flex";
+  }, 350);
+});
 </script>
 
 </body>
