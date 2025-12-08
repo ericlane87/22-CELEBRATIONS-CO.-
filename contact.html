@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us – 22 Celebration Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="logo">
+    <span class="logo-mark">22</span>
+    <span class="logo-text">Celebration Co.</span>
+  </div>
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="store.html">Shop</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+  <a href="tel:17708201456" class="btn-phone">Call Us</a>
+</header>
+
+<main>
+  <section class="section hero-slim">
+    <h1>Contact 22 Celebration Co.</h1>
+    <p>
+      Have questions, need a custom quote, or want help picking the perfect gift? 
+      Reach out and we’ll get back to you as soon as possible.
+    </p>
+  </section>
+
+  <section class="section two-column contact-grid">
+    <div>
+      <h2>Get in Touch</h2>
+      <p><strong>Phone:</strong> <a href="tel:17708201456">(770) 820-1456</a></p>
+      <p><strong>Business:</strong> 22 Celebration Co.</p>
+      <p>
+        Let us know the occasion, who the gift is for, and your approximate budget. 
+        We’ll suggest pre-packaged options or create a custom plan.
+      </p>
+      <ul class="checklist">
+        <li>Questions about holidays we cover</li>
+        <li>Custom basket themes & budgets</li>
+        <li>Bulk & corporate gifting inquiries</li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>Send Us a Message</h2>
+      <!-- Replace the email below with your own FormSubmit email -->
+      <form 
+        action="https://formsubmit.co/youremail@example.com" 
+        method="POST" 
+        class="contact-form"
+      >
+        <!-- FormSubmit options -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_subject" value="New 22 Celebration Co. Inquiry">
+
+        <label>
+          Name
+          <input type="text" name="name" required>
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required>
+        </label>
+        <label>
+          Phone
+          <input type="tel" name="phone">
+        </label>
+        <label>
+          Occasion / Holiday
+          <input type="text" name="occasion" placeholder="Example: Christmas, Birthday, Baby Shower">
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="5" placeholder="Tell us who the gift is for, age, and your budget." required></textarea>
+        </label>
+
+        <button type="submit" class="btn-primary">Send Message</button>
+      </form>
+      <p class="form-note">
+        <strong>Note:</strong> Update the email in the form action to your own 
+        address on FormSubmit to start receiving messages.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> 22 Celebration Co. All rights reserved.</p>
+  <p>Phone: <a href="tel:17708201456">(770) 820-1456</a></p>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('year').textContent = new Date().getFullYear();
+  });
+</script>
+</body>
+</html>
