@@ -2,344 +2,196 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>22 Celebration Co.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>22 Celebration Co.</title>
 
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Products for chatbot recommendations -->
-  <script src="products.js" defer></script>
-</head>
-
-<body>
-
-<!-- HEADER -->
-<header class="site-header">
-  <div class="logo">
-    <span class="logo-mark">22</span>
-    <span class="logo-text">Celebration Co.</span>
-  </div>
-
-  <nav class="main-nav">
-    <a class="active" href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="store.html">Shop</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-  <a href="tel:17708201456" class="btn-phone">(770) 820-1456</a>
-</header>
-
-
-
-<!-- HERO SECTION -->
-<section class="section hero">
-  <h1 class="section-title">Elegant Gifts for All Occasions</h1>
-  <p class="section-subtitle" style="max-width:700px;">
-    Beautiful curated boxes & custom baskets created to make gifting easier.
-  </p>
-</section>
-
-
-
-<!-- HOLIDAY LIST -->
-<section class="section">
-  <h2 class="section-title">Supported Holidays</h2>
-
-  <div class="holiday-grid">
-    <div class="holiday-card">🎄 Christmas</div>
-    <div class="holiday-card">🎉 New Year</div>
-    <div class="holiday-card">❤️ Valentine’s Day</div>
-    <div class="holiday-card">🍀 St. Patrick’s Day</div>
-    <div class="holiday-card">🐣 Easter</div>
-    <div class="holiday-card">👩‍👧 Mother’s Day</div>
-    <div class="holiday-card">👨 Father’s Day</div>
-    <div class="holiday-card">🎓 Graduation</div>
-    <div class="holiday-card">🇺🇸 4th of July</div>
-    <div class="holiday-card">📚 Back to School</div>
-    <div class="holiday-card">🎃 Halloween</div>
-    <div class="holiday-card">🦃 Thanksgiving</div>
-    <div class="holiday-card">🕎 Hanukkah</div>
-    <div class="holiday-card">🟥🟩 Kwanzaa</div>
-    <div class="holiday-card">🎂 Birthdays</div>
-    <div class="holiday-card">👶 Baby Shower</div>
-    <div class="holiday-card">💍 Wedding</div>
-    <div class="holiday-card">💞 Anniversary</div>
-    <div class="holiday-card">🎉 Retirement</div>
-  </div>
-</section>
-
-
-
-<!-- FOOTER -->
-<footer class="site-footer">
-  <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
-</footer>
-
-
-
-<!-- CHATBOT UI -->
-
-<!-- Floating bubble -->
-<div id="chatbotBubble" class="chatbot-bubble">💬</div>
-
-<!-- Chat window -->
-<div id="chatbotWindow" class="chatbot-window">
-  <div class="chat-header">
-    <span>🎁 Gift Assistant</span>
-    <button id="chatClose" class="chat-close">✖</button>
-  </div>
-
-  <div id="chatMessages" class="chat-messages"></div>
-
-  <div class="chat-input-row">
-    <input id="chatInput" type="text" placeholder="Type a message..." />
-    <button id="chatSend" class="btn-primary">Send</button>
-  </div>
-</div>
-
-
-
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-
-// Chatbot references
-const botBubble   = document.getElementById("chatbotBubble");
-const botWindow   = document.getElementById("chatbotWindow");
-const botMessages = document.getElementById("chatMessages");
-const botInput    = document.getElementById("chatInput");
-const botSend     = document.getElementById("chatSend");
-const chatClose   = document.getElementById("chatClose");
-
-// Conversation state
-let convo = {
-  relationship: null,
-  holiday: null,
-  age: null,
-  hobbies: null
-};
-
-// Keywords
-const relationships = [
-  "wife","husband","mom","mother","mother-in-law","dad","father",
-  "father-in-law","brother","sister","son","daughter","girlfriend",
-  "boyfriend","fiancé","aunt","uncle","grandma","grandmother","grandpa",
-  "grandfather","friend","boss","coworker"
-];
-
-const holidays = [
-  "christmas","easter","thanksgiving","halloween","new year",
-  "valentine","valentine's day","fourth of july","graduation",
-  "father's day","mother's day","hanukkah","kwanzaa","birthday",
-  "wedding","anniversary","retirement","baby shower","st. patrick",
-  "st patrick","back to school"
-];
-
-// Message helpers
-function botSay(msg) {
-  const div = document.createElement("div");
-  div.className = "chat-msg bot";
-  div.innerText = msg;
-  botMessages.appendChild(div);
-  botMessages.scrollTop = botMessages.scrollHeight;
-}
-
-function userSay(msg) {
-  const div = document.createElement("div");
-  div.className = "chat-msg user";
-  div.innerText = msg;
-  botMessages.appendChild(div);
-  botMessages.scrollTop = botMessages.scrollHeight;
-}
-
-// Detectors
-function detectRelationship(text) {
-  const t = text.toLowerCase();
-  return relationships.find(r => t.includes(r)) || null;
-}
-
-function detectHoliday(text) {
-  const t = text.toLowerCase();
-  return holidays.find(h => t.includes(h)) || null;
-}
-
-// Gift recommendation
-function recommendGifts() {
-  if (!Array.isArray(products)) {
-    botSay("I’m having trouble loading gift options right now.");
-    return;
-  }
-
-  let list = products;
-
-  // Holiday filter first (if we have one)
-  if (convo.holiday) {
-    list = list.filter(p =>
-      p.occasions.some(o => o.toLowerCase().includes(convo.holiday))
-    );
-  }
-
-  // Relationship → gender filter
-  if (convo.relationship) {
-    const femaleRels = ["wife","mom","mother","mother-in-law","girlfriend","daughter","sister","grandma","grandmother","aunt"];
-    const maleRels   = ["husband","dad","father","father-in-law","boyfriend","son","brother","grandpa","grandfather","uncle"];
-
-    if (femaleRels.includes(convo.relationship)) {
-      list = list.filter(p => p.gender === "female" || p.gender === "unisex");
-    } else if (maleRels.includes(convo.relationship)) {
-      list = list.filter(p => p.gender === "male" || p.gender === "unisex");
+  <!-- Add the CSS styles directly here -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
     }
-  }
 
-  // Age filter
-  if (convo.age) {
-    list = list.filter(p => p.maxAge >= convo.age);
-  }
-
-  // Hobbies filter (very light)
-  if (convo.hobbies) {
-    const h = convo.hobbies;
-    list = list.filter(p =>
-      p.name.toLowerCase().includes(h) ||
-      p.occasions.join(" ").toLowerCase().includes(h)
-    );
-  }
-
-  // Fallback if too narrow
-  if (list.length === 0) {
-    list = products.slice(0, 3);
-  } else {
-    list = list.slice(0, 3);
-  }
-
-  botSay("Here are some gift ideas I recommend:");
-  list.forEach(p => {
-    botSay(`🎁 ${p.name} — $${p.price.toFixed(2)}`);
-  });
-}
-
-// Handle user messages
-function handleMessage() {
-  const msg = botInput.value.trim();
-  if (!msg) return;
-
-  userSay(msg);
-  botInput.value = "";
-
-  const lower = msg.toLowerCase();
-
-  // Detect holiday (takes precedence)
-  const h = detectHoliday(lower);
-  if (h) {
-    convo.holiday = h;
-  }
-
-  // Detect relationship
-  const r = detectRelationship(lower);
-  if (r) {
-    convo.relationship = r;
-  }
-
-  // If we already know both relationship + holiday but not age → ask for age
-  if (convo.relationship && convo.holiday && !convo.age) {
-    botSay(`Nice! A ${convo.holiday} gift for your ${convo.relationship}. How old are they?`);
-    return;
-  }
-
-  // If we know they want a gift for someone (relationship) but no holiday yet
-  if (convo.relationship && !convo.holiday && !convo.age) {
-    botSay(`Got it — a gift for your ${convo.relationship}. Is this for a specific occasion, like Christmas, birthday, or anniversary?`);
-    return;
-  }
-
-  // Try to parse age
-  if (!convo.age) {
-    const num = parseInt(msg.replace(/\D/g, ""));
-    if (!isNaN(num)) {
-      convo.age = num;
-      botSay("Perfect. What kind of hobbies or interests do they have?");
-      return;
-    } else {
-      botSay("About how old are they? (You can just give me a number like 25 or 9–12.)");
-      return;
+    .site-header {
+      background-color: #ffffff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid gold; /* subtle gold accent */
     }
-  }
 
-  // Hobbies
-  if (!convo.hobbies) {
-    convo.hobbies = lower;
-    botSay("Great, let me find some matching gifts for you...");
-    setTimeout(recommendGifts, 1000);
-    return;
-  }
+    .logo {
+      display: flex;
+      align-items: baseline;
+    }
 
-  // After recommendation flow, if they keep talking, gently redirect
-  botSay("If you’d like another suggestion, tell me who the gift is for and the occasion.");
-}
+    .logo-mark {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #007b8f; /* turquoise */
+    }
 
-// Wire up events
-botSend.addEventListener("click", handleMessage);
-botInput.addEventListener("keypress", e => {
-  if (e.key === "Enter") handleMessage();
-});
+    .logo-text {
+      font-size: 1.2em;
+      margin-left: 5px;
+    }
 
-// ---------- POPUP / MINIMIZE BEHAVIOR (SMOOTH & STABLE) ----------
+    .main-nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #333;
+    }
 
-// Initial states
-botBubble.style.display = "none";      // hidden until window minimizes
-botWindow.style.display = "flex";      // visible on first load
-botWindow.style.opacity = "0";
-botWindow.style.transform = "translateY(40px) scale(0.95)";
-botWindow.style.transition = "transform 0.35s ease, opacity 0.35s ease";
+    .main-nav a.active {
+      font-weight: bold;
+      color: #007b8f; /* turquoise for active link */
+    }
 
-// Show intro after short delay
-setTimeout(() => {
-  botWindow.style.opacity = "1";
-  botWindow.style.transform = "translateY(0) scale(1)";
-  botSay("Hello! 👋");
-  setTimeout(() => {
-    botSay("I can help you find the perfect gift. Tell me who you're shopping for and the occasion.");
-  }, 600);
-}, 600);
+    .btn-phone {
+      background-color: gold;
+      color: #333;
+      padding: 8px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
 
-// After a couple seconds, minimize to bubble (but keep bubble visible)
-setTimeout(() => {
-  // animate window out
-  botWindow.style.opacity = "0";
-  botWindow.style.transform = "translateY(40px) scale(0.95)";
+    .section {
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-  setTimeout(() => {
-    botWindow.style.display = "none";
-    botBubble.style.display = "flex";
-  }, 400); // wait for transition to finish
-}, 3500);
+    .section-title {
+      font-size: 2em;
+      color: #333;
+    }
 
-// Bubble → open window
-botBubble.addEventListener("click", () => {
-  botBubble.style.display = "none";
+    .section-subtitle {
+      font-size: 1.2em;
+      color: #666;
+    }
 
-  botWindow.style.display = "flex";
-  botWindow.style.opacity = "0";
-  botWindow.style.transform = "translateY(40px) scale(0.95)";
+    .holiday-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
 
-  // slight timeout so transition applies cleanly
-  setTimeout(() => {
-    botWindow.style.opacity = "1";
-    botWindow.style.transform = "translateY(0) scale(1)";
-  }, 20);
-});
+    .holiday-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 1.1em;
+    }
 
-// Close button → minimize back to bubble
-chatClose.addEventListener("click", () => {
-  botWindow.style.opacity = "0";
-  botWindow.style.transform = "translateY(40px) scale(0.95)";
+    .site-footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
 
-  setTimeout(() => {
-    botWindow.style.display = "none";
-    botBubble.style.display = "flex";
-  }, 350);
-});
-</script>
+    /* Chatbot Styles */
+    .chatbot-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007b8f; /* turquoise */
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2em;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: none; /* initially hidden */
+    }
 
-</body>
-</html>
+    .chatbot-window {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 300px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      z-index: 1000;
+    }
+
+    .chat-header {
+      background-color: #007b8f; /* turquoise header */
+      color: white;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .chat-messages {
+      padding: 10px;
+      height: 200px;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .chat-input-row {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+
+    .chat-input-row input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    .btn-primary {
+      background-color: gold;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      color: #333;
+      border-bottom-right-radius: 10px;
+    }
+
+    .chat-msg {
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 5px;
+      max-width: 80%;
+    }
+
+    .chat-msg.bot {
+      background-color: #e0f7fa; /* light turquoise */
+      align-self: flex-start;
+    }
+
+    .chat-msg.user {
+      background-color: #f1f1f1;
+      align-self: flex-end;
+    }
+
+    .chat-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+  </style>
+
+  <!-- Load products for chatbot recommendations -->
+  <script src="products.js
