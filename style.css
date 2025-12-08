@@ -1,531 +1,471 @@
 /* -----------------------------------------------------------
-   22 Celebration Co. — Luxury Dark Theme
-   Charcoal Gradient + Subtle Electric Blue Accents
-   Elegant Sans Typography (Montserrat / Jakarta Sans)
--------------------------------------------------------------- */
+   GLOBAL BASE STYLES — Warm Ivory + Turquoise + Gold Theme
+----------------------------------------------------------- */
 
-/* GOOGLE FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-  /* Base Colors */
-  --bg-start: #0e0e0e;       /* charcoal gradient start */
-  --bg-end: #1a1a1a;         /* charcoal gradient end */
-  --card-bg: #111111;        /* deep neutral card */
-  --card-bg-alt: #161616;
+  --bg: #FAF7F2;              /* Warm Ivory */
+  --text-dark: #222;
+  --text-muted: #555;
 
-  /* Text Colors */
-  --text-main: #f3f3f3;
-  --text-muted: #b3b3b3;
-
-  /* Subtle Accent Blue */
-  --blue-accent: #62a0ff;          /* soft electric blue */
-  --blue-accent-05: rgba(98,160,255,0.05);
-  --blue-accent-10: rgba(98,160,255,0.10);
-  --blue-accent-20: rgba(98,160,255,0.20);
-
-  /* Borders & Lines */
-  --border-light: rgba(255,255,255,0.07);
-  --border-blue: rgba(98,160,255,0.35);
-
-  /* Shadows */
-  --shadow-soft: 0 8px 22px rgba(0,0,0,0.35);
-  --shadow-medium: 0 14px 32px rgba(0,0,0,0.45);
-
-  /* Radius */
-  --radius-lg: 20px;
-  --radius-md: 14px;
-  --radius-sm: 8px;
-
-  /* Transitions */
-  --transition: 0.22s ease;
+  --turquoise: #1ABC9C;       /* T1 */
+  --gold: #D4AF37;            /* Subtle accent gold */
+  --card-bg: #FFFFFF;
+  --border-gold: rgba(212,175,55,0.35);
+  --shadow: rgba(0,0,0,0.08);
 }
 
-/* -----------------------------------------------------------
-   GLOBAL RESET & TYPOGRAPHY
--------------------------------------------------------------- */
-
-*,
-*::before,
-*::after {
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  background: linear-gradient(to bottom, var(--bg-start), var(--bg-end));
-  font-family: 'Plus Jakarta Sans', 'Montserrat', sans-serif;
-  color: var(--text-main);
-  -webkit-font-smoothing: antialiased;
+  background: var(--bg);
+  font-family: "Inter", sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding-bottom: 120px; /* so chatbot never covers content */
+}
+
+h1, h2, h3, h4 {
+  font-family: "Playfair Display", serif;
+  color: var(--text-dark);
+  font-weight: 600;
 }
 
 /* -----------------------------------------------------------
    HEADER / NAVIGATION
--------------------------------------------------------------- */
+----------------------------------------------------------- */
 
 .site-header {
-  width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(10,10,10,0.6);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-light);
-  padding: 0.75rem 5vw;
+  background: #FFFFFFCC;
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid var(--border-gold);
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  font-size: 1.15rem;
+  gap: .5rem;
+  font-family: "Playfair Display";
 }
 
 .logo-mark {
-  color: var(--blue-accent);
+  font-size: 1.5rem;
   font-weight: 700;
-  padding: 0.3rem 0.6rem;
-  border-radius: 10px;
-  border: 1px solid var(--blue-accent-20);
-  background: var(--blue-accent-05);
+  color: var(--gold);
 }
 
 .logo-text {
-  color: var(--text-main);
-}
-
-.main-nav {
-  display: flex;
-  gap: 1rem;
+  font-size: 1rem;
+  color: var(--text-dark);
+  font-weight: 600;
 }
 
 .main-nav a {
-  color: var(--text-muted);
+  margin: 0 1rem;
+  color: var(--text-dark);
   text-decoration: none;
-  padding: 0.35rem 0.9rem;
-  font-size: 0.92rem;
-  border-radius: 999px;
-  transition: var(--transition);
+  font-weight: 500;
+  position: relative;
 }
 
-.main-nav a:hover {
-  color: var(--blue-accent);
-  background: var(--blue-accent-10);
-}
-
+.main-nav a:hover,
 .main-nav a.active {
-  color: var(--blue-accent);
-  background: var(--blue-accent-05);
-  border: 1px solid var(--blue-accent-10);
+  color: var(--turquoise);
+}
+
+.main-nav a.active::after,
+.main-nav a:hover::after {
+  content: "";
+  height: 2px;
+  width: 100%;
+  background: var(--gold);
+  position: absolute;
+  bottom: -4px;
+  left: 0;
 }
 
 .btn-phone {
-  padding: 0.45rem 1rem;
-  border-radius: 999px;
-  background: var(--blue-accent-05);
-  color: var(--blue-accent);
-  border: 1px solid var(--blue-accent-20);
+  background: var(--turquoise);
+  color: #fff;
+  padding: .5rem 1rem;
+  border-radius: 6px;
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: var(--transition);
+  font-weight: 600;
+  transition: 0.25s;
 }
 
 .btn-phone:hover {
-  background: var(--blue-accent-10);
-}
-
-/* -----------------------------------------------------------
-   SECTION LAYOUT
--------------------------------------------------------------- */
-
-main {
-  padding: 2rem 5vw 3rem;
-}
-
-.section {
-  margin-bottom: 3rem;
-}
-
-.section-title {
-  font-size: 1.65rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  margin-bottom: 1rem;
-}
-
-.section-subtitle {
-  color: var(--text-muted);
-  margin-bottom: 1.4rem;
-  font-size: 1rem;
+  background: #159f86;
 }
 
 /* -----------------------------------------------------------
    HERO SECTION
--------------------------------------------------------------- */
+----------------------------------------------------------- */
 
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0,1.3fr) minmax(0,1fr);
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem 2rem;
   gap: 2rem;
-  align-items: center;
-  padding: 2rem 0;
+}
+
+.hero-content {
+  max-width: 600px;
 }
 
 .hero-content h1 {
-  font-size: 2.3rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.hero-content p {
-  color: var(--text-muted);
-  font-size: 1.05rem;
-  max-width: 36rem;
-  line-height: 1.6;
+  font-size: 2.6rem;
+  line-height: 1.2;
 }
 
 .hero-actions {
-  margin-top: 1.3rem;
+  margin-top: 1.5rem;
   display: flex;
   gap: 1rem;
-  flex-wrap: wrap;
 }
 
 .btn-primary {
-  background: var(--blue-accent-10);
-  border: 1px solid var(--blue-accent-20);
-  color: var(--blue-accent);
-  padding: 0.7rem 1.4rem;
-  border-radius: 999px;
+  background: var(--turquoise);
+  color: white;
+  padding: .75rem 1.5rem;
+  border-radius: 6px;
   font-weight: 600;
   text-decoration: none;
-  transition: var(--transition);
+  transition: 0.25s;
 }
 
 .btn-primary:hover {
-  background: var(--blue-accent-20);
-  color: #ffffff;
+  background: #159f86;
 }
 
 .btn-secondary {
-  background: transparent;
-  border: 1px solid var(--border-light);
-  color: var(--text-main);
-  padding: 0.7rem 1.4rem;
-  border-radius: 999px;
-  font-weight: 500;
-  transition: var(--transition);
+  background: white;
+  color: var(--text-dark);
+  border: 2px solid var(--gold);
+  padding: .75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.25s;
 }
 
 .btn-secondary:hover {
-  border-color: var(--blue-accent);
-  color: var(--blue-accent);
+  background: var(--gold);
+  color: #fff;
 }
 
 .hero-card {
   background: var(--card-bg);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-medium);
   padding: 1.5rem;
-  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 4px 16px var(--shadow);
 }
 
 /* -----------------------------------------------------------
-   HOLIDAY GRID — Redesigned to POP
--------------------------------------------------------------- */
+   SECTION WRAPPER
+----------------------------------------------------------- */
+
+.section {
+  padding: 2rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: .5rem;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* -----------------------------------------------------------
+   HOLIDAY GRID
+----------------------------------------------------------- */
 
 .holiday-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px,1fr));
-  gap: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
 }
 
 .holiday-item {
-  background: var(--card-bg-alt);
+  background: #ffffff;
+  border: 1px solid var(--border-gold);
   padding: 1rem;
-  border-radius: var(--radius-md);
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px var(--shadow);
   text-align: center;
-  border: 1px solid var(--border-light);
-  transition: var(--transition);
-  box-shadow: var(--shadow-soft);
+  transition: 0.25s;
 }
 
 .holiday-item:hover {
-  border-color: var(--blue-accent);
+  border-color: var(--gold);
   transform: translateY(-3px);
-  background: #151515;
 }
 
 .holiday-icon {
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: block;
-  margin-bottom: 0.4rem;
-}
-
-.holiday-name {
-  font-size: 1rem;
-  color: var(--text-main);
+  margin-bottom: .5rem;
 }
 
 /* -----------------------------------------------------------
-   PRODUCT GRID (STORE)
--------------------------------------------------------------- */
+   TWO COLUMN (ABOUT PAGE)
+----------------------------------------------------------- */
 
-.products-grid {
+.two-column {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
-  gap: 1.5rem;
-}
-
-.product-card {
-  background: var(--card-bg);
-  border-radius: var(--radius-lg);
-  padding-bottom: 1rem;
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-soft);
-  transition: var(--transition);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.product-card:hover {
-  border-color: var(--blue-accent);
-  transform: translateY(-4px);
-}
-
-.product-image-placeholder {
-  height: 150px;
-  background: linear-gradient(145deg, #222 0%, #2a2a2a 100%);
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
-}
-
-.product-body {
-  padding: 1rem;
-}
-
-.product-body h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.product-occasion {
-  color: var(--text-muted);
-  margin: 0.4rem 0 0.2rem;
-}
-
-.product-meta {
-  color: var(--text-muted);
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.87rem;
-}
-
-.product-price {
-  margin: 0.7rem 0;
-  font-weight: 600;
-  color: var(--blue-accent);
-}
-
-/* -----------------------------------------------------------
-   FILTER BAR
--------------------------------------------------------------- */
-
-.filter-bar {
-  background: var(--card-bg);
-  padding: 1rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-soft);
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.filter-group label {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-bottom: 0.3rem;
-}
-
-.filter-group input,
-.filter-group select {
-  background: #0f0f0f;
-  border: 1px solid var(--border-light);
-  color: var(--text-main);
-  padding: 0.5rem 0.8rem;
-  border-radius: 999px;
-  transition: var(--transition);
-}
-
-.filter-group input:focus,
-.filter-group select:focus {
-  border-color: var(--blue-accent);
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
 
 /* -----------------------------------------------------------
    CONTACT FORM
--------------------------------------------------------------- */
+----------------------------------------------------------- */
 
 .contact-form {
-  background: var(--card-bg);
-  padding: 1.5rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-light);
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 4px 16px var(--shadow);
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
+.contact-form label {
+  font-weight: 600;
+}
+
 .contact-form input,
 .contact-form textarea {
-  background: #0f0f0f;
-  border: 1px solid var(--border-light);
-  color: var(--text-main);
-  padding: 0.65rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.95rem;
-  transition: var(--transition);
+  width: 100%;
+  padding: .75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: var(--blue-accent);
+  outline: 2px solid var(--turquoise);
+}
+
+/* -----------------------------------------------------------
+   STORE — FILTERS + GRID
+----------------------------------------------------------- */
+
+.filter-bar {
+  display: flex;
+  gap: 1.5rem;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 2px 12px var(--shadow);
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  font-size: .9rem;
+}
+
+.filter-group input,
+.filter-group select {
+  padding: .6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.filter-group button {
+  padding: .6rem 1.2rem;
+  background: var(--turquoise);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin-top: .5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 4px 16px var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image-placeholder {
+  height: 150px;
+  background: #eee;
+  color: #888;
+  font-size: .9rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-price {
+  margin-top: .4rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--turquoise);
 }
 
 /* -----------------------------------------------------------
    FOOTER
--------------------------------------------------------------- */
+----------------------------------------------------------- */
 
 .site-footer {
-  padding: 1.5rem 5vw;
-  border-top: 1px solid var(--border-light);
+  padding: 2rem;
+  text-align: center;
   color: var(--text-muted);
-  font-size: 0.85rem;
-  background: rgba(10,10,10,0.7);
-  backdrop-filter: blur(6px);
+  margin-top: 3rem;
 }
 
 /* -----------------------------------------------------------
-   CHATBOT (Dark + Soft Blue)
--------------------------------------------------------------- */
+   CHATBOT — FULL LUXURY REDESIGN
+----------------------------------------------------------- */
 
 .chat-widget {
   position: fixed;
-  bottom: 1.3rem;
-  right: 1.3rem;
-  width: 310px;
-  background: var(--card-bg);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-medium);
-  border: 1px solid var(--border-light);
+  bottom: 30px;
+  right: 30px;
+  width: 320px;
+  max-height: 450px;
+  background: #fff;
+  border-radius: 15px;
+  border: 2px solid var(--gold);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  transform: translateY(140%);
-  opacity: 0;
   transition: 0.35s ease;
-  z-index: 999;
-}
-
-.chat-visible {
-  transform: translateY(0%);
-  opacity: 1;
+  z-index: 9999;
 }
 
 .chat-header {
-  background: #101010;
-  border-bottom: 1px solid var(--border-light);
-  padding: 0.75rem;
+  background: var(--turquoise);
+  color: #fff;
+  padding: .75rem;
   font-weight: 600;
-  color: var(--blue-accent);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.chat-toggle-btn {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 1rem;
-}
-
 .chat-body {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  height: 310px;
 }
 
 .chat-messages {
-  flex: 1;
   padding: 1rem;
   overflow-y: auto;
-  background: #131313;
+  flex: 1;
 }
 
 .chat-message {
-  padding: 0.55rem 0.8rem;
-  margin-bottom: 0.5rem;
+  padding: .5rem .75rem;
+  margin-bottom: .5rem;
   border-radius: 10px;
-  font-size: 0.9rem;
+  max-width: 80%;
   line-height: 1.4;
-  max-width: 85%;
 }
 
 .chat-message.bot {
-  background: #1b1b1b;
-  border-left: 3px solid var(--blue-accent);
+  background: var(--turquoise);
+  color: white;
+  align-self: flex-start;
 }
 
 .chat-message.user {
-  background: #0f0f0f;
-  border-right: 3px solid var(--blue-accent-20);
-  margin-left: auto;
+  background: #eee;
+  align-self: flex-end;
 }
 
 .chat-input-row {
-  border-top: 1px solid var(--border-light);
   display: flex;
+  border-top: 1px solid #ccc;
 }
 
 .chat-input-row input {
   flex: 1;
-  background: #0f0f0f;
+  padding: .75rem;
   border: none;
-  color: var(--text-main);
-  padding: 0.7rem;
 }
 
 .chat-input-row button {
-  background: var(--blue-accent-10);
+  background: var(--turquoise);
+  color: #fff;
+  padding: .75rem 1rem;
   border: none;
-  color: var(--blue-accent);
-  padding: 0 1rem;
   font-weight: 600;
-  cursor: pointer;
 }
 
 /* -----------------------------------------------------------
-   RESPONSIVE
--------------------------------------------------------------- */
+   MINIMIZED CHAT BUBBLE (M3)
+----------------------------------------------------------- */
 
-@media (max-width: 800px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-  .main-nav {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+.chat-bubble {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: var(--turquoise);
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  z-index: 99999;
+  transition: 0.3s;
+}
+
+/* Chat bubble hover effect */
+.chat-bubble:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* Hidden state */
+.hidden {
+  display: none !important;
 }
