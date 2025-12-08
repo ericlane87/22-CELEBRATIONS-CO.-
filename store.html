@@ -7,95 +7,80 @@
 
   <link rel="stylesheet" href="style.css">
   <script src="products.js" defer></script>
-  <script defer>
 
+  <script defer>
   document.addEventListener("DOMContentLoaded", () => {
 
-    const productGrid = document.getElementById("productGrid");
+    const grid = document.getElementById("productGrid");
     const searchInput = document.getElementById("searchInput");
     const categorySelect = document.getElementById("categorySelect");
     const searchBtn = document.getElementById("searchBtn");
 
-    // Load ALL products initially
-    renderProducts(products);
+    // Load random products on first visit
+    const initial = [...products].sort(() => Math.random() - 0.5).slice(0, 30);
+    render(initial);
 
-    // Search + category filter
-    searchBtn.addEventListener("click", () => {
-      runSearch();
-    });
-
-    searchInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") runSearch();
-    });
-
-    categorySelect.addEventListener("change", runSearch);
+    searchBtn.onclick = runSearch;
+    categorySelect.onchange = runSearch;
+    searchInput.onkeypress = (e) => { if (e.key === "Enter") runSearch(); };
 
     function runSearch() {
-      const keyword = searchInput.value.toLowerCase();
-      const selectedCategory = categorySelect.value;
+      let keyword = searchInput.value.toLowerCase();
+      let cat = categorySelect.value;
 
-      const filtered = products.filter(p => {
-        const matchesKeyword =
+      let list = products;
+
+      if (cat !== "all") {
+        list = list.filter(p => p.occasions.includes(cat));
+      }
+
+      if (keyword) {
+        list = list.filter(p =>
           p.name.toLowerCase().includes(keyword) ||
-          p.occasions.join(" ").toLowerCase().includes(keyword);
+          p.occasions.join(" ").toLowerCase().includes(keyword)
+        );
+      }
 
-        const matchesCategory =
-          selectedCategory === "all" ||
-          p.occasions.includes(selectedCategory);
-
-        return matchesKeyword && matchesCategory;
-      });
-
-      renderProducts(filtered);
+      render(list);
     }
 
-    // RENDER PRODUCTS TO THE GRID
-    function renderProducts(list) {
-      productGrid.innerHTML = "";
+    function render(list) {
+      grid.innerHTML = "";
 
       if (list.length === 0) {
-        productGrid.innerHTML = `
-          <p style="color:var(--text-muted);font-size:1.2rem;">
-            No products found.
+        grid.innerHTML = `
+          <p style="color:var(--text-muted); font-size:1.2rem;">
+            No matching products found.
           </p>`;
         return;
       }
 
       list.forEach(item => {
-        const card = document.createElement("div");
+        let card = document.createElement("div");
         card.className = "product-card";
 
         card.innerHTML = `
           <div class="product-image">Image Coming Soon</div>
-
           <div class="product-info">
             <h3 class="product-name">${item.name}</h3>
-            <p class="product-meta">
-              Occasions: ${item.occasions.join(", ")}
-            </p>
-            <p class="product-meta">
-              For: ${item.gender} &nbsp;•&nbsp; Max Age: ${item.maxAge}
-            </p>
+            <p class="product-meta">Occasions: ${item.occasions.join(", ")}</p>
+            <p class="product-meta">For: ${item.gender} • Max Age ${item.maxAge}</p>
             <p class="product-price">$${item.price.toFixed(2)}</p>
-
-            <button class="btn-primary" onclick="alert('Added to cart!')">
-              Add to Cart
-            </button>
+            <button class="btn-primary" onclick="alert('Added to cart!')">Add to Cart</button>
           </div>
         `;
 
-        productGrid.appendChild(card);
+        grid.appendChild(card);
       });
     }
 
   });
-
   </script>
+
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header class="site-header">
   <div class="logo">
     <span class="logo-mark">22</span>
@@ -114,26 +99,18 @@
 
 
 
-<!-- MAIN CONTENT -->
 <main>
 
 <section class="section">
-  <h1 class="section-title">Shop Our Celebration Boxes</h1>
-  <p class="section-subtitle" style="max-width:800px;">
-    Browse curated gift boxes for all major holidays and occasions.  
-    Use the search + category filters to quickly find the perfect gift.
+  <h1 class="section-title">Shop Our Gifts</h1>
+  <p class="section-subtitle" style="max-width:700px;">
+    Search by holiday, occasion, or keyword to find the perfect gift.
   </p>
 </section>
 
-
-<!-- FILTER BAR -->
 <section class="section store-filters">
 
-  <input 
-    type="text" 
-    id="searchInput"
-    class="search-input"
-    placeholder="Search gifts...">
+  <input id="searchInput" class="search-input" type="text" placeholder="Search gifts...">
 
   <select id="categorySelect" class="search-select">
     <option value="all">All Occasions</option>
@@ -160,15 +137,11 @@
     <option value="Retirement">Retirement</option>
   </select>
 
-  <button id="searchBtn" class="btn-primary" style="height:50px;">
-    Search
-  </button>
+  <button id="searchBtn" class="btn-primary">Search</button>
 
 </section>
 
 
-
-<!-- PRODUCT GRID -->
 <section class="section">
   <div id="productGrid" class="product-grid"></div>
 </section>
@@ -177,14 +150,11 @@
 
 
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
 </footer>
 
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 
 </body>
 </html>
