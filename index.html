@@ -5,198 +5,7 @@
   <title>22 Celebration Co.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Existing theme (unchanged) -->
   <link rel="stylesheet" href="style.css" />
-
-  <style>
-    /* CHAT BUBBLE */
-    #chatbotBubble {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      background: #1abc9c;
-      border: 2px solid #d4af37;
-      color: #ffffff;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-      z-index: 9999;
-      transition: opacity 0.25s ease;
-    }
-
-    /* CHAT WINDOW */
-    #chatbotWindow {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 340px;
-      height: 420px;
-      background: #ffffff;
-      border-radius: 12px;
-      border: 2px solid #d4af37;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-      display: flex;
-      flex-direction: column;
-      z-index: 9998;
-
-      opacity: 0;
-      transform: translateY(10px);
-      pointer-events: none;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    #chatbotWindow.visible {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .chat-header {
-      padding: 10px;
-      background: #1abc9c;
-      color: #ffffff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
-    }
-
-    .chat-close {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    .chat-messages {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-      background: #fafafa;
-      font-size: 14px;
-    }
-
-    .chat-msg {
-      margin-bottom: 8px;
-      padding: 8px 10px;
-      border-radius: 8px;
-      max-width: 80%;
-      word-wrap: break-word;
-    }
-
-    .chat-msg.bot { background: #e8faf6; align-self: flex-start; }
-    .chat-msg.user { background: #f0f0f0; align-self: flex-end; }
-
-    .typing-indicator {
-      font-style: italic;
-      opacity: 0.7;
-      margin-bottom: 8px;
-    }
-
-    .chat-input-row {
-      display: flex;
-      border-top: 1px solid #ddd;
-    }
-
-    #chatInput {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      outline: none;
-    }
-
-    #chatSend {
-      padding: 0 14px;
-      border: none;
-      background: #d4af37;
-      color: #000;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    /* FEATURED HOLIDAY SECTION */
-    .featured-holiday {
-      margin: 3rem auto;
-      padding: 2rem 1rem;
-      max-width: 1100px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    }
-
-    .featured-holiday h2 span {
-      color: #d4af37;
-    }
-
-    .featured-row {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      margin-top: 1.5rem;
-      padding-bottom: 0.5rem;
-    }
-
-    .featured-card {
-      flex: 0 0 180px;
-      background: #f7f7f4;
-      border-radius: 14px;
-      border: 1px solid rgba(212,160,55,0.45);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 0.9rem;
-      text-decoration: none;
-      color: inherit;
-      transition: 0.15s ease;
-    }
-
-    .featured-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.14);
-    }
-
-    .featured-img {
-      height: 110px;
-      border-radius: 10px;
-      border: 1px dashed rgba(0,170,170,0.6);
-      background: rgba(0,170,170,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #008c8c;
-      margin-bottom: 0.6rem;
-    }
-
-    .featured-footer {
-      margin-top: 1.2rem;
-      text-align: right;
-    }
-
-    .btn-see-more {
-      padding: 0.6rem 1.4rem;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      background: linear-gradient(135deg, #d4af37, #f0c75a);
-      color: #1a1a1a;
-      font-weight: 600;
-      font-size: 0.95rem;
-      box-shadow: 0 4px 12px rgba(212,160,55,0.35);
-      transition: 0.12s ease;
-    }
-
-    .btn-see-more:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(212,160,55,0.5);
-    }
-  </style>
 </head>
 
 <body>
@@ -219,6 +28,7 @@
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="section hero">
       <h1 class="section-title">Elegant Gifts for All 22 Celebrations & More</h1>
       <p class="section-subtitle">
@@ -226,11 +36,10 @@
       </p>
     </section>
 
+    <!-- OCCASIONS GRID -->
     <section class="section">
       <h2 class="section-title">We Cover These Occasions</h2>
-      <p class="section-subtitle">
-        Every holiday & milestone deserves a personal touch.
-      </p>
+      <p class="section-subtitle">Every holiday & milestone deserves a personal touch.</p>
 
       <div class="holiday-grid">
         <div class="holiday-card">🎄 Christmas</div>
@@ -255,29 +64,36 @@
       </div>
     </section>
 
-    <!-- FEATURED HOLIDAY SECTION -->
-    <section class="featured-holiday">
-      <h2>
-        <span id="featuredTitle">Holiday Gifts</span>
-      </h2>
-      <div id="featuredRow" class="featured-row"></div>
+    <!-- ============================= -->
+    <!-- FEATURED UPCOMING HOLIDAY -->
+    <!-- ============================= -->
+    <section id="featuredHolidaySection" class="featured-holiday">
+      <div class="featured-header">
+        <h2 id="featuredHolidayTitle">Featured Gifts</h2>
+        <p id="featuredHolidaySubtitle">Upcoming holiday picks just for you.</p>
+      </div>
+
+      <div class="featured-scroller-wrapper">
+        <div id="featuredRow" class="featured-row"></div>
+      </div>
 
       <div class="featured-footer">
         <button id="seeMoreBtn" class="btn-see-more">See More</button>
       </div>
     </section>
+
   </main>
 
   <footer class="site-footer">
     <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
   </footer>
 
-  <!-- CHAT ELEMENTS (UNCHANGED) -->
-  <div id="chatbotBubble">💬</div>
-  <div id="chatbotWindow">
+  <!-- CHATBOT (unchanged) -->
+  <div id="chatbotBubble" class="chat-bubble">💬</div>
+  <div id="chatbotWindow" class="chat-widget hidden">
     <div class="chat-header">
       ✨ Gift Finder by 22 Celebrations Co.
-      <button id="chatClose" class="chat-close">✖</button>
+      <button id="chatClose">✖</button>
     </div>
     <div id="chatMessages" class="chat-messages"></div>
     <div class="chat-input-row">
@@ -293,71 +109,79 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // --- Simplified holiday logic ---
-    const holidayNames = [
-      "New Year","Valentine's Day","St. Patrick's Day","Easter","Mother's Day",
-      "Father's Day","Fourth of July","Halloween","Thanksgiving","Hanukkah","Kwanzaa","Christmas"
+    /* -------------------------------
+       DETERMINE UPCOMING HOLIDAY
+    --------------------------------*/
+    const holidayOrder = [
+      "New Year", "Valentine's Day", "St. Patrick's Day",
+      "Easter", "Mother's Day", "Father's Day", "Graduation",
+      "Fourth of July", "Halloween", "Thanksgiving",
+      "Hanukkah", "Kwanzaa", "Christmas"
     ];
 
-    function getNextHoliday() {
-      const now = new Date();
-      const year = now.getFullYear();
+    function getUpcomingHoliday() {
+      // Very simplified rotation: just pick the next one in order.
+      const today = new Date();
+      const month = today.getMonth() + 1;
 
-      const fixedDates = {
-        "New Year": new Date(year, 0, 1),
-        "Valentine's Day": new Date(year, 1, 14),
-        "St. Patrick's Day": new Date(year, 2, 17),
-        "Easter": new Date(year, 3, 9), 
-        "Mother's Day": new Date(year, 4, 12),
-        "Father's Day": new Date(year, 5, 16),
-        "Fourth of July": new Date(year, 6, 4),
-        "Halloween": new Date(year, 9, 31),
-        "Thanksgiving": new Date(year, 10, 28),
-        "Hanukkah": new Date(year, 11, 25),
-        "Kwanzaa": new Date(year, 11, 26),
-        "Christmas": new Date(year, 11, 25)
-      };
+      // Rough mapping by month
+      if (month === 12) return "Christmas";
+      if (month === 11) return "Thanksgiving";
+      if (month === 10) return "Halloween";
+      if (month === 7) return "Fourth of July";
+      if (month === 6) return "Father's Day";
+      if (month === 5) return "Mother's Day";
+      if (month === 4) return "Easter";
+      if (month === 3) return "St. Patrick's Day";
+      if (month === 2) return "Valentine's Day";
+      if (month === 1) return "New Year";
 
-      let upcoming = null;
-
-      holidayNames.forEach(h => {
-        const date = fixedDates[h];
-        if (date >= now && (!upcoming || date < upcoming.date)) {
-          upcoming = { name: h, date };
-        }
-      });
-
-      return upcoming ? upcoming.name : "Christmas";
+      // fallback
+      return "Christmas";
     }
 
-    function populateFeatured() {
-      const holiday = getNextHoliday();
-      const title = holiday === "Christmas" ? "Merry Christmas!" : `Happy ${holiday}!`;
+    const upcoming = getUpcomingHoliday();
 
-      document.getElementById("featuredTitle").textContent = title;
+    /* -----------------------------------------
+       UPDATE FEATURED SECTION TITLES
+    -----------------------------------------*/
+    const holidayGreeting =
+      upcoming === "Christmas"
+        ? "Merry Christmas"
+        : `Happy ${upcoming}`;
 
-      const filtered = products.filter(p => p.occasions.includes(holiday)).slice(0,5);
+    document.getElementById("featuredHolidayTitle").innerText =
+      `${holidayGreeting}`;
+    document.getElementById("featuredHolidaySubtitle").innerText =
+      `Browse featured ${upcoming} gifts curated for you.`;
 
-      const row = document.getElementById("featuredRow");
-      row.innerHTML = "";
+    /* -----------------------------------------
+       POPULATE FEATURED ROW (5 items)
+    -----------------------------------------*/
+    const featuredRow = document.getElementById("featuredRow");
 
-      filtered.forEach(prod => {
-        const card = document.createElement("a");
-        card.href = "#";
-        card.className = "featured-card";
-        card.innerHTML = `
-          <div class="featured-img">Image Coming Soon</div>
-          <div class="featured-name">${prod.name}</div>
-        `;
-        row.appendChild(card);
-      });
+    const featuredProducts = products
+      .filter(p => p.occasions.includes(upcoming))
+      .slice(0, 5);
 
-      document.getElementById("seeMoreBtn").onclick = () => {
-        window.location.href = "store.html?occasion=" + encodeURIComponent(holiday);
-      };
-    }
+    featuredProducts.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "featured-card";
 
-    populateFeatured();
+      card.innerHTML = `
+        <div class="featured-img">Image Coming Soon</div>
+        <div class="featured-name">${p.name}</div>
+      `;
+      featuredRow.appendChild(card);
+    });
+
+    /* -----------------------------------------
+       SEE MORE -> store.html?holiday=_______
+    -----------------------------------------*/
+    document.getElementById("seeMoreBtn").addEventListener("click", () => {
+      window.location.href = `store.html?holiday=${encodeURIComponent(upcoming)}`;
+    });
   </script>
+
 </body>
 </html>
