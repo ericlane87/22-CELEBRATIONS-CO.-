@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>22 Celebration Co.</title>
+  <title>22 CELEBRATION CO.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="style.css" />
+  <!-- FIXED CSS PATH -->
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
@@ -14,7 +15,7 @@
   <header class="site-header">
     <div class="logo">
       <span class="logo-mark">22</span>
-      <span class="logo-text">Celebration Co.</span>
+      <span class="logo-text">CELEBRATION CO.</span>
     </div>
 
     <nav class="main-nav">
@@ -27,14 +28,18 @@
     <a href="tel:17708201456" class="btn-phone">(770) 820-1456</a>
   </header>
 
+
+
+  <!-- MAIN CONTENT -->
   <main>
+
     <!-- HERO -->
     <section class="section hero">
       <h1 class="section-title">Elegant Gifts for All 22 Celebrations & More</h1>
-      <p class="section-subtitle">
-        Theme-oriented gift boxes & baskets for every meaningful occasion.
-      </p>
+      <p class="section-subtitle">Theme-oriented gift boxes & baskets for every meaningful occasion.</p>
     </section>
+
+
 
     <!-- OCCASIONS GRID -->
     <section class="section">
@@ -42,27 +47,29 @@
       <p class="section-subtitle">Every holiday & milestone deserves a personal touch.</p>
 
       <div class="holiday-grid">
-        <div class="holiday-card">🎄 Christmas</div>
-        <div class="holiday-card">🎉 New Year</div>
-        <div class="holiday-card">❤️ Valentine’s Day</div>
-        <div class="holiday-card">🍀 St. Patrick’s Day</div>
-        <div class="holiday-card">🐣 Easter</div>
-        <div class="holiday-card">👩‍👧 Mother’s Day</div>
-        <div class="holiday-card">👨 Father’s Day</div>
-        <div class="holiday-card">🎓 Graduation</div>
-        <div class="holiday-card">🇺🇸 4th of July</div>
-        <div class="holiday-card">📚 Back to School</div>
-        <div class="holiday-card">🎃 Halloween</div>
-        <div class="holiday-card">🦃 Thanksgiving</div>
-        <div class="holiday-card">🕎 Hanukkah</div>
-        <div class="holiday-card">🟥🟩 Kwanzaa</div>
-        <div class="holiday-card">🎂 Birthdays</div>
-        <div class="holiday-card">👶 Baby Shower</div>
-        <div class="holiday-card">💍 Wedding</div>
-        <div class="holiday-card">💞 Anniversary</div>
-        <div class="holiday-card">🎉 Retirement</div>
+        <div class="holiday-card" data-holiday="Christmas">🎄 Christmas</div>
+        <div class="holiday-card" data-holiday="New Year">🎉 New Year</div>
+        <div class="holiday-card" data-holiday="Valentine's Day">❤️ Valentine’s Day</div>
+        <div class="holiday-card" data-holiday="St. Patrick's Day">🍀 St. Patrick’s Day</div>
+        <div class="holiday-card" data-holiday="Easter">🐣 Easter</div>
+        <div class="holiday-card" data-holiday="Mother's Day">👩‍👧 Mother’s Day</div>
+        <div class="holiday-card" data-holiday="Father's Day">👨 Father’s Day</div>
+        <div class="holiday-card" data-holiday="Graduation">🎓 Graduation</div>
+        <div class="holiday-card" data-holiday="Fourth of July">🇺🇸 4th of July</div>
+        <div class="holiday-card" data-holiday="Back to School">📚 Back to School</div>
+        <div class="holiday-card" data-holiday="Halloween">🎃 Halloween</div>
+        <div class="holiday-card" data-holiday="Thanksgiving">🦃 Thanksgiving</div>
+        <div class="holiday-card" data-holiday="Hanukkah">🕎 Hanukkah</div>
+        <div class="holiday-card" data-holiday="Kwanzaa">🟥🟩 Kwanzaa</div>
+        <div class="holiday-card" data-holiday="Birthday - All">🎂 Birthdays</div>
+        <div class="holiday-card" data-holiday="Baby Shower">👶 Baby Shower</div>
+        <div class="holiday-card" data-holiday="Wedding">💍 Wedding</div>
+        <div class="holiday-card" data-holiday="Anniversary">💞 Anniversary</div>
+        <div class="holiday-card" data-holiday="Retirement">🎉 Retirement</div>
       </div>
     </section>
+
+
 
     <!-- FEATURED HOLIDAY SECTION -->
     <section id="featuredHolidaySection" class="featured-holiday">
@@ -82,34 +89,49 @@
 
   </main>
 
+
+
+  <!-- FOOTER -->
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
+    <p>&copy; <span id="year"></span> 22 CELEBRATION CO.</p>
   </footer>
+
+
 
   <!-- CHATBOT -->
   <div id="chatbotBubble" class="chat-bubble">💬</div>
+
   <div id="chatbotWindow" class="chat-widget hidden">
     <div class="chat-header">
-      ✨ Gift Finder by 22 Celebrations Co.
+      ✨ Gift Finder by 22 Celebration Co.
       <button id="chatClose">✖</button>
     </div>
+
     <div id="chatMessages" class="chat-messages"></div>
+
     <div class="chat-input-row">
       <input id="chatInput" type="text" placeholder="Type a message..." />
       <button id="chatSend">Send</button>
     </div>
   </div>
 
+
+
   <!-- SCRIPTS -->
-  <script src="products.js"></script>
-  <script src="chatbot.js"></script>
+  <script src="./products.js"></script>
+  <script src="./chatbot.js"></script>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    /* Determine upcoming holiday */
+
+
+    /* =========================================
+       DETERMINE UPCOMING HOLIDAY
+    ==========================================*/
     function getUpcomingHoliday() {
-      const m = new Date().getMonth() + 1;
+      const today = new Date();
+      const m = today.getMonth() + 1;
 
       if (m === 12) return "Christmas";
       if (m === 11) return "Thanksgiving";
@@ -121,19 +143,26 @@
       if (m === 3) return "St. Patrick's Day";
       if (m === 2) return "Valentine's Day";
       if (m === 1) return "New Year";
-
       return "Christmas";
     }
 
     const upcoming = getUpcomingHoliday();
 
-    document.getElementById("featuredHolidayTitle").innerText =
-      upcoming === "Christmas" ? "Merry Christmas" : `Happy ${upcoming}`;
 
+
+    /* =========================================
+       UPDATE FEATURED TITLES
+    ==========================================*/
+    const greeting = upcoming === "Christmas" ? "Merry Christmas" : `Happy ${upcoming}`;
+    document.getElementById("featuredHolidayTitle").innerText = greeting;
     document.getElementById("featuredHolidaySubtitle").innerText =
       `Browse featured ${upcoming} gifts curated for you.`;
 
-    /* Populate featured products */
+
+
+    /* =========================================
+       BUILD FEATURED CARDS
+    ==========================================*/
     const featuredRow = document.getElementById("featuredRow");
 
     const featuredProducts = products
@@ -143,6 +172,7 @@
     featuredProducts.forEach(p => {
       const card = document.createElement("div");
       card.className = "featured-card";
+
       card.innerHTML = `
         <div class="featured-img">Image Coming Soon</div>
         <div class="featured-name">${p.name}</div>
@@ -150,9 +180,25 @@
       featuredRow.appendChild(card);
     });
 
-    /* See More button → auto-filter store */
+
+
+    /* =========================================
+       SEE MORE -> AUTO FILTER IN STORE
+    ==========================================*/
     document.getElementById("seeMoreBtn").addEventListener("click", () => {
       window.location.href = `store.html?holiday=${encodeURIComponent(upcoming)}`;
+    });
+
+
+
+    /* =========================================
+       HOLIDAY CARDS CLICKABLE
+    ==========================================*/
+    document.querySelectorAll(".holiday-card").forEach(card => {
+      card.addEventListener("click", () => {
+        const h = card.getAttribute("data-holiday");
+        window.location.href = `store.html?holiday=${encodeURIComponent(h)}`;
+      });
     });
   </script>
 
