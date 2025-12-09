@@ -88,7 +88,7 @@
     <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
   </footer>
 
-  <!-- CHATBOT (unchanged) -->
+  <!-- CHATBOT -->
   <div id="chatbotBubble" class="chat-bubble">💬</div>
   <div id="chatbotWindow" class="chat-widget hidden">
     <div class="chat-header">
@@ -107,6 +107,7 @@
   <script src="chatbot.js"></script>
 
   <script>
+    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
     /* -------------------------------
@@ -120,38 +121,32 @@
     ];
 
     function getUpcomingHoliday() {
-      // Very simplified rotation: just pick the next one in order.
       const today = new Date();
       const month = today.getMonth() + 1;
 
-      // Rough mapping by month
       if (month === 12) return "Christmas";
       if (month === 11) return "Thanksgiving";
       if (month === 10) return "Halloween";
-      if (month === 7) return "Fourth of July";
-      if (month === 6) return "Father's Day";
-      if (month === 5) return "Mother's Day";
-      if (month === 4) return "Easter";
-      if (month === 3) return "St. Patrick's Day";
-      if (month === 2) return "Valentine's Day";
-      if (month === 1) return "New Year";
-
+      if (month === 7)  return "Fourth of July";
+      if (month === 6)  return "Father's Day";
+      if (month === 5)  return "Mother's Day";
+      if (month === 4)  return "Easter";
+      if (month === 3)  return "St. Patrick's Day";
+      if (month === 2)  return "Valentine's Day";
+      if (month === 1)  return "New Year";
       // fallback
       return "Christmas";
     }
 
     const upcoming = getUpcomingHoliday();
 
-    /* -----------------------------------------
-       UPDATE FEATURED SECTION TITLES
-    -----------------------------------------*/
+    // Set title + subtitle
     const holidayGreeting =
       upcoming === "Christmas"
         ? "Merry Christmas"
         : `Happy ${upcoming}`;
 
-    document.getElementById("featuredHolidayTitle").innerText =
-      `${holidayGreeting}`;
+    document.getElementById("featuredHolidayTitle").innerText = holidayGreeting;
     document.getElementById("featuredHolidaySubtitle").innerText =
       `Browse featured ${upcoming} gifts curated for you.`;
 
@@ -160,14 +155,13 @@
     -----------------------------------------*/
     const featuredRow = document.getElementById("featuredRow");
 
-    const featuredProducts = products
-      .filter(p => p.occasions.includes(upcoming))
+    const featuredProducts = (window.products || [])
+      .filter(p => p.occasions && p.occasions.includes(upcoming))
       .slice(0, 5);
 
     featuredProducts.forEach(p => {
       const card = document.createElement("div");
       card.className = "featured-card";
-
       card.innerHTML = `
         <div class="featured-img">Image Coming Soon</div>
         <div class="featured-name">${p.name}</div>
@@ -180,6 +174,26 @@
     -----------------------------------------*/
     document.getElementById("seeMoreBtn").addEventListener("click", () => {
       window.location.href = `store.html?holiday=${encodeURIComponent(upcoming)}`;
+    });
+
+    /* -----------------------------------------
+       AUTO POP-UP: SHOW CHAT FOR 1s ON LOAD
+       (Index page ONLY — chatbot.js stays clean)
+    -----------------------------------------*/
+    window.addEventListener("load", () => {
+      const chatWindow = document.getElementById("chatbotWindow");
+      if (!chatWindow) return;
+
+      // Start hidden (ensure consistent state)
+      chatWindow.classList.add("hidden");
+
+      // Brief preview after a short delay
+      setTimeout(() => {
+        chatWindow.classList.remove("hidden");  // show
+        setTimeout(() => {
+          chatWindow.classList.add("hidden");   // hide again
+        }, 1000); // 1 second visible
+      }, 500);   // wait 0.5s after page load
     });
   </script>
 
