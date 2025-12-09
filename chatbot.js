@@ -1,156 +1,113 @@
 /* ============================================================
-   22 CELEBRATION CO. — CHATBOT FULL SCRIPT (AUTO POPUP FIXED)
+   CHATBOT — A1-Prime Stable Version
+   - Opens automatically for 1 second
+   - Closes smoothly
+   - No disappearing bug
+   - Keyword-based gift recommendations
 ============================================================ */
 
-const chatBubble = document.getElementById("chatbotBubble");
-const chatWindow = document.getElementById("chatbotWindow");
-const chatMessages = document.getElementById("chatMessages");
-const chatInput = document.getElementById("chatInput");
-const chatSend = document.getElementById("chatSend");
-const chatClose = document.getElementById("chatClose");
+const bubble = document.getElementById("chatbotBubble");
+const windowBox = document.getElementById("chatbotWindow");
+const closeBtn = document.getElementById("chatClose");
+const messages = document.getElementById("chatMessages");
+const input = document.getElementById("chatInput");
+const sendBtn = document.getElementById("chatSend");
 
-/* ------------------------------------------------------------
-   SMOOTH SHOW/HIDE ANIMATION HELPERS
------------------------------------------------------------- */
+let chatOpen = false;
 
-function showChatWindow() {
-    chatWindow.classList.remove("hidden");
-    chatWindow.style.opacity = "1";
-    chatWindow.style.transform = "translateY(0)";
-}
-
-function hideChatWindow() {
-    chatWindow.style.opacity = "0";
-    chatWindow.style.transform = "translateY(12px)";
-    setTimeout(() => chatWindow.classList.add("hidden"), 500);
-}
-
-/* ------------------------------------------------------------
-   AUTOMATIC POP-UP ON PAGE LOAD
------------------------------------------------------------- */
-
+/* ---------------------------------------------
+   SHOW CHAT FOR 1 SECOND ON PAGE LOAD
+--------------------------------------------- */
 window.addEventListener("load", () => {
-    // Delay slightly to avoid race conditions after featured section render
-    setTimeout(() => {
-        showChatWindow();
+  setTimeout(() => {
+    windowBox.classList.remove("hidden");
+  }, 300);
 
-        // Close smoothly after 1 second
-        setTimeout(() => {
-            hideChatWindow();
-        }, 1000);
-
-    }, 350); // allows page elements to finish rendering
+  setTimeout(() => {
+    windowBox.classList.add("hidden");
+  }, 1300);
 });
 
-/* ------------------------------------------------------------
-   CHAT BUBBLE CLICKS – ALWAYS WORK
------------------------------------------------------------- */
+/* ---------------------------------------------
+   OPEN CHAT WINDOW
+--------------------------------------------- */
+function openChat() {
+  windowBox.classList.remove("hidden");
+  chatOpen = true;
+}
 
-chatBubble.addEventListener("click", () => {
-    showChatWindow();
+/* ---------------------------------------------
+   CLOSE CHAT WINDOW
+--------------------------------------------- */
+function closeChat() {
+  windowBox.classList.add("hidden");
+  chatOpen = false;
+}
+
+/* ---------------------------------------------
+   BUBBLE OPEN
+--------------------------------------------- */
+bubble.addEventListener("click", () => {
+  if (!chatOpen) openChat();
 });
 
-/* ------------------------------------------------------------
+/* ---------------------------------------------
    CLOSE BUTTON
------------------------------------------------------------- */
-
-chatClose.addEventListener("click", () => {
-    hideChatWindow();
+--------------------------------------------- */
+closeBtn.addEventListener("click", () => {
+  closeChat();
 });
 
-/* ------------------------------------------------------------
-   CHAT MESSAGE LOGIC
------------------------------------------------------------- */
-
+/* ---------------------------------------------
+   ADD MESSAGE TO CHAT
+--------------------------------------------- */
 function addMessage(text, sender = "bot") {
-    const msg = document.createElement("div");
-    msg.className = `chat-message ${sender}`;
-    msg.innerText = text;
-    chatMessages.appendChild(msg);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+  const msg = document.createElement("div");
+  msg.classList.add("chat-message", sender);
+  msg.textContent = text;
+  messages.appendChild(msg);
+  messages.scrollTop = messages.scrollHeight;
 }
 
-function botReply(text) {
-    setTimeout(() => addMessage(text, "bot"), 300);
+/* ---------------------------------------------
+   BOT LOGIC — SIMPLE OCCASION DETECTION
+--------------------------------------------- */
+function botReply(userText) {
+  const t = userText.toLowerCase();
+
+  // Basic rules
+  if (t.includes("hi") || t.includes("hello")) {
+    return "Hi there! Tell me who you're shopping for and the occasion.";
+  }
+
+  if (t.includes("birthday")) return "Lovely! We have Birthday Boxes for Him, Her, and Kids.";
+  if (t.includes("christmas")) return "Our Christmas collection includes cozy, festive, and family-themed boxes!";
+  if (t.includes("valentine")) return "Romantic, cozy, and sweet — our Valentine’s Day boxes are perfect gifts!";
+  if (t.includes("baby")) return "We offer Baby Shower boxes for new parents and newborn essentials.";
+  if (t.includes("wedding")) return "Wedding and bridal-themed boxes are available with elegant premium touches.";
+  if (t.includes("mother")) return "Mother’s Day boxes include spa themes, sweets, and heartfelt appreciation gifts.";
+  if (t.includes("father") || t.includes("dad")) return "Father’s Day boxes feature grilling, gadgets, snacks, and more.";
+
+  // Fallback
+  return "Tell me the occasion and who the gift is for — I’ll match you with the perfect box!";
 }
 
-/* Greetings detection */
-const greetings = ["hello", "hi", "hey", "hola", "yo", "what's up", "sup"];
+/* ---------------------------------------------
+   SEND MESSAGE
+--------------------------------------------- */
+function handleSend() {
+  const text = input.value.trim();
+  if (!text) return;
 
-/* Keyword triggers */
-const relations = ["wife", "husband", "mom", "mother", "dad", "father", "brother",
-    "sister", "friend", "girlfriend", "boyfriend", "fiancé", "fiancee",
-    "aunt", "uncle", "mother-in-law", "son", "daughter"
-];
+  addMessage(text, "user");
+  input.value = "";
 
-const holidays = [
-    "christmas", "new year", "valentine", "valentine's day",
-    "st. patrick", "easter", "mother's day", "father's day",
-    "graduation", "fourth of july", "4th of july", "halloween",
-    "thanksgiving", "hanukkah", "kwanzaa", "birthday", "wedding", "baby shower"
-];
+  setTimeout(() => {
+    addMessage(botReply(text), "bot");
+  }, 500);
+}
 
-/* ------------------------------------------------------------
-   USER MESSAGE HANDLING
------------------------------------------------------------- */
-
-chatSend.addEventListener("click", processMessage);
-chatInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") processMessage();
+sendBtn.addEventListener("click", handleSend);
+input.addEventListener("keypress", e => {
+  if (e.key === "Enter") handleSend();
 });
-
-function processMessage() {
-    const text = chatInput.value.trim();
-    if (!text) return;
-
-    addMessage(text, "user");
-    chatInput.value = "";
-
-    const lower = text.toLowerCase();
-
-    // Greeting logic
-    if (greetings.some(g => lower.includes(g))) {
-        botReply("Hello! 👋 How can I help you find the perfect gift today?");
-        botReply("I can help with holidays, birthdays, or special people in your life.");
-        return;
-    }
-
-    // Detect holiday
-    let matchedHoliday = holidays.find(h => lower.includes(h));
-
-    // Detect relationship
-    let matchedRelation = relations.find(r => lower.includes(r));
-
-    if (matchedHoliday && matchedRelation) {
-        botReply(`Great! A ${matchedHoliday} gift for your ${matchedRelation}.`);
-        botReply("Tell me their age, and a few things they enjoy. I’ll find matching gifts!");
-        return;
-    }
-
-    if (matchedHoliday) {
-        botReply(`Perfect! You’re looking for ${matchedHoliday} gifts.`);
-        botReply("Who is the gift for? (example: wife, husband, mom, etc.)");
-        return;
-    }
-
-    if (matchedRelation) {
-        botReply(`Got it! You're shopping for your ${matchedRelation}.`);
-        botReply("What’s the occasion?");
-        return;
-    }
-
-    // Phone number request
-    if (lower.includes("phone") || lower.includes("call")) {
-        botReply("You can reach us anytime at (770) 820-1456 📞");
-        return;
-    }
-
-    // Contact form request
-    if (lower.includes("contact") || lower.includes("email") || lower.includes("message")) {
-        botReply("You can also reach us using the contact form. Just click the Contact page!");
-        return;
-    }
-
-    // General fallback
-    botReply("I can help with holiday gifts, birthdays, custom baskets, or suggestions. Tell me who it's for and the occasion!");
-}
