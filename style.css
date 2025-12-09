@@ -1,16 +1,17 @@
 /* -----------------------------------------------------------
-   GLOBAL BASE STYLES — Warm Ivory + Turquoise + Gold Theme
+   GLOBAL BASE STYLES — Warm Ivory + Turquoise + Gold
 ----------------------------------------------------------- */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-  --bg: #FAF7F2;              
+  --bg: #FAF7F2;
   --text-dark: #222;
   --text-muted: #555;
 
-  --turquoise: #1ABC9C;       
-  --gold: #D4AF37;            
+  --turquoise: #1ABC9C;
+  --gold: #D4AF37;
+
   --card-bg: #FFFFFF;
   --border-gold: rgba(212,175,55,0.35);
   --shadow: rgba(0,0,0,0.08);
@@ -37,7 +38,7 @@ h1, h2, h3, h4 {
 }
 
 /* -----------------------------------------------------------
-   HEADER / NAVIGATION — ORIGINAL STABLE VERSION
+   HEADER (Restored Original)
 ----------------------------------------------------------- */
 
 .site-header {
@@ -85,17 +86,6 @@ h1, h2, h3, h4 {
   color: var(--turquoise);
 }
 
-.main-nav a.active::after,
-.main-nav a:hover::after {
-  content: "";
-  height: 2px;
-  width: 100%;
-  background: var(--gold);
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-}
-
 .btn-phone {
   background: var(--turquoise);
   color: #fff;
@@ -103,7 +93,6 @@ h1, h2, h3, h4 {
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
-  transition: 0.25s;
 }
 
 .btn-phone:hover {
@@ -111,14 +100,11 @@ h1, h2, h3, h4 {
 }
 
 /* -----------------------------------------------------------
-   HERO SECTION
+   HERO
 ----------------------------------------------------------- */
 
-.hero {
-  display: flex;
-  justify-content: space-between;
-  padding: 3rem 2rem;
-  gap: 2rem;
+.section {
+  padding: 2rem;
 }
 
 .section-title {
@@ -133,7 +119,7 @@ h1, h2, h3, h4 {
 }
 
 /* -----------------------------------------------------------
-   HOLIDAY GRID (Working Original Version)
+   HOLIDAY GRID
 ----------------------------------------------------------- */
 
 .holiday-grid {
@@ -143,23 +129,127 @@ h1, h2, h3, h4 {
 }
 
 .holiday-card {
-  background: #ffffff;
+  background: #fff;
   border: 1px solid var(--border-gold);
   padding: 1rem;
   border-radius: 10px;
   font-weight: 600;
-  box-shadow: 0 2px 8px var(--shadow);
   text-align: center;
+  box-shadow: 0 2px 8px var(--shadow);
   transition: 0.25s;
 }
 
 .holiday-card:hover {
-  border-color: var(--gold);
   transform: translateY(-3px);
+  border-color: var(--gold);
 }
 
 /* -----------------------------------------------------------
-   CONTACT FORM — Stable Version
+   FEATURED HOLIDAY SECTION
+----------------------------------------------------------- */
+
+.featured-holiday {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.featured-scroller-wrapper {
+  margin-top: 1rem;
+  overflow-x: auto;
+  padding-bottom: .5rem;
+}
+
+.featured-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.featured-card {
+  flex: 0 0 180px;
+  background: #fff;
+  border: 1px solid rgba(212,175,55,0.4);
+  border-radius: 12px;
+  padding: .8rem;
+  text-decoration: none;
+  color: #222;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+.featured-img {
+  height: 110px;
+  border-radius: 8px;
+  border: 1px dashed var(--turquoise);
+  background: rgba(0,170,170,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .8rem;
+  color: #008c8c;
+  margin-bottom: .6rem;
+}
+
+.featured-footer {
+  text-align: right;
+  margin-top: 1rem;
+}
+
+.btn-see-more {
+  background: var(--gold);
+  border: none;
+  padding: .6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* -----------------------------------------------------------
+   STORE PAGE
+----------------------------------------------------------- */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.product-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(212,175,55,0.35);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.product-img {
+  height: 150px;
+  border-radius: 10px;
+  background: rgba(0,170,170,0.12);
+  border: 1px dashed rgba(0,170,170,0.6);
+  color: #008c8c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: .8rem;
+}
+
+.product-desc {
+  font-size: .9rem;
+  color: #444;
+}
+
+.product-price {
+  color: var(--turquoise);
+  font-weight: bold;
+  margin-top: .4rem;
+}
+
+/* -----------------------------------------------------------
+   CONTACT FORM
 ----------------------------------------------------------- */
 
 .contact-form {
@@ -170,9 +260,6 @@ h1, h2, h3, h4 {
   border-radius: 12px;
   border: 1px solid var(--border-gold);
   box-shadow: 0 4px 16px var(--shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 
 .contact-form label {
@@ -183,105 +270,104 @@ h1, h2, h3, h4 {
 .contact-form textarea {
   width: 100%;
   padding: .75rem;
+  margin-bottom: .8rem;
   border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: 1rem;
 }
 
 /* -----------------------------------------------------------
-   STORE PAGE — Matching Original Working Version
+   FOOTER
 ----------------------------------------------------------- */
 
-.filter-bar {
-  display: flex;
-  gap: 1.5rem;
-  background: #fff;
-  padding: 1rem;
-  border-radius: 10px;
-  border: 1px solid var(--border-gold);
-  box-shadow: 0 2px 12px var(--shadow);
-  align-items: flex-end;
-}
-
-.filter-group {
-  display: flex;
-  flex-direction: column;
-  font-size: .9rem;
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 1.5rem;
-}
-
-.product-card {
-  background: #fff;
-  padding: 1rem;
-  border-radius: 12px;
-  border: 1px solid var(--border-gold);
-  box-shadow: 0 4px 16px var(--shadow);
-  display: flex;
-  flex-direction: column;
-}
-
-.product-image-placeholder {
-  height: 150px;
-  background: #eee;
-  color: #888;
-  font-size: .9rem;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* -----------------------------------------------------------
-   FEATURED SECTION STYLES — Original Good Version
------------------------------------------------------------ */
-
-.featured-holiday {
+.site-footer {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-muted);
   margin-top: 3rem;
-  padding: 2rem 1rem;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-.featured-header h2 {
-  font-size: 1.6rem;
-}
-
-.featured-row {
-  display: flex;
-  gap: 1rem;
-}
-
-.featured-card {
-  flex: 0 0 180px;
-  background: #f7f7f4;
-  border-radius: 14px;
-  border: 1px solid rgba(212, 160, 55, 0.45);
-  padding: 0.9rem;
-}
-
-.featured-img {
-  height: 110px;
-  border-radius: 10px;
-  background: rgba(0, 170, 170, 0.08);
-  border: 1px dashed rgba(0, 170, 170, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* -----------------------------------------------------------
-   CHAT BUBBLE — Original Working Version
+   CHATBOT (A1-Prime)
 ----------------------------------------------------------- */
 
+.chat-widget {
+  position: fixed;
+  bottom: 110px; /* <-- Option 2 requested (slightly higher) */
+  right: 30px;
+  width: 320px;
+  max-height: 450px;
+  background: #fff;
+  border-radius: 15px;
+  border: 2px solid var(--gold);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: 0.35s ease;
+  z-index: 9999;
+}
+
+.chat-header {
+  background: var(--turquoise);
+  color: #fff;
+  padding: .75rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-messages {
+  padding: 1rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.chat-message {
+  padding: .5rem .75rem;
+  margin-bottom: .5rem;
+  border-radius: 10px;
+  max-width: 80%;
+}
+
+.chat-message.bot {
+  background: var(--turquoise);
+  color: white;
+}
+
+.chat-message.user {
+  background: #eee;
+}
+
+.chat-input-row {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+.chat-input-row input {
+  flex: 1;
+  padding: .75rem;
+  border: none;
+}
+
+.chat-input-row button {
+  background: var(--turquoise);
+  color: #fff;
+  padding: .75rem 1rem;
+  border: none;
+  font-weight: 600;
+}
+
+/* CHAT BUBBLE — Option 2 placement */
 .chat-bubble {
   position: fixed;
-  bottom: 30px;
+  bottom: 40px; /* ← higher than original */
   right: 30px;
   width: 60px;
   height: 60px;
@@ -294,10 +380,7 @@ h1, h2, h3, h4 {
   color: white;
   font-size: 26px;
   cursor: pointer;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-  z-index: 99999;
+  z-index: 10000;
 }
 
-.hidden {
-  display: none !important;
-}
+.hidden { display: none !important; }
