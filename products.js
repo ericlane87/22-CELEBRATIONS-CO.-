@@ -1035,3 +1035,145 @@ const products = [
 
 ];
 // END OF FULL products.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  (function () {
+    // --- helpers for holiday dates ---
+
+    function getEasterDate(year) {
+      // Anonymous Gregorian algorithm
+      const a = year % 19;
+      const b = Math.floor(year / 100);
+      const c = year % 100;
+      const d = Math.floor(b / 4);
+      const e = b % 4;
+      const f = Math.floor((b + 8) / 25);
+      const g = Math.floor((b - f + 1) / 3);
+      const h = (19 * a + b - d - g + 15) % 30;
+      const i = Math.floor(c / 4);
+      const k = c % 4;
+      const l = (32 + 2 * e + 2 * i - h - k) % 7;
+      const m = Math.floor((a + 11 * h + 22 * l) / 451);
+      const month = Math.floor((h + l - 7 * m + 114) / 31); // 3=March, 4=April
+      const day = ((h + l - 7 * m + 114) % 31) + 1;
+      return new Date(year, month - 1, day);
+    }
+
+    function getNthWeekdayOfMonth(year, monthIndex, weekday, nth) {
+      // weekday: 0=Sun..6=Sat, nth: 1=1st,2=2nd...
+      const first = new Date(year, monthIndex, 1);
+      const firstDay = first.getDay();
+      const offset = (7 + weekday - firstDay) % 7;
+      const day = 1 + offset + (nth - 1) * 7;
+      return new Date(year, monthIndex, day);
+    }
+
+    const holidayDefs = [
+      { key: "New Year", type: "fixed", month: 0, day: 1 },               // Jan 1
+      { key: "Valentine's Day", type: "fixed", month: 1, day: 14 },       // Feb 14
+      { key: "St. Patrick's Day", type: "fixed", month: 2, day: 17 },     // Mar 17
+      { key: "Easter", type: "easter" },                                  // dynamic
+      { key: "Mother's Day", type: "nth-weekday", month: 4, weekday: 0, nth: 2 }, // 2nd Sunday in May
+      { key: "Father's Day", type: "nth-weekday", month: 5, weekday: 0, nth: 3 }, // 3rd Sunday in June
+      { key: "Fourth of July", type: "fixed", month: 6, day: 4 },         // Jul 4
+      { key: "Halloween", type: "fixed", month: 9, day: 31 },             // Oct 31
+      { key: "Thanksgiving", type: "nth-weekday", month: 10, weekday: 4, nth: 4 }, // 4th Thu in Nov
+      { key: "Hanukkah", type: "approx-fixed", month: 11, day: 15 },      // Approx (you can tweak per year)
+      { key: "Kwanzaa", type: "fixed", month: 11, day: 26 },              // Dec 26
+      { key: "Christmas", type: "fixed", month: 11, day: 25 }             // Dec 25
+    ];
+
+    function getHolidayDate(year, def) {
+      switch (def.type) {
+        case "fixed":
+          return new Date(year, def.month, def.day);
+        case "easter":
+          return getEasterDate(year);
+        case "nth-weekday":
+          return getNthWeekdayOfMonth(year, def.month, def.weekday, def.nth);
+        case "approx-fixed":
+          return new Date(year, def.month, def.day);
+        default:
+          return null;
+      }
+    }
+
+    function getNextUpcomingHoliday() {
+      const now = new Date();
+      const candidates = [];
+
+      holidayDefs.forEach(def => {
+        const thisYear = getHolidayDate(now.getFullYear(), def);
+        if (thisYear && thisYear >= now) {
+          candidates.push({ name: def.key, date: thisYear });
+        } else {
+          // if already passed this year, consider next year
+          const nextYear = getHolidayDate(now.getFullYear() + 1, def);
+          if (nextYear) {
+            candidates.push({ name: def.key, date: nextYear });
+          }
+        }
+      });
+
+      if (candidates.length === 0) return null;
+
+      return candidates.reduce((best, current) => {
+        return current.date < best.date ? current : best;
+      });
+    }
+
+    function buildFeaturedSection() {
+      if (!window.products || !Array.isArray(products)) return;
+
+      const nextHoliday = getNextUpcomingHoliday();
+      if (!nextHoliday) return;
+
+      const holidayName = nextHoliday.name;
+      const titleSpan = document.getElementById("featuredHolidayName");
+      const row = document.getElementById("featuredHolidayRow");
+      const seeMoreBtn = document.getElementById("featuredSeeMore");
+
+      if (!titleSpan || !row || !seeMoreBtn) return;
+
+      titleSpan.textContent = holidayName;
+
+      const holidayProducts = products
+        .filter(p => Array.isArray(p.occasions) && p.occasions.includes(holidayName))
+        .slice(0, 5); // show up to 5
+
+      row.innerHTML = "";
+
+      holidayProducts.forEach(prod => {
+        const card = document.createElement("a");
+        card.href = "#"; // dead link for now
+        card.className = "featured-card";
+        card.innerHTML = `
+          <div class="featured-img">Image Coming Soon</div>
+          <div class="featured-name">${prod.name}</div>
+        `;
+        row.appendChild(card);
+      });
+
+      seeMoreBtn.addEventListener("click", () => {
+        const encoded = encodeURIComponent(holidayName);
+        // This will work even if store.html doesn't read the query yet
+        window.location.href = "store.html?occasion=" + encoded;
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", buildFeaturedSection);
+  })();
+</script>
+
