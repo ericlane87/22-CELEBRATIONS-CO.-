@@ -1,56 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Contact Us - 22 Celebration Co.</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <title>Contact Us • 22 Celebration Co.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <header class="site-header">
+<header class="site-header">
     <div class="logo">
-      <span class="logo-mark">22</span>
-      <span class="logo-text">Celebration Co.</span>
+        <span class="logo-mark">22</span>
+        <span class="logo-text">Celebration Co.</span>
     </div>
 
     <nav class="main-nav">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="store.html">Shop</a>
-      <a href="contact.html" class="active">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="store.html">Shop</a>
+        <a href="contact.html" class="active">Contact</a>
     </nav>
 
     <a href="tel:17708201456" class="btn-phone">(770) 820-1456</a>
-  </header>
+</header>
 
-  <main class="section">
+<main class="section">
     <h1 class="section-title">Contact Us</h1>
+    <p class="section-subtitle">We’re here to help with any questions about gifts, orders, or custom requests.</p>
 
-    <form action="https://formsubmit.co/YOUR_EMAIL" method="POST" class="contact-form">
+    <form class="contact-form" action="https://formsubmit.co/YOUR_EMAIL" method="POST">
 
-      <label for="name">Full Name</label>
-      <input id="name" name="name" required>
+        <!-- NAME -->
+        <label for="name">Your Name</label>
+        <input id="name" name="name" type="text" placeholder="Enter your name" required />
 
-      <label for="email">Email Address</label>
-      <input id="email" name="email" type="email" required>
+        <!-- EMAIL -->
+        <label for="email">Email Address</label>
+        <input id="email" name="email" type="email" placeholder="Enter your email" required />
 
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
+        <!-- PHONE -->
+        <label for="phone">Phone Number</label>
+        <input id="phone" name="phone" type="tel" placeholder="(optional)" />
 
-      <button type="submit" class="btn-primary">Send Message</button>
+        <!-- MESSAGE -->
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" placeholder="How can we help?" required></textarea>
+
+        <!-- SUBMIT -->
+        <button type="submit" class="btn-primary">Send Message</button>
+
+        <!-- FormSubmit settings -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
     </form>
-  </main>
+</main>
 
-  <footer class="site-footer">
+<footer class="site-footer">
     <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
-  </footer>
+</footer>
 
-  <script>
+<script>
     document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+</script>
 
 </body>
 </html>
