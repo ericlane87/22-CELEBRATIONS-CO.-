@@ -1,186 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Shop – 22 Celebration Co.</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css" />
+/* Product Card */
+.product-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(220, 190, 90, 0.5); /* subtle gold outline */
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
 
-  <!-- Load products FIRST -->
-  <script src="products.js"></script>
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
 
-  <!-- Store Script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const grid = document.getElementById("productGrid");
-      const searchInput = document.getElementById("searchInput");
-      const categorySelect = document.getElementById("categorySelect");
-      const searchBtn = document.getElementById("searchBtn");
+/* Placeholder Image */
+.product-img {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    background: rgba(0, 180, 180, 0.15); /* light turquoise tint */
+    border: 1px dashed rgba(0, 180, 180, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #008c8c;
+    margin-bottom: 12px;
+}
 
-      // SAFETY CHECK: Confirm products.js loaded
-      if (!Array.isArray(products)) {
-        console.error("FATAL ERROR: products.js failed to load.");
-        grid.innerHTML =
-          "<p style='color:red;'>Error: products.js did not load.</p>";
-        return;
-      }
+/* Description */
+.product-desc {
+    font-size: 14px;
+    margin: 8px 0;
+    line-height: 1.35;
+    color: #444;
+}
 
-      // Load initial random products
-      const initial = [...products]
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 30);
+/* Price */
+.product-price {
+    font-weight: bold;
+    color: #d4a037; /* soft gold */
+    margin-top: 8px;
+    font-size: 16px;
+}
 
-      render(initial);
-
-      // Search + Category Logic
-      searchBtn.onclick = runSearch;
-      categorySelect.onchange = runSearch;
-      searchInput.onkeypress = (e) => {
-        if (e.key === "Enter") runSearch();
-      };
-
-      function runSearch() {
-        let keyword = searchInput.value.toLowerCase();
-        let cat = categorySelect.value;
-
-        let list = products;
-
-        if (cat !== "all") {
-          list = list.filter((p) => p.occasions.includes(cat));
-        }
-
-        if (keyword.length > 0) {
-          list = list.filter(
-            (p) =>
-              p.name.toLowerCase().includes(keyword) ||
-              p.occasions.join(" ").toLowerCase().includes(keyword)
-          );
-        }
-
-        render(list);
-      }
-
-      function render(list) {
-        grid.innerHTML = "";
-
-        if (list.length === 0) {
-          grid.innerHTML =
-            "<p style='color:var(--text-muted);font-size:1.2rem;'>No matching products found.</p>";
-          return;
-        }
-
-        list.forEach((item) => {
-          let card = document.createElement("div");
-          card.className = "product-card";
-
-          card.innerHTML = `
-            <div class="product-image">Image Coming Soon</div>
-
-            <div class="product-info">
-              <h3 class="product-name">${item.name}</h3>
-
-              <p class="product-meta">Occasions: ${item.occasions.join(", ")}</p>
-
-              <p class="product-meta">For: ${item.gender} • Max Age: ${item.maxAge}</p>
-
-              <p class="product-price">$${item.price.toFixed(2)}</p>
-
-              <button class="btn-primary" onclick="alert('Added to cart!')">
-                Add to Cart
-              </button>
-            </div>
-          `;
-
-          grid.appendChild(card);
-        });
-      }
-    });
-  </script>
-
-</head>
-
-<body>
-
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="logo">
-      <span class="logo-mark">22</span>
-      <span class="logo-text">Celebration Co.</span>
-    </div>
-
-    <nav class="main-nav">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a class="active" href="store.html">Shop</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-
-    <a href="tel:17708201456" class="btn-phone">(770) 820-1456</a>
-  </header>
-
-  <!-- MAIN CONTENT -->
-  <main>
-    <section class="section">
-      <h1 class="section-title">Shop Our Gifts</h1>
-      <p class="section-subtitle" style="max-width:700px;">
-        Search by holiday, occasion, or keyword to find the perfect gift.
-      </p>
-    </section>
-
-    <!-- FILTER BAR -->
-    <section class="section store-filters">
-      <input
-        id="searchInput"
-        type="text"
-        class="search-input"
-        placeholder="Search gifts..."
-      />
-
-      <select id="categorySelect" class="search-select">
-        <option value="all">All Occasions</option>
-        <option value="New Year">New Year</option>
-        <option value="Valentine's Day">Valentine's Day</option>
-        <option value="St. Patrick's Day">St. Patrick's Day</option>
-        <option value="Easter">Easter</option>
-        <option value="Mother's Day">Mother's Day</option>
-        <option value="Father's Day">Father's Day</option>
-        <option value="Graduation">Graduation</option>
-        <option value="Fourth of July">Fourth of July</option>
-        <option value="Back to School">Back to School</option>
-        <option value="Halloween">Halloween</option>
-        <option value="Thanksgiving">Thanksgiving</option>
-        <option value="Christmas">Christmas</option>
-        <option value="Hanukkah">Hanukkah</option>
-        <option value="Kwanzaa">Kwanzaa</option>
-        <option value="Birthday - Him">Birthday - Him</option>
-        <option value="Birthday - Her">Birthday - Her</option>
-        <option value="Birthday - Kids">Birthday - Kids</option>
-        <option value="Baby Shower">Baby Shower</option>
-        <option value="Wedding">Wedding</option>
-        <option value="Anniversary">Anniversary</option>
-        <option value="Retirement">Retirement</option>
-      </select>
-
-      <button id="searchBtn" class="btn-primary">Search</button>
-    </section>
-
-    <!-- PRODUCT GRID -->
-    <section class="section">
-      <div id="productGrid" class="product-grid"></div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-
-</body>
-</html>
+/* No Results */
+.no-results {
+    grid-column: 1/-1;
+    font-size: 18px;
+    padding: 20px;
+}
