@@ -1,28 +1,33 @@
-/* -----------------------------------------------------------
-   HEADER LOGO — Enlarged + All Caps + Balanced Spacing
------------------------------------------------------------ */
+/* ORIGINAL HEADER / LOGO BEFORE EDITS */
+
+.site-header {
+  background: #FFFFFFCC;
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-gold);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
-  font-family: "Playfair Display", serif;
-  letter-spacing: 0.5px;
+  gap: .5rem;
+  font-family: "Playfair Display";
 }
 
 .logo-mark {
-  font-size: 2.1rem;        /* Bigger “22” */
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--gold);
 }
 
 .logo-text {
-  font-size: 1.35rem;       /* Bigger company name */
-  font-weight: 700;
+  font-size: 1rem;
   color: var(--text-dark);
-  text-transform: uppercase;  /* ALL CAPS */
-}
-
-.site-header {
-  padding: 1.1rem 2.2rem;   /* Slight spacing increase for balance */
+  font-weight: 600;
 }
