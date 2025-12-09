@@ -1,260 +1,1140 @@
-// products.js
-// FULL CORRECTED VERSION — Contains all 210 products + proper array closure
+// products.js (PART 1 OF 2)
+// ~100 products total – balanced across all holidays
+// Includes: id, name, occasions, gender, maxAge, price, description
+// Description rule: D-MEDIUM + O3 priority holiday selection
 
 const products = [
 
-  // New Year (1–10)
-  { id: 1, name: "New Year Sparkle Box", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 49.99 },
-  { id: 2, name: "Midnight Countdown Basket", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 69.99 },
-  { id: 3, name: "New Year Snack Bash", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 39.99 },
-  { id: 4, name: "New Year Essentials Mini Box", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 29.99 },
-  { id: 5, name: "Champagne & Chocolate Box", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 59.99 },
-  { id: 6, name: "New Year Self-Care Set", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 54.99 },
-  { id: 7, name: "Family New Year Party Kit", occasions: ["New Year"], gender: "unisex", maxAge: 17, price: 64.99 },
-  { id: 8, name: "New Year Resolution Journal Box", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 34.99 },
-  { id: 9, name: "New Year Movie Night Basket", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 44.99 },
-  { id: 10, name: "New Year Office Celebration Box", occasions: ["New Year"], gender: "unisex", maxAge: 99, price: 79.99 },
+    // ------------------------------
+    // NEW YEAR (5 items)
+    // ------------------------------
+    {
+        id: 1,
+        name: "New Year Sparkle Box",
+        occasions: ["New Year"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 49.99,
+        description:
+            "A themed gift box designed for New Year, curated to match the occasion with thoughtful items. It’s a great choice for celebrating and bringing joy to anyone who loves meaningful, well-selected gifts."
+    },
+    {
+        id: 2,
+        name: "Midnight Countdown Basket",
+        occasions: ["New Year"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 69.99,
+        description:
+            "A themed gift box designed for New Year, curated to match the occasion with festive accessories. It’s a great option for ringing in the new year with style and excitement."
+    },
+    {
+        id: 3,
+        name: "New Year Movie Night Box",
+        occasions: ["New Year"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 44.99,
+        description:
+            "A themed gift box designed for New Year, curated to bring cozy celebration energy into your home. Perfect for unwinding and enjoying a memorable night with loved ones."
+    },
+    {
+        id: 4,
+        name: "New Year Resolution Journal Box",
+        occasions: ["New Year"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 34.99,
+        description:
+            "A themed gift box designed for New Year, curated to inspire motivation and positive habits. It’s ideal for anyone starting the year with meaningful goals and reflection."
+    },
+    {
+        id: 5,
+        name: "New Year Family Party Set",
+        occasions: ["New Year"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 59.99,
+        description:
+            "A themed gift box designed for New Year celebrations, complete with festive items perfect for family gatherings. It’s a joyful way to welcome the new year together."
+    },
 
-  // Valentine’s Day (11–20)
-  { id: 11, name: "Classic Romance Box", occasions: ["Valentine's Day"], gender: "female", maxAge: 99, price: 69.99 },
-  { id: 12, name: "Gentleman’s Valentine Basket", occasions: ["Valentine's Day"], gender: "male", maxAge: 99, price: 74.99 },
-  { id: 13, name: "Couples Movie Night Box", occasions: ["Valentine's Day"], gender: "unisex", maxAge: 99, price: 59.99 },
-  { id: 14, name: "Valentine Self-Love Box", occasions: ["Valentine's Day"], gender: "unisex", maxAge: 99, price: 49.99 },
-  { id: 15, name: "Chocolate Lover’s Valentine Basket", occasions: ["Valentine's Day"], gender: "unisex", maxAge: 99, price: 64.99 },
-  { id: 16, name: "Valentine Spa Night Box", occasions: ["Valentine's Day"], gender: "female", maxAge: 99, price: 79.99 },
-  { id: 17, name: "Valentine Game Night Box", occasions: ["Valentine's Day"], gender: "unisex", maxAge: 99, price: 54.99 },
-  { id: 18, name: "Valentine Office Appreciation Box", occasions: ["Valentine's Day"], gender: "unisex", maxAge: 99, price: 39.99 },
-  { id: 19, name: "Teen Valentine Fun Box", occasions: ["Valentine's Day"], gender: "unisex", maxAge: 18, price: 34.99 },
-  { id: 20, name: "Valentine Coffee & Candle Set", occasions: ["Valentine's Day"], gender: "unisex", maxAge: 99, price: 44.99 },
+    // ------------------------------
+    // VALENTINE’S DAY (5 items)
+    // ------------------------------
+    {
+        id: 6,
+        name: "Classic Romance Box",
+        occasions: ["Valentine's Day"],
+        gender: "female",
+        maxAge: 99,
+        price: 69.99,
+        description:
+            "A themed gift box designed for Valentine’s Day, curated with romantic touches for a heartfelt experience. It’s a wonderful way to express love and appreciation."
+    },
+    {
+        id: 7,
+        name: "Gentleman's Valentine Basket",
+        occasions: ["Valentine's Day"],
+        gender: "male",
+        maxAge: 99,
+        price: 74.99,
+        description:
+            "A themed gift box designed for Valentine’s Day, curated with premium items selected just for him. It’s perfect for making your partner feel celebrated and cherished."
+    },
+    {
+        id: 8,
+        name: "Couples Movie Night Box",
+        occasions: ["Valentine's Day"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 59.99,
+        description:
+            "A themed gift box designed for Valentine’s Day, curated for cozy bonding moments. Ideal for couples looking to enjoy a warm, intimate night together."
+    },
+    {
+        id: 9,
+        name: "Chocolate Lover’s Valentine Box",
+        occasions: ["Valentine's Day"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 64.99,
+        description:
+            "A themed gift box designed for Valentine’s Day, curated with treats for chocolate enthusiasts. It’s a delightful way to satisfy sweet cravings while celebrating love."
+    },
+    {
+        id: 10,
+        name: "Valentine’s Self-Care Box",
+        occasions: ["Valentine's Day"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 49.99,
+        description:
+            "A themed gift box designed for Valentine’s Day, curated to promote rest and relaxation. It’s perfect for anyone needing a comforting and thoughtful treat."
+    },
 
-  // St. Patrick’s Day (21–30)
-  { id: 21, name: "Lucky Shamrock Snack Box", occasions: ["St. Patrick's Day"], gender: "unisex", maxAge: 99, price: 39.99 },
-  { id: 22, name: "Irish Pub Night Basket", occasions: ["St. Patrick's Day"], gender: "unisex", maxAge: 99, price: 59.99 },
-  { id: 23, name: "Green Goodies Kids Box", occasions: ["St. Patrick's Day"], gender: "kids", maxAge: 12, price: 29.99 },
-  { id: 24, name: "St. Patrick’s Day Coffee Box", occasions: ["St. Patrick's Day"], gender: "unisex", maxAge: 99, price: 34.99 },
-  { id: 25, name: "Lucky Charm Office Box", occasions: ["St. Patrick's Day"], gender: "unisex", maxAge: 99, price: 49.99 },
-  { id: 26, name: "St. Patrick’s Day Party Kit", occasions: ["St. Patrick's Day"], gender: "unisex", maxAge: 99, price: 69.99 },
-  { id: 27, name: "Green Spa Relaxation Box", occasions: ["St. Patrick's Day"], gender: "female", maxAge: 99, price: 54.99 },
-  { id: 28, name: "St. Patrick Snack Sampler", occasions: ["St. Patrick's Day"], gender: "unisex", maxAge: 99, price: 24.99 },
-  { id: 29, name: "Family Shamrock Basket", occasions: ["St. Patrick's Day"], gender: "unisex", maxAge: 17, price: 44.99 },
-  { id: 30, name: "St. Patrick Gourmet Treat Box", occasions: ["St. Patrick's Day"], gender: "unisex", maxAge: 99, price: 74.99 },
+    // ------------------------------
+    // ST. PATRICK'S DAY (5 items)
+    // ------------------------------
+    {
+        id: 11,
+        name: "Lucky Shamrock Box",
+        occasions: ["St. Patrick's Day"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 39.99,
+        description:
+            "A themed gift box designed for St. Patrick’s Day, curated with fun green-themed items. It’s an excellent choice for adding charm and joy to the holiday."
+    },
+    {
+        id: 12,
+        name: "Irish Pub Night Box",
+        occasions: ["St. Patrick's Day"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 59.99,
+        description:
+            "A themed gift box designed for St. Patrick’s Day, curated for a festive pub-at-home experience. It’s perfect for anyone wanting to celebrate with flavor and fun."
+    },
+    {
+        id: 13,
+        name: "Kids St. Patrick’s Activity Box",
+        occasions: ["St. Patrick's Day"],
+        gender: "kids",
+        maxAge: 12,
+        price: 29.99,
+        description:
+            "A themed gift box designed for St. Patrick’s Day, curated with interactive fun for kids. It’s great for sparking creativity and making the holiday memorable."
+    },
+    {
+        id: 14,
+        name: "St. Patrick’s Day Coffee Box",
+        occasions: ["St. Patrick's Day"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 34.99,
+        description:
+            "A themed gift box designed for St. Patrick’s Day, curated with warm, comforting flavors. It's ideal for coffee lovers wanting a festive touch."
+    },
+    {
+        id: 15,
+        name: "Shamrock Snack Pack",
+        occasions: ["St. Patrick's Day"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 24.99,
+        description:
+            "A themed gift box designed for St. Patrick’s Day, curated with tasty themed snacks. It’s a simple and fun way to celebrate the holiday spirit."
+    },
 
-  // Easter (31–40)
-  { id: 31, name: "Classic Easter Basket", occasions: ["Easter"], gender: "kids", maxAge: 12, price: 39.99 },
-  { id: 32, name: "Easter Brunch Box", occasions: ["Easter"], gender: "unisex", maxAge: 99, price: 59.99 },
-  { id: 33, name: "Easter Candy Explosion Box", occasions: ["Easter"], gender: "kids", maxAge: 17, price: 34.99 },
-  { id: 34, name: "Easter Spa & Scripture Box", occasions: ["Easter"], gender: "female", maxAge: 99, price: 49.99 },
-  { id: 35, name: "Easter Family Fun Basket", occasions: ["Easter"], gender: "unisex", maxAge: 99, price: 64.99 },
-  { id: 36, name: "Easter Coffee & Pastry Box", occasions: ["Easter"], gender: "unisex", maxAge: 99, price: 44.99 },
-  { id: 37, name: "Teen Easter Chill Box", occasions: ["Easter"], gender: "unisex", maxAge: 18, price: 39.99 },
-  { id: 38, name: "Easter Office Treat Box", occasions: ["Easter"], gender: "unisex", maxAge: 99, price: 49.99 },
-  { id: 39, name: "Pastel Home Decor Easter Box", occasions: ["Easter"], gender: "unisex", maxAge: 99, price: 69.99 },
-  { id: 40, name: "Easter Sunrise Breakfast Basket", occasions: ["Easter"], gender: "unisex", maxAge: 99, price: 79.99 },
+    // ------------------------------
+    // EASTER (5 items)
+    // ------------------------------
+    {
+        id: 16,
+        name: "Classic Easter Basket",
+        occasions: ["Easter"],
+        gender: "kids",
+        maxAge: 12,
+        price: 39.99,
+        description:
+            "A themed gift box designed for Easter, curated with colorful treats and surprises. It’s a joyful option for families celebrating the holiday."
+    },
+    {
+        id: 17,
+        name: "Easter Brunch Box",
+        occasions: ["Easter"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 59.99,
+        description:
+            "A themed gift box designed for Easter, curated with seasonal flavors and decor. It’s ideal for enhancing festive brunch traditions."
+    },
+    {
+        id: 18,
+        name: "Easter Candy Explosion Box",
+        occasions: ["Easter"],
+        gender: "kids",
+        maxAge: 17,
+        price: 34.99,
+        description:
+            "A themed gift box designed for Easter, curated with delicious sweets perfect for kids. It’s a cheerful way to celebrate springtime fun."
+    },
+    {
+        id: 19,
+        name: "Easter Spa & Scripture Box",
+        occasions: ["Easter"],
+        gender: "female",
+        maxAge: 99,
+        price: 49.99,
+        description:
+            "A themed gift box designed for Easter, curated with soothing items and inspirational touches. It’s perfect for creating a peaceful holiday moment."
+    },
+    {
+        id: 20,
+        name: "Easter Family Fun Pack",
+        occasions: ["Easter"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 64.99,
+        description:
+            "A themed gift box designed for Easter, curated for group activities and shared joy. It’s a wonderful choice for families celebrating together."
+    },
 
-  // Mother’s Day (41–50)
-  { id: 41, name: "Mother’s Day Spa Retreat Box", occasions: ["Mother's Day"], gender: "female", maxAge: 99, price: 69.99 },
-  { id: 42, name: "Coffee & Candle Mom Box", occasions: ["Mother's Day"], gender: "female", maxAge: 99, price: 49.99 },
-  { id: 43, name: "Mom’s Brunch in a Box", occasions: ["Mother's Day"], gender: "female", maxAge: 99, price: 59.99 },
-  { id: 44, name: "Mother’s Day Self-Care Basket", occasions: ["Mother's Day"], gender: "female", maxAge: 99, price: 74.99 },
-  { id: 45, name: "Mother’s Day Sweet Treat Box", occasions: ["Mother's Day"], gender: "female", maxAge: 99, price: 39.99 },
-  { id: 46, name: "Mom & Daughter Pamper Box", occasions: ["Mother's Day"], gender: "female", maxAge: 99, price: 79.99 },
-  { id: 47, name: "New Mom Celebration Basket", occasions: ["Mother's Day","Baby Shower"], gender: "female", maxAge: 45, price: 84.99 },
-  { id: 48, name: "Grandma Appreciation Box", occasions: ["Mother's Day"], gender: "female", maxAge: 99, price: 54.99 },
-  { id: 49, name: "Mom’s Garden Lover Box", occasions: ["Mother's Day"], gender: "female", maxAge: 99, price: 64.99 },
-  { id: 50, name: "Mother’s Day Relax & Read Box", occasions: ["Mother's Day"], gender: "female", maxAge: 99, price: 44.99 },
+    // ------------------------------
+    // MOTHER'S DAY (5 items)
+    // ------------------------------
+    {
+        id: 21,
+        name: "Mother’s Day Spa Retreat",
+        occasions: ["Mother's Day"],
+        gender: "female",
+        maxAge: 99,
+        price: 69.99,
+        description:
+            "A themed gift box designed for Mother’s Day, curated to promote relaxation and pampering. It’s a thoughtful choice for showing appreciation and love."
+    },
+    {
+        id: 22,
+        name: "Mother’s Day Sweet Treat Box",
+        occasions: ["Mother's Day"],
+        gender: "female",
+        maxAge: 99,
+        price: 49.99,
+        description:
+            "A themed gift box designed for Mother’s Day, curated with comforting sweet delights. It’s perfect for adding warmth and joy to her special day."
+    },
+    {
+        id: 23,
+        name: "Mom & Daughter Pamper Box",
+        occasions: ["Mother's Day"],
+        gender: "female",
+        maxAge: 99,
+        price: 79.99,
+        description:
+            "A themed gift box designed for Mother’s Day, curated for bonding and self-care. It’s a beautiful way to celebrate connection and love."
+    },
+    {
+        id: 24,
+        name: "New Mom Celebration Box",
+        occasions: ["Mother's Day", "Baby Shower"],
+        gender: "female",
+        maxAge: 45,
+        price: 84.99,
+        description:
+            "A themed gift box designed for Mother’s Day, curated to support and celebrate new moms. It’s a heartfelt choice full of meaningful items."
+    },
+    {
+        id: 25,
+        name: "Grandma Appreciation Box",
+        occasions: ["Mother's Day"],
+        gender: "female",
+        maxAge: 99,
+        price: 54.99,
+        description:
+            "A themed gift box designed for Mother’s Day, curated with thoughtful items just for grandmothers. It’s a lovely way to honor her care and wisdom."
+    },
 
-  // Father’s Day (51–60)
-  { id: 51, name: "Father’s Day Grill Master Box", occasions: ["Father's Day"], gender: "male", maxAge: 99, price: 69.99 },
-  { id: 52, name: "Dad’s Snack Attack Basket", occasions: ["Father's Day"], gender: "male", maxAge: 99, price: 49.99 },
-  { id: 53, name: "Sports Fan Father’s Day Box", occasions: ["Father's Day","Birthday - Him"], gender: "male", maxAge: 99, price: 79.99 },
-  { id: 54, name: "Father’s Day Coffee & Mug Set", occasions: ["Father's Day"], gender: "male", maxAge: 99, price: 39.99 },
-  { id: 55, name: "Father’s Day Grooming Kit Box", occasions: ["Father's Day"], gender: "male", maxAge: 99, price: 59.99 },
-  { id: 56, name: "First Time Dad Box", occasions: ["Father's Day","Baby Shower"], gender: "male", maxAge: 55, price: 74.99 },
-  { id: 57, name: "Outdoorsman Dad Basket", occasions: ["Father's Day"], gender: "male", maxAge: 99, price: 84.99 },
-  { id: 58, name: "Tech-Loving Dad Box", occasions: ["Father's Day"], gender: "male", maxAge: 99, price: 89.99 },
-  { id: 59, name: "Vintage Gamer Dad Box", occasions: ["Father's Day","Birthday - Him"], gender: "male", maxAge: 65, price: 64.99 },
-  { id: 60, name: "Father’s Day Movie Night Box", occasions: ["Father's Day"], gender: "male", maxAge: 99, price: 54.99 },
+    // ------------------------------
+    // FATHER'S DAY (5 items)
+    // ------------------------------
+    {
+        id: 26,
+        name: "Father’s Day Grill Master Box",
+        occasions: ["Father's Day"],
+        gender: "male",
+        maxAge: 99,
+        price: 69.99,
+        description:
+            "A themed gift box designed for Father’s Day, curated with grilling essentials perfect for outdoor fun. It’s a great way to show appreciation with a personal touch."
+    },
+    {
+        id: 27,
+        name: "Dad’s Snack Attack Box",
+        occasions: ["Father's Day"],
+        gender: "male",
+        maxAge: 99,
+        price: 49.99,
+        description:
+            "A themed gift box designed for Father’s Day, curated with his favorite snacks. It’s a fun and thoughtful way to celebrate his day."
+    },
+    {
+        id: 28,
+        name: "Tech-Loving Dad Box",
+        occasions: ["Father's Day"],
+        gender: "male",
+        maxAge: 99,
+        price: 89.99,
+        description:
+            "A themed gift box designed for Father’s Day, curated with handy gadgets and accessories. It’s ideal for dads who love practical and modern gifts."
+    },
+    {
+        id: 29,
+        name: "Outdoorsman Dad Bundle",
+        occasions: ["Father's Day"],
+        gender: "male",
+        maxAge: 99,
+        price: 84.99,
+        description:
+            "A themed gift box designed for Father’s Day, curated for those who enjoy nature and adventure. It's a meaningful way to recognize his passions."
+    },
+    {
+        id: 30,
+        name: "Father’s Day Coffee & Mug Set",
+        occasions: ["Father's Day"],
+        gender: "male",
+        maxAge: 99,
+        price: 39.99,
+        description:
+            "A themed gift box designed for Father’s Day, curated with warm treats and a quality mug. It’s perfect for dads who appreciate a simple, cozy gift."
+    },
 
-  // Graduation (61–70)
-  { id: 61, name: "High School Grad Celebration Box", occasions: ["Graduation"], gender: "unisex", maxAge: 19, price: 59.99 },
-  { id: 62, name: "College Grad Career Starter Box", occasions: ["Graduation"], gender: "unisex", maxAge: 30, price: 79.99 },
-  { id: 63, name: "Grad Study Break Snack Box", occasions: ["Graduation"], gender: "unisex", maxAge: 30, price: 39.99 },
-  { id: 64, name: "Grad Coffee & Notebook Set", occasions: ["Graduation"], gender: "unisex", maxAge: 30, price: 44.99 },
-  { id: 65, name: "Grad Tech Accessories Box", occasions: ["Graduation"], gender: "unisex", maxAge: 30, price: 89.99 },
-  { id: 66, name: "Grad Sentimental Keepsake Box", occasions: ["Graduation"], gender: "unisex", maxAge: 30, price: 69.99 },
-  { id: 67, name: "Grad Party Host Basket", occasions: ["Graduation"], gender: "unisex", maxAge: 99, price: 74.99 },
-  { id: 68, name: "Grad Late-Night Study Box", occasions: ["Graduation"], gender: "unisex", maxAge: 30, price: 49.99 },
-  { id: 69, name: "Grad Dorm Move-In Essentials Box", occasions: ["Graduation","Back to School"], gender: "unisex", maxAge: 22, price: 84.99 },
-  { id: 70, name: "Grad Family Celebration Box", occasions: ["Graduation"], gender: "unisex", maxAge: 99, price: 94.99 },
+    // ------------------------------
+    // GRADUATION (5 items)
+    // ------------------------------
+    {
+        id: 31,
+        name: "High School Graduation Box",
+        occasions: ["Graduation"],
+        gender: "unisex",
+        maxAge: 19,
+        price: 59.99,
+        description:
+            "A themed gift box designed for Graduation, curated with items that capture the excitement of new beginnings. It’s a great way to celebrate the graduate’s achievement."
+    },
+    {
+        id: 32,
+        name: "College Grad Starter Kit",
+        occasions: ["Graduation"],
+        gender: "unisex",
+        maxAge: 30,
+        price: 79.99,
+        description:
+            "A themed gift box designed for Graduation, curated with practical and motivational items. It's ideal for grads entering the next phase of life."
+    },
+    {
+        id: 33,
+        name: "Grad Study Break Snack Box",
+        occasions: ["Graduation"],
+        gender: "unisex",
+        maxAge: 30,
+        price: 39.99,
+        description:
+            "A themed gift box designed for Graduation, curated with comforting snacks for late-night study sessions. It’s a thoughtful way to support and celebrate a student."
+    },
+    {
+        id: 34,
+        name: "Grad Dorm Essentials Box",
+        occasions: ["Graduation"],
+        gender: "unisex",
+        maxAge: 22,
+        price: 84.99,
+        description:
+            "A themed gift box designed for Graduation, curated with helpful items for moving into a dorm. It’s perfect for easing the transition into college life."
+    },
+    {
+        id: 35,
+        name: "Graduation Celebration Party Pack",
+        occasions: ["Graduation"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 74.99,
+        description:
+            "A themed gift box designed for Graduation, curated to elevate the celebration. It’s a festive choice for families and friends congratulating their grad."
+    },
 
-  // Fourth of July (71–80)
-  { id: 71, name: "Fourth of July BBQ Box", occasions: ["Fourth of July"], gender: "unisex", maxAge: 99, price: 69.99 },
-  { id: 72, name: "Patriotic Snack Basket", occasions: ["Fourth of July"], gender: "unisex", maxAge: 99, price: 39.99 },
-  { id: 73, name: "Fourth of July Family Fun Box", occasions: ["Fourth of July"], gender: "unisex", maxAge: 99, price: 59.99 },
-  { id: 74, name: "Fourth of July Grill Tools Set", occasions: ["Fourth of July","Father's Day"], gender: "male", maxAge: 99, price: 79.99 },
-  { id: 75, name: "Fourth of July Dessert Box", occasions: ["Fourth of July"], gender: "unisex", maxAge: 99, price: 44.99 },
-  { id: 76, name: "Fourth of July Kids Activity Box", occasions: ["Fourth of July"], gender: "kids", maxAge: 12, price: 34.99 },
-  { id: 77, name: "Fourth of July Picnic Basket", occasions: ["Fourth of July"], gender: "unisex", maxAge: 99, price: 84.99 },
-  { id: 78, name: "Fourth of July Party Décor Box", occasions: ["Fourth of July"], gender: "unisex", maxAge: 99, price: 54.99 },
-  { id: 79, name: "Fourth of July Game Night Box", occasions: ["Fourth of July"], gender: "unisex", maxAge: 99, price: 49.99 },
-  { id: 80, name: "Fourth of July Gourmet Grill Box", occasions: ["Fourth of July"], gender: "unisex", maxAge: 99, price: 94.99 },
+    // ------------------------------
+    // FOURTH OF JULY (5 items)
+    // ------------------------------
+    {
+        id: 36,
+        name: "Fourth of July BBQ Box",
+        occasions: ["Fourth of July"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 69.99,
+        description:
+            "A themed gift box designed for the Fourth of July, curated with grilling favorites and patriotic flair. It’s a lively way to celebrate the holiday with friends and family."
+    },
+    {
+        id: 37,
+        name: "Patriotic Snack Basket",
+        occasions: ["Fourth of July"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 39.99,
+        description:
+            "A themed gift box designed for the Fourth of July, curated with festive red, white, and blue snacks. It’s a simple but fun way to enjoy the holiday spirit."
+    },
+    {
+        id: 38,
+        name: "Fourth of July Family Fun Box",
+        occasions: ["Fourth of July"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 59.99,
+        description:
+            "A themed gift box designed for the Fourth of July, curated with games and decorations. It’s great for creating a memorable celebration."
+    },
+    {
+        id: 39,
+        name: "Fourth of July Picnic Basket",
+        occasions: ["Fourth of July"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 84.99,
+        description:
+            "A themed gift box designed for the Fourth of July, curated for outdoor gatherings. It’s perfect for enjoying a festive summer afternoon."
+    },
+    {
+        id: 40,
+        name: "July 4th Dessert Sampler",
+        occasions: ["Fourth of July"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 44.99,
+        description:
+            "A themed gift box designed for the Fourth of July, curated with patriotic treats. It’s an easy way to satisfy sweet cravings during the celebration."
+    },
 
-  // Back to School (81–90)
-  { id: 81, name: "Back to School Starter Box", occasions: ["Back to School"], gender: "kids", maxAge: 12, price: 39.99 },
-  { id: 82, name: "Teen Back to School Essentials Box", occasions: ["Back to School"], gender: "unisex", maxAge: 18, price: 49.99 },
-  { id: 83, name: "College Back to Campus Box", occasions: ["Back to School"], gender: "unisex", maxAge: 23, price: 59.99 },
-  { id: 84, name: "Back to School Snack Stash Box", occasions: ["Back to School"], gender: "unisex", maxAge: 18, price: 34.99 },
-  { id: 85, name: "Study Desk Setup Box", occasions: ["Back to School"], gender: "unisex", maxAge: 22, price: 69.99 },
-  { id: 86, name: "Back to School Art & Creativity Box", occasions: ["Back to School"], gender: "kids", maxAge: 12, price: 29.99 },
-  { id: 87, name: "Back to School Tech Accessories Box", occasions: ["Back to School"], gender: "unisex", maxAge: 25, price: 79.99 },
-  { id: 88, name: "Back to School Motivation Box", occasions: ["Back to School"], gender: "unisex", maxAge: 22, price: 44.99 },
-  { id: 89, name: "Back to School Parent Survival Box", occasions: ["Back to School"], gender: "unisex", maxAge: 99, price: 54.99 },
-  { id: 90, name: "Back to School Dorm Snacks Basket", occasions: ["Back to School","Graduation"], gender: "unisex", maxAge: 23, price: 64.99 },
+    // ------------------------------
+    // HALLOWEEN (5 items)
+    // ------------------------------
+    {
+        id: 41,
+        name: "Halloween Candy Blast Box",
+        occasions: ["Halloween"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 34.99,
+        description:
+            "A themed gift box designed for Halloween, curated with spooky treats and seasonal goodies. It’s a fun way to enjoy the festive excitement."
+    },
+    {
+        id: 42,
+        name: "Halloween Movie Night Box",
+        occasions: ["Halloween"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 44.99,
+        description:
+            "A themed gift box designed for Halloween, curated with snacks and cozy movie-night essentials. It’s great for creating a spooky-but-fun evening at home."
+    },
+    {
+        id: 43,
+        name: "Kids Trick-or-Treat Box",
+        occasions: ["Halloween"],
+        gender: "kids",
+        maxAge: 12,
+        price: 29.99,
+        description:
+            "A themed gift box designed for Halloween, curated for children with playful items and treats. It’s perfect for enhancing the fun of the holiday."
+    },
+    {
+        id: 44,
+        name: "Halloween Party Décor Box",
+        occasions: ["Halloween"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 49.99,
+        description:
+            "A themed gift box designed for Halloween, curated to help set the mood for gatherings. It’s a festive choice for anyone hosting a celebration."
+    },
+    {
+        id: 45,
+        name: "Halloween Office Treat Set",
+        occasions: ["Halloween"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 59.99,
+        description:
+            "A themed gift box designed for Halloween, curated for sharing treats in the workplace. It’s a great way to bring seasonal cheer to your team."
+    },
 
-  // Halloween (91–100)
-  { id: 91, name: "Halloween Trick-or-Treat Kids Box", occasions: ["Halloween"], gender: "kids", maxAge: 12, price: 34.99 },
-  { id: 92, name: "Halloween Movie Night Box", occasions: ["Halloween"], gender: "unisex", maxAge: 99, price: 44.99 },
-  { id: 93, name: "Spooky Snack Basket", occasions: ["Halloween"], gender: "unisex", maxAge: 99, price: 39.99 },
-  { id: 94, name: "Halloween Décor Starter Box", occasions: ["Halloween"], gender: "unisex", maxAge: 99, price: 49.99 },
-  { id: 95, name: "Family Halloween Party Kit", occasions: ["Halloween"], gender: "unisex", maxAge: 99, price: 69.99 },
-  { id: 96, name: "Halloween Office Treat Box", occasions: ["Halloween"], gender: "unisex", maxAge: 99, price: 59.99 },
-  { id: 97, name: "Halloween Candy Lovers Box", occasions: ["Halloween"], gender: "unisex", maxAge: 99, price: 29.99 },
-  { id: 98, name: "Teen Halloween Hangout Box", occasions: ["Halloween"], gender: "unisex", maxAge: 18, price: 39.99 },
-  { id: 99, name: "Halloween Coffee & Mug Set", occasions: ["Halloween"], gender: "unisex", maxAge: 99, price: 34.99 },
-  { id: 100, name: "Gourmet Halloween Treat Basket", occasions: ["Halloween"], gender: "unisex", maxAge: 99, price: 79.99 },
+    // ------------------------------
+    // THANKSGIVING (5 items)
+    // ------------------------------
+    {
+        id: 46,
+        name: "Thanksgiving Host Basket",
+        occasions: ["Thanksgiving"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 74.99,
+        description:
+            "A themed gift box designed for Thanksgiving, curated with warm, seasonal items perfect for hosting. It’s a thoughtful way to show appreciation to loved ones."
+    },
+    {
+        id: 47,
+        name: "Thanksgiving Snack & Pie Box",
+        occasions: ["Thanksgiving"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 49.99,
+        description:
+            "A themed gift box designed for Thanksgiving, curated with cozy treats and fall flavors. It’s ideal for enjoying the holiday with comfort and joy."
+    },
+    {
+        id: 48,
+        name: "Friendsgiving Party Pack",
+        occasions: ["Thanksgiving"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 59.99,
+        description:
+            "A themed gift box designed for Thanksgiving, curated to enhance group celebrations. It’s a festive way to share gratitude with friends."
+    },
+    {
+        id: 49,
+        name: "Thanksgiving Office Appreciation Box",
+        occasions: ["Thanksgiving"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 64.99,
+        description:
+            "A themed gift box designed for Thanksgiving, curated to uplift coworkers with seasonal treats. It’s a great option for building team spirit."
+    },
+    {
+        id: 50,
+        name: "Cozy Thanksgiving Home Box",
+        occasions: ["Thanksgiving"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 84.99,
+        description:
+            "A themed gift box designed for Thanksgiving, curated with home comforts ideal for the season. It’s perfect for creating a warm, inviting holiday atmosphere."
+    },
 
-  // Thanksgiving (101–110)
-  { id: 101, name: "Thanksgiving Host Basket", occasions: ["Thanksgiving"], gender: "unisex", maxAge: 99, price: 74.99 },
-  { id: 102, name: "Thanksgiving Snack & Pie Box", occasions: ["Thanksgiving"], gender: "unisex", maxAge: 99, price: 49.99 },
-  { id: 103, name: "Friendsgiving Party Box", occasions: ["Thanksgiving"], gender: "unisex", maxAge: 99, price: 59.99 },
-  { id: 104, name: "Thanksgiving Coffee & Candle Box", occasions: ["Thanksgiving"], gender: "unisex", maxAge: 99, price: 44.99 },
-  { id: 105, name: "Thanksgiving Gourmet Treats Box", occasions: ["Thanksgiving"], gender: "unisex", maxAge: 99, price: 79.99 },
-  { id: 106, name: "Thanksgiving Kids Activity Box", occasions: ["Thanksgiving"], gender: "kids", maxAge: 12, price: 29.99 },
-  { id: 107, name: "Thanksgiving Family Game Night Box", occasions: ["Thanksgiving"], gender: "unisex", maxAge: 99, price: 54.99 },
-  { id: 108, name: "Thanksgiving Office Appreciation Box", occasions: ["Thanksgiving"], gender: "unisex", maxAge: 99, price: 64.99 },
-  { id: 109, name: "Thanksgiving Dessert Sampler Box", occasions: ["Thanksgiving"], gender: "unisex", maxAge: 99, price: 69.99 },
-  { id: 110, name: "Thanksgiving Cozy Home Box", occasions: ["Thanksgiving"], gender: "unisex", maxAge: 99, price: 84.99 },
-
-  // Christmas (111–120)
-  { id: 111, name: "Classic Christmas Gift Box", occasions: ["Christmas"], gender: "unisex", maxAge: 99, price: 59.99 },
-  { id: 112, name: "Christmas Morning Breakfast Basket", occasions: ["Christmas"], gender: "unisex", maxAge: 99, price: 69.99 },
-  { id: 113, name: "Christmas Movie Night Box", occasions: ["Christmas"], gender: "unisex", maxAge: 99, price: 49.99 },
-  { id: 114, name: "Christmas Cookie Baking Box", occasions: ["Christmas"], gender: "unisex", maxAge: 99, price: 44.99 },
-  { id: 115, name: "Christmas Coffee & Cocoa Box", occasions: ["Christmas"], gender: "unisex", maxAge: 99, price: 39.99 },
-  { id: 116, name: "Christmas Spa Night Box", occasions: ["Christmas"], gender: "female", maxAge: 99, price: 74.99 },
-  { id: 117, name: "Christmas Sports Fan Box", occasions: ["Christmas","Birthday - Him"], gender: "male", maxAge: 99, price: 84.99 },
-  { id: 118, name: "Christmas Kids Surprise Box", occasions: ["Christmas"], gender: "kids", maxAge: 12, price: 34.99 },
-  { id: 119, name: "Christmas Office Secret Santa Box", occasions: ["Christmas"], gender: "unisex", maxAge: 99, price: 29.99 },
-  { id: 120, name: "Deluxe Christmas Family Basket", occasions: ["Christmas"], gender: "unisex", maxAge: 99, price: 99.99 },
-
-  // Hanukkah (121–130)
-  { id: 121, name: "Hanukkah Treats Box", occasions: ["Hanukkah"], gender: "unisex", maxAge: 99, price: 59.99 },
-  { id: 122, name: "Hanukkah Family Celebration Basket", occasions: ["Hanukkah"], gender: "unisex", maxAge: 99, price: 79.99 },
-  { id: 123, name: "Hanukkah Kids Activity Box", occasions: ["Hanukkah"], gender: "kids", maxAge: 12, price: 39.99 },
-  { id: 124, name: "Hanukkah Coffee & Candle Box", occasions: ["Hanukkah"], gender: "unisex", maxAge: 99, price: 44.99 },
-  { id: 125, name: "Hanukkah Gourmet Snack Box", occasions: ["Hanukkah"], gender: "unisex", maxAge: 99, price: 69.99 },
-  { id: 126, name: "Hanukkah Office Appreciation Box", occasions: ["Hanukkah"], gender: "unisex", maxAge: 99, price: 54.99 },
-  { id: 127, name: "Hanukkah Cozy Night In Box", occasions: ["Hanukkah"], gender: "unisex", maxAge: 99, price: 49.99 },
-  { id: 128, name: "Hanukkah Dessert Sampler Box", occasions: ["Hanukkah"], gender: "unisex", maxAge: 99, price: 74.99 },
-  { id: 129, name: "Hanukkah Family Game Box", occasions: ["Hanukkah"], gender: "unisex", maxAge: 99, price: 64.99 },
-  { id: 130, name: "Hanukkah Home Décor Box", occasions: ["Hanukkah"], gender: "unisex", maxAge: 99, price: 84.99 },
-
-  // Kwanzaa (131–140)
-  { id: 131, name: "Kwanzaa Celebration Basket", occasions: ["Kwanzaa"], gender: "unisex", maxAge: 99, price: 79.99 },
-  { id: 132, name: "Kwanzaa Family Traditions Box", occasions: ["Kwanzaa"], gender: "unisex", maxAge: 99, price: 69.99 },
-  { id: 133, name: "Kwanzaa Story & Activity Kids Box", occasions: ["Kwanzaa"], gender: "kids", maxAge: 12, price: 39.99 },
-  { id: 134, name: "Kwanzaa Coffee & Candle Set", occasions: ["Kwanzaa"], gender: "unisex", maxAge: 99, price: 44.99 },
-  { id: 135, name: "Kwanzaa Art & Culture Box", occasions: ["Kwanzaa"], gender: "unisex", maxAge: 99, price: 74.99 },
-  { id: 136, name: "Kwanzaa Office Appreciation Box", occasions: ["Kwanzaa"], gender: "unisex", maxAge: 99, price: 54.99 },
-  { id: 137, name: "Kwanzaa Gourmet Snack Box", occasions: ["Kwanzaa"], gender: "unisex", maxAge: 99, price: 64.99 },
-  { id: 138, name: "Kwanzaa Family Game Night Box", occasions: ["Kwanzaa"], gender: "unisex", maxAge: 99, price: 59.99 },
-  { id: 139, name: "Kwanzaa Home Décor Box", occasions: ["Kwanzaa"], gender: "unisex", maxAge: 99, price: 84.99 },
-  { id: 140, name: "Kwanzaa Reflection & Journal Box", occasions: ["Kwanzaa"], gender: "unisex", maxAge: 99, price: 49.99 },
-
-  // Birthday - Him (141–150)
-  { id: 141, name: "Birthday Box for Him – Snack Edition", occasions: ["Birthday - Him"], gender: "male", maxAge: 99, price: 49.99 },
-  { id: 142, name: "Birthday Sports Fan Box for Him", occasions: ["Birthday - Him"], gender: "male", maxAge: 99, price: 79.99 },
-  { id: 143, name: "Birthday Grooming Kit Box", occasions: ["Birthday - Him"], gender: "male", maxAge: 99, price: 59.99 },
-  { id: 144, name: "Birthday Coffee Lover Box for Him", occasions: ["Birthday - Him"], gender: "male", maxAge: 99, price: 44.99 },
-  { id: 145, name: "Birthday Tech Gadget Box for Him", occasions: ["Birthday - Him"], gender: "male", maxAge: 99, price: 89.99 },
-  { id: 146, name: "Birthday Game Night Box for Him", occasions: ["Birthday - Him"], gender: "male", maxAge: 99, price: 69.99 },
-  { id: 147, name: "Birthday Lounge & Relax Box", occasions: ["Birthday - Him"], gender: "male", maxAge: 99, price: 64.99 },
-  { id: 148, name: "Birthday Grill Master Box", occasions: ["Birthday - Him","Father's Day"], gender: "male", maxAge: 99, price: 84.99 },
-  { id: 149, name: "Birthday Movie Marathon Box for Him", occasions: ["Birthday - Him"], gender: "male", maxAge: 99, price: 54.99 },
-  { id: 150, name: "Birthday Travel Essentials Box", occasions: ["Birthday - Him"], gender: "male", maxAge: 99, price: 74.99 },
-
-  // Birthday - Her (151–160)
-  { id: 151, name: "Birthday Spa & Self-Care Box for Her", occasions: ["Birthday - Her"], gender: "female", maxAge: 99, price: 69.99 },
-  { id: 152, name: "Birthday Sweet Treats Box for Her", occasions: ["Birthday - Her"], gender: "female", maxAge: 99, price: 49.99 },
-  { id: 153, name: "Birthday Coffee & Candle Box for Her", occasions: ["Birthday - Her"], gender: "female", maxAge: 99, price: 44.99 },
-  { id: 154, name: "Birthday Brunch at Home Box", occasions: ["Birthday - Her"], gender: "female", maxAge: 99, price: 59.99 },
-  { id: 155, name: "Birthday Home Relaxation Box", occasions: ["Birthday - Her"], gender: "female", maxAge: 99, price: 64.99 },
-  { id: 156, name: "Birthday Book Lover Box", occasions: ["Birthday - Her"], gender: "female", maxAge: 99, price: 54.99 },
-  { id: 157, name: "Birthday Beauty & Glow Box", occasions: ["Birthday - Her"], gender: "female", maxAge: 99, price: 79.99 },
-  { id: 158, name: "Birthday Night Out Prep Box", occasions: ["Birthday - Her"], gender: "female", maxAge: 45, price: 74.99 },
-  { id: 159, name: "Birthday Cozy Night In Box", occasions: ["Birthday - Her"], gender: "female", maxAge: 99, price: 59.99 },
-  { id: 160, name: "Birthday Travel Mini Box for Her", occasions: ["Birthday - Her"], gender: "female", maxAge: 99, price: 39.99 },
-
-  // Birthday - Kids (161–170)
-  { id: 161, name: "Birthday Kids Superhero Box", occasions: ["Birthday - Kids"], gender: "kids", maxAge: 10, price: 39.99 },
-  { id: 162, name: "Birthday Kids Princess Box", occasions: ["Birthday - Kids"], gender: "kids", maxAge: 10, price: 39.99 },
-  { id: 163, name: "Birthday Kids Art & Craft Box", occasions: ["Birthday - Kids"], gender: "kids", maxAge: 12, price: 34.99 },
-  { id: 164, name: "Birthday Kids Gamer Box", occasions: ["Birthday - Kids"], gender: "kids", maxAge: 14, price: 49.99 },
-  { id: 165, name: "Birthday Kids Sports Fan Box", occasions: ["Birthday - Kids"], gender: "kids", maxAge: 14, price: 44.99 },
-  { id: 166, name: "Birthday Kids Candy Explosion Box", occasions: ["Birthday - Kids"], gender: "kids", maxAge: 12, price: 29.99 },
-  { id: 167, name: "Birthday Kids Science Fun Box", occasions: ["Birthday - Kids"], gender: "kids", maxAge: 12, price: 39.99 },
-  { id: 168, name: "Birthday Kids Reading Adventure Box", occasions: ["Birthday - Kids"], gender: "kids", maxAge: 12, price: 34.99 },
-  { id: 169, name: "Birthday Kids Outdoor Play Box", occasions: ["Birthday - Kids"], gender: "kids", maxAge: 12, price: 49.99 },
-  { id: 170, name: "Birthday Kids Movie Night Box", occasions: ["Birthday - Kids"], gender: "kids", maxAge: 12, price: 39.99 },
-
-  // Baby Shower (171–180)
-  { id: 171, name: "Baby Shower Neutral Essentials Box", occasions: ["Baby Shower"], gender: "unisex", maxAge: 1, price: 69.99 },
-  { id: 172, name: "Baby Shower Baby Boy Box", occasions: ["Baby Shower"], gender: "kids", maxAge: 1, price: 69.99 },
-  { id: 173, name: "Baby Shower Baby Girl Box", occasions: ["Baby Shower"], gender: "kids", maxAge: 1, price: 69.99 },
-  { id: 174, name: "New Parents Survival Box", occasions: ["Baby Shower"], gender: "unisex", maxAge: 45, price: 79.99 },
-  { id: 175, name: "Baby Shower Bath Time Box", occasions: ["Baby Shower"], gender: "kids", maxAge: 1, price: 54.99 },
-  { id: 176, name: "Baby Shower Storytime Box", occasions: ["Baby Shower"], gender: "kids", maxAge: 1, price: 44.99 },
-  { id: 177, name: "Baby Shower Nursery Décor Box", occasions: ["Baby Shower"], gender: "kids", maxAge: 1, price: 84.99 },
-  { id: 178, name: "Baby Shower Memory Keepsake Box", occasions: ["Baby Shower"], gender: "unisex", maxAge: 1, price: 59.99 },
-  { id: 179, name: "Baby Shower Gift for Mom Box", occasions: ["Baby Shower","Mother's Day"], gender: "female", maxAge: 45, price: 74.99 },
-  { id: 180, name: "Baby Shower Gift for Dad Box", occasions: ["Baby Shower","Father's Day"], gender: "male", maxAge: 45, price: 74.99 },
-
-  // Wedding (181–190)
-  { id: 181, name: "Wedding Couple Celebration Box", occasions: ["Wedding"], gender: "unisex", maxAge: 99, price: 99.99 },
-  { id: 182, name: "Wedding Date Night Box", occasions: ["Wedding","Anniversary"], gender: "unisex", maxAge: 99, price: 79.99 },
-  { id: 183, name: "Wedding Honeymoon Travel Box", occasions: ["Wedding"], gender: "unisex", maxAge: 45, price: 89.99 },
-  { id: 184, name: "Wedding Home Essentials Box", occasions: ["Wedding","Housewarming"], gender: "unisex", maxAge: 99, price: 84.99 },
-  { id: 185, name: "Wedding Bridesmaid Thank You Box", occasions: ["Wedding"], gender: "female", maxAge: 45, price: 59.99 },
-  { id: 186, name: "Wedding Groomsmen Thank You Box", occasions: ["Wedding"], gender: "male", maxAge: 45, price: 59.99 },
-  { id: 187, name: "Wedding Morning Prep Box for Her", occasions: ["Wedding"], gender: "female", maxAge: 45, price: 69.99 },
-  { id: 188, name: "Wedding Morning Prep Box for Him", occasions: ["Wedding"], gender: "male", maxAge: 45, price: 69.99 },
-  { id: 189, name: "Wedding Spa & Relaxation Box", occasions: ["Wedding","Anniversary"], gender: "unisex", maxAge: 99, price: 89.99 },
-  { id: 190, name: "Wedding Keepsake & Memory Box", occasions: ["Wedding"], gender: "unisex", maxAge: 99, price: 79.99 },
-
-  // Anniversary (191–200)
-  { id: 191, name: "Anniversary Date Night Box", occasions: ["Anniversary"], gender: "unisex", maxAge: 99, price: 79.99 },
-  { id: 192, name: "Anniversary Breakfast in Bed Box", occasions: ["Anniversary"], gender: "unisex", maxAge: 99, price: 69.99 },
-  { id: 193, name: "Anniversary Movie Night Box", occasions: ["Anniversary"], gender: "unisex", maxAge: 99, price: 59.99 },
-  { id: 194, name: "Anniversary Spa & Relax Box", occasions: ["Anniversary"], gender: "unisex", maxAge: 99, price: 84.99 },
-  { id: 195, name: "Anniversary Wine & Cheese Box", occasions: ["Anniversary"], gender: "unisex", maxAge: 99, price: 89.99 },
-  { id: 196, name: "Anniversary Coffee Lover Box", occasions: ["Anniversary"], gender: "unisex", maxAge: 99, price: 54.99 },
-  { id: 197, name: "Anniversary Memory & Photo Box", occasions: ["Anniversary"], gender: "unisex", maxAge: 99, price: 74.99 },
-  { id: 198, name: "Anniversary Luxury Night In Box", occasions: ["Anniversary"], gender: "unisex", maxAge: 99, price: 99.99 },
-  { id: 199, name: "Anniversary Outdoor Picnic Box", occasions: ["Anniversary"], gender: "unisex", maxAge: 99, price: 84.99 },
-  { id: 200, name: "Anniversary Sweet Treats Box", occasions: ["Anniversary"], gender: "unisex", maxAge: 99, price: 49.99 },
-
-  // Retirement (201–210)
-  { id: 201, name: "Retirement Relaxation Box", occasions: ["Retirement"], gender: "unisex", maxAge: 99, price: 79.99 },
-  { id: 202, name: "Retirement Travel Dreams Box", occasions: ["Retirement"], gender: "unisex", maxAge: 99, price: 89.99 },
-  { id: 203, name: "Retirement Coffee & Reading Box", occasions: ["Retirement"], gender: "unisex", maxAge: 99, price: 59.99 },
-  { id: 204, name: "Retirement Hobby Starter Box", occasions: ["Retirement"], gender: "unisex", maxAge: 99, price: 69.99 },
-  { id: 205, name: "Retirement Gourmet Snack Box", occasions: ["Retirement"], gender: "unisex", maxAge: 99, price: 64.99 },
-  { id: 206, name: "Retirement Spa & Relax Box", occasions: ["Retirement"], gender: "unisex", maxAge: 99, price: 84.99 },
-  { id: 207, name: "Retirement Golf Lover Box", occasions: ["Retirement"], gender: "male", maxAge: 99, price: 89.99 },
-  { id: 208, name: "Retirement Garden Lover Box", occasions: ["Retirement"], gender: "unisex", maxAge: 99, price: 74.99 },
-  { id: 209, name: "Retirement Office Farewell Box", occasions: ["Retirement"], gender: "unisex", maxAge: 99, price: 49.99 },
-  { id: 210, name: "Retirement Cozy Home Box", occasions: ["Retirement"], gender: "unisex", maxAge: 99, price: 79.99 }
-
+    // END OF PART 1 — Continue in PART 2
 ];
+    // ------------------------------
+    // CHRISTMAS (10 items)
+    // ------------------------------
+    {
+        id: 51,
+        name: "Classic Christmas Gift Box",
+        occasions: ["Christmas"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 59.99,
+        description:
+            "A themed gift box designed for Christmas, curated with festive treats and seasonal items. It’s a joyful choice for spreading holiday cheer."
+    },
+    {
+        id: 52,
+        name: "Christmas Morning Breakfast Basket",
+        occasions: ["Christmas"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 69.99,
+        description:
+            "A themed gift box designed for Christmas, curated with breakfast favorites for a cozy morning. It’s a warm and inviting way to celebrate the holiday."
+    },
+    {
+        id: 53,
+        name: "Christmas Movie Night Box",
+        occasions: ["Christmas"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 49.99,
+        description:
+            "A themed gift box designed for Christmas, curated with snacks and cozy essentials. It’s ideal for festive family nights at home."
+    },
+    {
+        id: 54,
+        name: "Christmas Cookie Baking Box",
+        occasions: ["Christmas"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 44.99,
+        description:
+            "A themed gift box designed for Christmas, curated with baking tools and ingredients. It’s perfect for creating sweet holiday memories."
+    },
+    {
+        id: 55,
+        name: "Christmas Coffee & Cocoa Set",
+        occasions: ["Christmas"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 39.99,
+        description:
+            "A themed gift box designed for Christmas, curated with warm and comforting drink mixes. It’s a delightful treat for anyone who loves winter flavors."
+    },
+    {
+        id: 56,
+        name: "Christmas Deluxe Family Basket",
+        occasions: ["Christmas"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 99.99,
+        description:
+            "A themed gift box designed for Christmas, curated with premium seasonal items for the whole family. It’s a luxurious option for celebrating together."
+    },
+    {
+        id: 57,
+        name: "Christmas Secret Santa Box",
+        occasions: ["Christmas"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 29.99,
+        description:
+            "A themed gift box designed for Christmas, curated for holiday gift exchanges. It’s a fun and budget-friendly way to spread joy."
+    },
+    {
+        id: 58,
+        name: "Kids Christmas Surprise Box",
+        occasions: ["Christmas"],
+        gender: "kids",
+        maxAge: 12,
+        price: 34.99,
+        description:
+            "A themed gift box designed for Christmas, curated with fun surprises for kids. It’s a playful option for bringing magic to the holiday."
+    },
+    {
+        id: 59,
+        name: "Christmas Spa Night Box",
+        occasions: ["Christmas"],
+        gender: "female",
+        maxAge: 99,
+        price: 74.99,
+        description:
+            "A themed gift box designed for Christmas, curated with soothing spa items. It’s perfect for unwinding during the busy holiday season."
+    },
+    {
+        id: 60,
+        name: "Christmas Sports Fan Box",
+        occasions: ["Christmas"],
+        gender: "male",
+        maxAge: 99,
+        price: 84.99,
+        description:
+            "A themed gift box designed for Christmas, curated with sports-themed items. It's a great choice for holiday gifting to fans."
+    },
 
-// END OF FILE — FULLY CLOSED, NO SYNTAX ERRORS
+    // ------------------------------
+    // HANUKKAH (5 items)
+    // ------------------------------
+    {
+        id: 61,
+        name: "Hanukkah Treats Box",
+        occasions: ["Hanukkah"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 59.99,
+        description:
+            "A themed gift box designed for Hanukkah, curated with traditional treats and festive items. It’s a meaningful way to honor the holiday."
+    },
+    {
+        id: 62,
+        name: "Hanukkah Family Celebration Pack",
+        occasions: ["Hanukkah"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 79.99,
+        description:
+            "A themed gift box designed for Hanukkah, curated for joyful family gatherings. It’s great for enhancing the warmth of the season."
+    },
+    {
+        id: 63,
+        name: "Kids Hanukkah Activity Box",
+        occasions: ["Hanukkah"],
+        gender: "kids",
+        maxAge: 12,
+        price: 39.99,
+        description:
+            "A themed gift box designed for Hanukkah, curated with interactive activities for children. It’s perfect for teaching and celebrating tradition."
+    },
+    {
+        id: 64,
+        name: "Hanukkah Candle & Coffee Box",
+        occasions: ["Hanukkah"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 44.99,
+        description:
+            "A themed gift box designed for Hanukkah, curated with warm drink mixes and decorative elements. It’s a comforting addition to the holiday."
+    },
+    {
+        id: 65,
+        name: "Hanukkah Gourmet Snack Box",
+        occasions: ["Hanukkah"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 74.99,
+        description:
+            "A themed gift box designed for Hanukkah, curated with high-quality seasonal snacks. It’s ideal for sharing during the celebration."
+    },
+
+    // ------------------------------
+    // KWANZAA (5 items)
+    // ------------------------------
+    {
+        id: 66,
+        name: "Kwanzaa Celebration Basket",
+        occasions: ["Kwanzaa"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 79.99,
+        description:
+            "A themed gift box designed for Kwanzaa, curated with cultural items and festive accents. It’s a meaningful way to honor the holiday’s traditions."
+    },
+    {
+        id: 67,
+        name: "Kwanzaa Family Traditions Box",
+        occasions: ["Kwanzaa"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 69.99,
+        description:
+            "A themed gift box designed for Kwanzaa, curated for family celebrations rooted in heritage. It’s perfect for bringing loved ones together."
+    },
+    {
+        id: 68,
+        name: "Kids Kwanzaa Activity Box",
+        occasions: ["Kwanzaa"],
+        gender: "kids",
+        maxAge: 12,
+        price: 39.99,
+        description:
+            "A themed gift box designed for Kwanzaa, curated with educational activities for children. It’s a playful way to explore cultural values."
+    },
+    {
+        id: 69,
+        name: "Kwanzaa Art & Culture Box",
+        occasions: ["Kwanzaa"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 74.99,
+        description:
+            "A themed gift box designed for Kwanzaa, curated with creative and cultural-themed items. It’s a great gift for honoring tradition and expression."
+    },
+    {
+        id: 70,
+        name: "Kwanzaa Reflection & Journal Box",
+        occasions: ["Kwanzaa"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 49.99,
+        description:
+            "A themed gift box designed for Kwanzaa, curated for moments of reflection and self-growth. It’s an inspiring option for the holiday season."
+    },
+
+    // ------------------------------
+    // BIRTHDAY – HIM (5 items)
+    // ------------------------------
+    {
+        id: 71,
+        name: "Birthday Snack Box for Him",
+        occasions: ["Birthday - Him"],
+        gender: "male",
+        maxAge: 99,
+        price: 49.99,
+        description:
+            "A themed gift box designed for his birthday, curated with bold flavors and fun surprises. It’s an enjoyable way to celebrate his special day."
+    },
+    {
+        id: 72,
+        name: "Birthday Grooming Essentials Box",
+        occasions: ["Birthday - Him"],
+        gender: "male",
+        maxAge: 99,
+        price: 59.99,
+        description:
+            "A themed gift box designed for his birthday, curated with self-care items he’ll appreciate. It’s a thoughtful way to help him look and feel great."
+    },
+    {
+        id: 73,
+        name: "Birthday Coffee Lover Box",
+        occasions: ["Birthday - Him"],
+        gender: "male",
+        maxAge: 99,
+        price: 44.99,
+        description:
+            "A themed gift box designed for his birthday, curated with rich coffee blends and accessories. It’s ideal for men who enjoy a comforting brew."
+    },
+    {
+        id: 74,
+        name: "Birthday Sports Fan Pack",
+        occasions: ["Birthday - Him"],
+        gender: "male",
+        maxAge: 99,
+        price: 79.99,
+        description:
+            "A themed gift box designed for his birthday, curated with sporty items and team-themed touches. It’s a great way to celebrate his passions."
+    },
+    {
+        id: 75,
+        name: "Birthday Night-In Relaxation Box",
+        occasions: ["Birthday - Him"],
+        gender: "male",
+        maxAge: 99,
+        price: 64.99,
+        description:
+            "A themed gift box designed for his birthday, curated with cozy and relaxing items. It’s perfect for unwinding and enjoying his day."
+    },
+
+    // ------------------------------
+    // BIRTHDAY – HER (5 items)
+    // ------------------------------
+    {
+        id: 76,
+        name: "Birthday Spa Box for Her",
+        occasions: ["Birthday - Her"],
+        gender: "female",
+        maxAge: 99,
+        price: 69.99,
+        description:
+            "A themed gift box designed for her birthday, curated with soothing spa essentials. It’s a pampering way to celebrate her special day."
+    },
+    {
+        id: 77,
+        name: "Birthday Sweet Treats Box for Her",
+        occasions: ["Birthday - Her"],
+        gender: "female",
+        maxAge: 99,
+        price: 49.99,
+        description:
+            "A themed gift box designed for her birthday, curated with indulgent sweet snacks. It’s a delightful option for anyone with a sweet tooth."
+    },
+    {
+        id: 78,
+        name: "Birthday Brunch Box",
+        occasions: ["Birthday - Her"],
+        gender: "female",
+        maxAge: 99,
+        price: 59.99,
+        description:
+            "A themed gift box designed for her birthday, curated with morning treats and cozy items. It’s wonderful for starting her day with joy."
+    },
+    {
+        id: 79,
+        name: "Birthday Glow & Beauty Box",
+        occasions: ["Birthday - Her"],
+        gender: "female",
+        maxAge: 99,
+        price: 79.99,
+        description:
+            "A themed gift box designed for her birthday, curated with high-quality beauty items. It’s a radiant way to make her feel valued."
+    },
+    {
+        id: 80,
+        name: "Birthday Cozy Night Box",
+        occasions: ["Birthday - Her"],
+        gender: "female",
+        maxAge: 99,
+        price: 59.99,
+        description:
+            "A themed gift box designed for her birthday, curated with comfort-focused items. It’s a relaxing gift to help her unwind."
+    },
+
+    // ------------------------------
+    // BIRTHDAY – KIDS (5 items)
+    // ------------------------------
+    {
+        id: 81,
+        name: "Kids Superhero Birthday Box",
+        occasions: ["Birthday - Kids"],
+        gender: "kids",
+        maxAge: 10,
+        price: 39.99,
+        description:
+            "A themed gift box designed for kids’ birthdays, curated with exciting superhero-inspired items. It’s a fun and imaginative way to celebrate."
+    },
+    {
+        id: 82,
+        name: "Kids Princess Birthday Box",
+        occasions: ["Birthday - Kids"],
+        gender: "kids",
+        maxAge: 10,
+        price: 39.99,
+        description:
+            "A themed gift box designed for kids’ birthdays, curated with magical princess-themed surprises. It’s perfect for creating a memorable celebration."
+    },
+    {
+        id: 83,
+        name: "Kids Gamer Birthday Box",
+        occasions: ["Birthday - Kids"],
+        gender: "kids",
+        maxAge: 14,
+        price: 49.99,
+        description:
+            "A themed gift box designed for kids’ birthdays, curated with gaming-inspired goodies. It’s ideal for young players who love fun challenges."
+    },
+    {
+        id: 84,
+        name: "Kids Art & Creativity Box",
+        occasions: ["Birthday - Kids"],
+        gender: "kids",
+        maxAge: 12,
+        price: 34.99,
+        description:
+            "A themed gift box designed for kids’ birthdays, curated with art supplies and creative tools. It’s a wonderful way to inspire imagination."
+    },
+    {
+        id: 85,
+        name: "Kids Outdoor Play Box",
+        occasions: ["Birthday - Kids"],
+        gender: "kids",
+        maxAge: 12,
+        price: 49.99,
+        description:
+            "A themed gift box designed for kids’ birthdays, curated with active and outdoor play items. It’s great for energetic celebrations."
+    },
+
+    // ------------------------------
+    // BABY SHOWER (5 items)
+    // ------------------------------
+    {
+        id: 86,
+        name: "Baby Shower Essentials Box",
+        occasions: ["Baby Shower"],
+        gender: "unisex",
+        maxAge: 1,
+        price: 69.99,
+        description:
+            "A themed gift box designed for Baby Showers, curated with practical newborn essentials. It’s perfect for supporting new parents."
+    },
+    {
+        id: 87,
+        name: "Baby Boy Welcome Box",
+        occasions: ["Baby Shower"],
+        gender: "kids",
+        maxAge: 1,
+        price: 69.99,
+        description:
+            "A themed gift box designed for Baby Showers, curated with items to welcome a newborn boy. It’s a sweet and thoughtful gifting choice."
+    },
+    {
+        id: 88,
+        name: "Baby Girl Welcome Box",
+        occasions: ["Baby Shower"],
+        gender: "kids",
+        maxAge: 1,
+        price: 69.99,
+        description:
+            "A themed gift box designed for Baby Showers, curated with items to welcome a newborn girl. It’s a charming and heartfelt present."
+    },
+    {
+        id: 89,
+        name: "New Parents Survival Box",
+        occasions: ["Baby Shower"],
+        gender: "unisex",
+        maxAge: 45,
+        price: 79.99,
+        description:
+            "A themed gift box designed for Baby Showers, curated with essentials that help new parents adjust. It’s a caring and useful gift option."
+    },
+    {
+        id: 90,
+        name: "Nursery Décor Starter Box",
+        occasions: ["Baby Shower"],
+        gender: "kids",
+        maxAge: 1,
+        price: 84.99,
+        description:
+            "A themed gift box designed for Baby Showers, curated with adorable nursery décor pieces. It’s a lovely way to help prepare the baby’s room."
+    },
+
+    // ------------------------------
+    // WEDDING (5 items)
+    // ------------------------------
+    {
+        id: 91,
+        name: "Wedding Couple Celebration Box",
+        occasions: ["Wedding"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 99.99,
+        description:
+            "A themed gift box designed for Weddings, curated with elegant items for the couple. It’s a refined way to mark their special day."
+    },
+    {
+        id: 92,
+        name: "Wedding Honeymoon Prep Box",
+        occasions: ["Wedding"],
+        gender: "unisex",
+        maxAge: 45,
+        price: 89.99,
+        description:
+            "A themed gift box designed for Weddings, curated with travel-friendly essentials. It’s perfect for helping newlyweds enjoy their honeymoon."
+    },
+    {
+        id: 93,
+        name: "Wedding Home Essentials Box",
+        occasions: ["Wedding"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 84.99,
+        description:
+            "A themed gift box designed for Weddings, curated with decorative and useful household items. It’s ideal for couples starting their new life together."
+    },
+    {
+        id: 94,
+        name: "Bridesmaid Appreciation Box",
+        occasions: ["Wedding"],
+        gender: "female",
+        maxAge: 45,
+        price: 59.99,
+        description:
+            "A themed gift box designed for Weddings, curated to show gratitude to bridesmaids. It’s a thoughtful keepsake they’ll appreciate."
+    },
+    {
+        id: 95,
+        name: "Groomsmen Thank You Box",
+        occasions: ["Wedding"],
+        gender: "male",
+        maxAge: 45,
+        price: 59.99,
+        description:
+            "A themed gift box designed for Weddings, curated to thank groomsmen for their support. It’s a meaningful token of appreciation."
+    },
+
+    // ------------------------------
+    // ANNIVERSARY (5 items)
+    // ------------------------------
+    {
+        id: 96,
+        name: "Anniversary Date Night Box",
+        occasions: ["Anniversary"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 79.99,
+        description:
+            "A themed gift box designed for Anniversaries, curated with romantic and enjoyable items. It’s perfect for celebrating love and milestones."
+    },
+    {
+        id: 97,
+        name: "Anniversary Wine & Cheese Box",
+        occasions: ["Anniversary"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 89.99,
+        description:
+            "A themed gift box designed for Anniversaries, curated with gourmet pairings. It’s a sophisticated option for a memorable night."
+    },
+    {
+        id: 98,
+        name: "Anniversary Spa Box",
+        occasions: ["Anniversary"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 84.99,
+        description:
+            "A themed gift box designed for Anniversaries, curated with relaxing spa essentials. It’s an intimate and thoughtful way to celebrate together."
+    },
+    {
+        id: 99,
+        name: "Anniversary Keepsake Box",
+        occasions: ["Anniversary"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 74.99,
+        description:
+            "A themed gift box designed for Anniversaries, curated to help preserve meaningful memories. It’s a heartfelt gift for long-lasting love."
+    },
+    {
+        id: 100,
+        name: "Anniversary Luxury Night Box",
+        occasions: ["Anniversary"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 99.99,
+        description:
+            "A themed gift box designed for Anniversaries, curated with luxurious items for a premium celebration. It’s a beautiful way to elevate the occasion."
+    },
+
+    // ------------------------------
+    // RETIREMENT (5 items)
+    // ------------------------------
+    {
+        id: 101,
+        name: "Retirement Relaxation Box",
+        occasions: ["Retirement"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 79.99,
+        description:
+            "A themed gift box designed for Retirement, curated with soothing and enjoyable items. It’s a thoughtful way to celebrate a new chapter."
+    },
+    {
+        id: 102,
+        name: "Retirement Travel Dreams Box",
+        occasions: ["Retirement"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 89.99,
+        description:
+            "A themed gift box designed for Retirement, curated for future adventures. It’s perfect for encouraging exploration and enjoyment."
+    },
+    {
+        id: 103,
+        name: "Retirement Hobby Box",
+        occasions: ["Retirement"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 69.99,
+        description:
+            "A themed gift box designed for Retirement, curated with items to spark new hobbies. It’s an inspiring way to begin post-work life."
+    },
+    {
+        id: 104,
+        name: "Retirement Gourmet Snack Box",
+        occasions: ["Retirement"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 64.99,
+        description:
+            "A themed gift box designed for Retirement, curated with delicious high-quality treats. It’s great for savoring the freedom of retirement."
+    },
+    {
+        id: 105,
+        name: "Retirement Cozy Home Box",
+        occasions: ["Retirement"],
+        gender: "unisex",
+        maxAge: 99,
+        price: 79.99,
+        description:
+            "A themed gift box designed for Retirement, curated with warm and comforting items. It’s ideal for creating peaceful downtime."
+    }
+
+]; // END OF FULL products.js
