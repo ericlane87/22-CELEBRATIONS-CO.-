@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>22 Celebration Co.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -13,7 +14,7 @@
   <header class="site-header">
     <div class="logo">
       <span class="logo-mark">22</span>
-      <span class="logo-text">Celebration Co.</span>
+      <span class="logo-text">CELEBRATION CO.</span>
     </div>
 
     <nav class="main-nav">
@@ -27,6 +28,7 @@
   </header>
 
   <main>
+
     <!-- HERO -->
     <section class="section hero">
       <h1 class="section-title">Elegant Gifts for All 22 Celebrations & More</h1>
@@ -63,7 +65,9 @@
       </div>
     </section>
 
-    <!-- FEATURED UPCOMING HOLIDAY SECTION -->
+    <!-- ========================================== -->
+    <!-- FEATURED UPCOMING HOLIDAY (RESTORED) -->
+    <!-- ========================================== -->
     <section id="featuredHolidaySection" class="featured-holiday">
       <div class="featured-header">
         <h2 id="featuredHolidayTitle">Featured Gifts</h2>
@@ -81,6 +85,7 @@
 
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
     <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
   </footer>
@@ -109,49 +114,65 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    const holidayMap = [
-      "New Year","Valentine's Day","St. Patrick's Day","Easter","Mother's Day",
-      "Father's Day","Graduation","Fourth of July","Halloween","Thanksgiving",
-      "Hanukkah","Kwanzaa","Christmas"
-    ];
+    /* ---------------------------
+       DETERMINE UPCOMING HOLIDAY
+    --------------------------- */
 
     function getUpcomingHoliday() {
-      const m = new Date().getMonth() + 1;
-      if (m === 12) return "Christmas";
-      if (m === 11) return "Thanksgiving";
-      if (m === 10) return "Halloween";
-      if (m === 7) return "Fourth of July";
-      if (m === 6) return "Father's Day";
-      if (m === 5) return "Mother's Day";
-      if (m === 4) return "Easter";
-      if (m === 3) return "St. Patrick's Day";
-      if (m === 2) return "Valentine's Day";
-      if (m === 1) return "New Year";
+      const month = new Date().getMonth() + 1;
+
+      if (month === 12) return "Christmas";
+      if (month === 11) return "Thanksgiving";
+      if (month === 10) return "Halloween";
+      if (month === 7) return "Fourth of July";
+      if (month === 6) return "Father's Day";
+      if (month === 5) return "Mother's Day";
+      if (month === 4) return "Easter";
+      if (month === 3) return "St. Patrick's Day";
+      if (month === 2) return "Valentine's Day";
+      if (month === 1) return "New Year";
+
       return "Christmas";
     }
 
     const upcoming = getUpcomingHoliday();
 
-    const greeting = (upcoming === "Christmas") ? "Merry Christmas" : `Happy ${upcoming}`;
-    document.getElementById("featuredHolidayTitle").innerText = greeting;
-    document.getElementById("featuredHolidaySubtitle").innerText =
+    document.getElementById("featuredHolidayTitle").textContent =
+      upcoming === "Christmas" ? "Merry Christmas" : "Happy " + upcoming;
+
+    document.getElementById("featuredHolidaySubtitle").textContent =
       `Browse featured ${upcoming} gifts curated for you.`;
 
+
+    /* ---------------------------
+       POPULATE FEATURED PRODUCTS
+    --------------------------- */
+
     const featuredRow = document.getElementById("featuredRow");
-    const featuredProducts = products.filter(p => p.occasions.includes(upcoming)).slice(0, 5);
+
+    const featuredProducts = products
+      .filter(p => p.occasions.includes(upcoming))
+      .slice(0, 5);
 
     featuredProducts.forEach(p => {
       const card = document.createElement("div");
       card.className = "featured-card";
+
       card.innerHTML = `
         <div class="featured-img">Image Coming Soon</div>
-        <div class="featured-name">${p.name}</div>`;
+        <div class="featured-name">${p.name}</div>
+      `;
+
       featuredRow.appendChild(card);
     });
 
-    document.getElementById("seeMoreBtn").onclick = () => {
+    /* ---------------------------
+       SEE MORE → AUTO FILTER
+    --------------------------- */
+    document.getElementById("seeMoreBtn").addEventListener("click", () => {
       window.location.href = `store.html?holiday=${encodeURIComponent(upcoming)}`;
-    };
+    });
+
   </script>
 
 </body>
