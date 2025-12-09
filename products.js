@@ -1,12 +1,10 @@
-// products.js (PART 1 OF 2)
-// ~100 products total – balanced across all holidays
-// Includes: id, name, occasions, gender, maxAge, price, description
-// Description rule: D-MEDIUM + O3 priority holiday selection
+// products.js — FULL CLEAN VERSION (ALL 105 PRODUCTS)
+// Each product includes: id, name, occasions[], gender, maxAge, price, description
 
 const products = [
 
     // ------------------------------
-    // NEW YEAR (5 items)
+    // NEW YEAR (5)
     // ------------------------------
     {
         id: 1,
@@ -16,7 +14,7 @@ const products = [
         maxAge: 99,
         price: 49.99,
         description:
-            "A themed gift box designed for New Year, curated to match the occasion with thoughtful items. It’s a great choice for celebrating and bringing joy to anyone who loves meaningful, well-selected gifts."
+            "A themed gift box designed for New Year, curated to match the occasion with thoughtful items. A great choice for celebrating and bringing joy."
     },
     {
         id: 2,
@@ -26,7 +24,7 @@ const products = [
         maxAge: 99,
         price: 69.99,
         description:
-            "A themed gift box designed for New Year, curated to match the occasion with festive accessories. It’s a great option for ringing in the new year with style and excitement."
+            "A festive New Year’s basket designed to bring excitement to the countdown celebration."
     },
     {
         id: 3,
@@ -36,7 +34,7 @@ const products = [
         maxAge: 99,
         price: 44.99,
         description:
-            "A themed gift box designed for New Year, curated to bring cozy celebration energy into your home. Perfect for unwinding and enjoying a memorable night with loved ones."
+            "Perfect for a cozy New Year celebration with snacks and themed items for relaxing at home."
     },
     {
         id: 4,
@@ -46,7 +44,7 @@ const products = [
         maxAge: 99,
         price: 34.99,
         description:
-            "A themed gift box designed for New Year, curated to inspire motivation and positive habits. It’s ideal for anyone starting the year with meaningful goals and reflection."
+            "Includes a journal and motivational items for starting the year with intention and positive habits."
     },
     {
         id: 5,
@@ -56,11 +54,11 @@ const products = [
         maxAge: 99,
         price: 59.99,
         description:
-            "A themed gift box designed for New Year celebrations, complete with festive items perfect for family gatherings. It’s a joyful way to welcome the new year together."
+            "A family-friendly New Year celebration kit filled with festive activities and decor."
     },
 
     // ------------------------------
-    // VALENTINE’S DAY (5 items)
+    // VALENTINE’S DAY (5)
     // ------------------------------
     {
         id: 6,
@@ -69,8 +67,7 @@ const products = [
         gender: "female",
         maxAge: 99,
         price: 69.99,
-        description:
-            "A themed gift box designed for Valentine’s Day, curated with romantic touches for a heartfelt experience. It’s a wonderful way to express love and appreciation."
+        description: "A romantic Valentine’s Day box curated with thoughtful items for her."
     },
     {
         id: 7,
@@ -79,8 +76,7 @@ const products = [
         gender: "male",
         maxAge: 99,
         price: 74.99,
-        description:
-            "A themed gift box designed for Valentine’s Day, curated with premium items selected just for him. It’s perfect for making your partner feel celebrated and cherished."
+        description: "A Valentine’s basket designed specifically with premium items for him."
     },
     {
         id: 8,
@@ -89,8 +85,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 59.99,
-        description:
-            "A themed gift box designed for Valentine’s Day, curated for cozy bonding moments. Ideal for couples looking to enjoy a warm, intimate night together."
+        description: "A cozy date-night box perfect for couples spending Valentine’s Day together."
     },
     {
         id: 9,
@@ -99,8 +94,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 64.99,
-        description:
-            "A themed gift box designed for Valentine’s Day, curated with treats for chocolate enthusiasts. It’s a delightful way to satisfy sweet cravings while celebrating love."
+        description: "Packed with gourmet chocolates for celebrating love with sweetness."
     },
     {
         id: 10,
@@ -109,12 +103,11 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 49.99,
-        description:
-            "A themed gift box designed for Valentine’s Day, curated to promote rest and relaxation. It’s perfect for anyone needing a comforting and thoughtful treat."
+        description: "A calming, spa-style box ideal for self-love and relaxation on Valentine’s Day."
     },
 
     // ------------------------------
-    // ST. PATRICK'S DAY (5 items)
+    // ST. PATRICK’S DAY (5)
     // ------------------------------
     {
         id: 11,
@@ -123,8 +116,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 39.99,
-        description:
-            "A themed gift box designed for St. Patrick’s Day, curated with fun green-themed items. It’s an excellent choice for adding charm and joy to the holiday."
+        description: "A festive St. Patrick’s Day box filled with green-themed treats and items."
     },
     {
         id: 12,
@@ -133,8 +125,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 59.99,
-        description:
-            "A themed gift box designed for St. Patrick’s Day, curated for a festive pub-at-home experience. It’s perfect for anyone wanting to celebrate with flavor and fun."
+        description: "A fun at-home pub experience with themed snacks and accessories."
     },
     {
         id: 13,
@@ -143,8 +134,7 @@ const products = [
         gender: "kids",
         maxAge: 12,
         price: 29.99,
-        description:
-            "A themed gift box designed for St. Patrick’s Day, curated with interactive fun for kids. It’s great for sparking creativity and making the holiday memorable."
+        description: "A playful activity kit perfect for kids celebrating St. Patrick’s Day."
     },
     {
         id: 14,
@@ -153,8 +143,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 34.99,
-        description:
-            "A themed gift box designed for St. Patrick’s Day, curated with warm, comforting flavors. It's ideal for coffee lovers wanting a festive touch."
+        description: "Festive coffee blends and themed items for a cozy holiday treat."
     },
     {
         id: 15,
@@ -163,12 +152,11 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 24.99,
-        description:
-            "A themed gift box designed for St. Patrick’s Day, curated with tasty themed snacks. It’s a simple and fun way to celebrate the holiday spirit."
+        description: "A light snack assortment perfect for a quick St. Patrick’s Day gift."
     },
 
     // ------------------------------
-    // EASTER (5 items)
+    // EASTER (5)
     // ------------------------------
     {
         id: 16,
@@ -177,8 +165,7 @@ const products = [
         gender: "kids",
         maxAge: 12,
         price: 39.99,
-        description:
-            "A themed gift box designed for Easter, curated with colorful treats and surprises. It’s a joyful option for families celebrating the holiday."
+        description: "A fun and colorful Easter basket full of treats for kids."
     },
     {
         id: 17,
@@ -187,8 +174,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 59.99,
-        description:
-            "A themed gift box designed for Easter, curated with seasonal flavors and decor. It’s ideal for enhancing festive brunch traditions."
+        description: "Breakfast-themed Easter items perfect for a festive brunch."
     },
     {
         id: 18,
@@ -197,8 +183,7 @@ const products = [
         gender: "kids",
         maxAge: 17,
         price: 34.99,
-        description:
-            "A themed gift box designed for Easter, curated with delicious sweets perfect for kids. It’s a cheerful way to celebrate springtime fun."
+        description: "A candy-filled Easter box designed for sweet celebrations."
     },
     {
         id: 19,
@@ -207,8 +192,7 @@ const products = [
         gender: "female",
         maxAge: 99,
         price: 49.99,
-        description:
-            "A themed gift box designed for Easter, curated with soothing items and inspirational touches. It’s perfect for creating a peaceful holiday moment."
+        description: "A faith-centered spa box perfect for serene Easter reflection."
     },
     {
         id: 20,
@@ -217,12 +201,11 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 64.99,
-        description:
-            "A themed gift box designed for Easter, curated for group activities and shared joy. It’s a wonderful choice for families celebrating together."
+        description: "Games and activities perfect for family Easter celebrations."
     },
 
     // ------------------------------
-    // MOTHER'S DAY (5 items)
+    // MOTHER’S DAY (5)
     // ------------------------------
     {
         id: 21,
@@ -231,8 +214,7 @@ const products = [
         gender: "female",
         maxAge: 99,
         price: 69.99,
-        description:
-            "A themed gift box designed for Mother’s Day, curated to promote relaxation and pampering. It’s a thoughtful choice for showing appreciation and love."
+        description: "A relaxing spa box created specially for Mother’s Day pampering."
     },
     {
         id: 22,
@@ -241,8 +223,7 @@ const products = [
         gender: "female",
         maxAge: 99,
         price: 49.99,
-        description:
-            "A themed gift box designed for Mother’s Day, curated with comforting sweet delights. It’s perfect for adding warmth and joy to her special day."
+        description: "A dessert-focused box celebrating moms with comforting treats."
     },
     {
         id: 23,
@@ -251,8 +232,7 @@ const products = [
         gender: "female",
         maxAge: 99,
         price: 79.99,
-        description:
-            "A themed gift box designed for Mother’s Day, curated for bonding and self-care. It’s a beautiful way to celebrate connection and love."
+        description: "A shared spa experience designed for mothers and daughters."
     },
     {
         id: 24,
@@ -261,8 +241,7 @@ const products = [
         gender: "female",
         maxAge: 45,
         price: 84.99,
-        description:
-            "A themed gift box designed for Mother’s Day, curated to support and celebrate new moms. It’s a heartfelt choice full of meaningful items."
+        description: "A supportive, thoughtful box perfect for new moms."
     },
     {
         id: 25,
@@ -271,12 +250,11 @@ const products = [
         gender: "female",
         maxAge: 99,
         price: 54.99,
-        description:
-            "A themed gift box designed for Mother’s Day, curated with thoughtful items just for grandmothers. It’s a lovely way to honor her care and wisdom."
+        description: "A sweet and thoughtful box dedicated to grandmothers."
     },
 
     // ------------------------------
-    // FATHER'S DAY (5 items)
+    // FATHER’S DAY (5)
     // ------------------------------
     {
         id: 26,
@@ -285,8 +263,7 @@ const products = [
         gender: "male",
         maxAge: 99,
         price: 69.99,
-        description:
-            "A themed gift box designed for Father’s Day, curated with grilling essentials perfect for outdoor fun. It’s a great way to show appreciation with a personal touch."
+        description: "A grilling-themed set perfect for dads who love to cook outdoors."
     },
     {
         id: 27,
@@ -295,8 +272,7 @@ const products = [
         gender: "male",
         maxAge: 99,
         price: 49.99,
-        description:
-            "A themed gift box designed for Father’s Day, curated with his favorite snacks. It’s a fun and thoughtful way to celebrate his day."
+        description: "A snack assortment designed for Father’s Day munching."
     },
     {
         id: 28,
@@ -305,8 +281,7 @@ const products = [
         gender: "male",
         maxAge: 99,
         price: 89.99,
-        description:
-            "A themed gift box designed for Father’s Day, curated with handy gadgets and accessories. It’s ideal for dads who love practical and modern gifts."
+        description: "A gadget and tech accessory box for modern dads."
     },
     {
         id: 29,
@@ -315,8 +290,7 @@ const products = [
         gender: "male",
         maxAge: 99,
         price: 84.99,
-        description:
-            "A themed gift box designed for Father’s Day, curated for those who enjoy nature and adventure. It's a meaningful way to recognize his passions."
+        description: "Perfect for dads who enjoy exploring and outdoor fun."
     },
     {
         id: 30,
@@ -325,12 +299,11 @@ const products = [
         gender: "male",
         maxAge: 99,
         price: 39.99,
-        description:
-            "A themed gift box designed for Father’s Day, curated with warm treats and a quality mug. It’s perfect for dads who appreciate a simple, cozy gift."
+        description: "A cozy coffee-themed gift set for Father’s Day."
     },
 
     // ------------------------------
-    // GRADUATION (5 items)
+    // GRADUATION (5)
     // ------------------------------
     {
         id: 31,
@@ -339,8 +312,7 @@ const products = [
         gender: "unisex",
         maxAge: 19,
         price: 59.99,
-        description:
-            "A themed gift box designed for Graduation, curated with items that capture the excitement of new beginnings. It’s a great way to celebrate the graduate’s achievement."
+        description: "A celebration box to recognize graduating teens."
     },
     {
         id: 32,
@@ -349,8 +321,7 @@ const products = [
         gender: "unisex",
         maxAge: 30,
         price: 79.99,
-        description:
-            "A themed gift box designed for Graduation, curated with practical and motivational items. It's ideal for grads entering the next phase of life."
+        description: "A practical Graduation box for young adults entering new careers."
     },
     {
         id: 33,
@@ -359,8 +330,7 @@ const products = [
         gender: "unisex",
         maxAge: 30,
         price: 39.99,
-        description:
-            "A themed gift box designed for Graduation, curated with comforting snacks for late-night study sessions. It’s a thoughtful way to support and celebrate a student."
+        description: "A snack kit perfect for students powering through finals."
     },
     {
         id: 34,
@@ -369,8 +339,7 @@ const products = [
         gender: "unisex",
         maxAge: 22,
         price: 84.99,
-        description:
-            "A themed gift box designed for Graduation, curated with helpful items for moving into a dorm. It’s perfect for easing the transition into college life."
+        description: "Everything a new college student needs for dorm life."
     },
     {
         id: 35,
@@ -379,12 +348,11 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 74.99,
-        description:
-            "A themed gift box designed for Graduation, curated to elevate the celebration. It’s a festive choice for families and friends congratulating their grad."
+        description: "A party set for hosting a memorable graduation celebration."
     },
 
     // ------------------------------
-    // FOURTH OF JULY (5 items)
+    // FOURTH OF JULY (5)
     // ------------------------------
     {
         id: 36,
@@ -393,8 +361,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 69.99,
-        description:
-            "A themed gift box designed for the Fourth of July, curated with grilling favorites and patriotic flair. It’s a lively way to celebrate the holiday with friends and family."
+        description: "A barbecue-themed box perfect for Independence Day cookouts."
     },
     {
         id: 37,
@@ -403,8 +370,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 39.99,
-        description:
-            "A themed gift box designed for the Fourth of July, curated with festive red, white, and blue snacks. It’s a simple but fun way to enjoy the holiday spirit."
+        description: "A snack assortment celebrating red, white, and blue flavors."
     },
     {
         id: 38,
@@ -413,8 +379,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 59.99,
-        description:
-            "A themed gift box designed for the Fourth of July, curated with games and decorations. It’s great for creating a memorable celebration."
+        description: "Games and decorations for a festive July 4th celebration."
     },
     {
         id: 39,
@@ -423,8 +388,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 84.99,
-        description:
-            "A themed gift box designed for the Fourth of July, curated for outdoor gatherings. It’s perfect for enjoying a festive summer afternoon."
+        description: "An outdoor picnic set perfect for summer celebrations."
     },
     {
         id: 40,
@@ -433,12 +397,11 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 44.99,
-        description:
-            "A themed gift box designed for the Fourth of July, curated with patriotic treats. It’s an easy way to satisfy sweet cravings during the celebration."
+        description: "A patriotic dessert assortment for sweet Independence Day moments."
     },
 
     // ------------------------------
-    // HALLOWEEN (5 items)
+    // HALLOWEEN (5)
     // ------------------------------
     {
         id: 41,
@@ -447,8 +410,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 34.99,
-        description:
-            "A themed gift box designed for Halloween, curated with spooky treats and seasonal goodies. It’s a fun way to enjoy the festive excitement."
+        description: "A spooky candy box perfect for Halloween lovers."
     },
     {
         id: 42,
@@ -457,8 +419,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 44.99,
-        description:
-            "A themed gift box designed for Halloween, curated with snacks and cozy movie-night essentials. It’s great for creating a spooky-but-fun evening at home."
+        description: "A cozy Halloween movie night kit with snacks and themed goodies."
     },
     {
         id: 43,
@@ -467,8 +428,7 @@ const products = [
         gender: "kids",
         maxAge: 12,
         price: 29.99,
-        description:
-            "A themed gift box designed for Halloween, curated for children with playful items and treats. It’s perfect for enhancing the fun of the holiday."
+        description: "A child-friendly Halloween treat and activity set."
     },
     {
         id: 44,
@@ -477,8 +437,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 49.99,
-        description:
-            "A themed gift box designed for Halloween, curated to help set the mood for gatherings. It’s a festive choice for anyone hosting a celebration."
+        description: "A decorative kit to host a festive Halloween party."
     },
     {
         id: 45,
@@ -487,12 +446,11 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 59.99,
-        description:
-            "A themed gift box designed for Halloween, curated for sharing treats in the workplace. It’s a great way to bring seasonal cheer to your team."
+        description: "A workplace treat box for adding Halloween cheer to the office."
     },
 
     // ------------------------------
-    // THANKSGIVING (5 items)
+    // THANKSGIVING (5)
     // ------------------------------
     {
         id: 46,
@@ -501,8 +459,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 74.99,
-        description:
-            "A themed gift box designed for Thanksgiving, curated with warm, seasonal items perfect for hosting. It’s a thoughtful way to show appreciation to loved ones."
+        description: "A warm, seasonal basket perfect for Thanksgiving hosts."
     },
     {
         id: 47,
@@ -511,8 +468,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 49.99,
-        description:
-            "A themed gift box designed for Thanksgiving, curated with cozy treats and fall flavors. It’s ideal for enjoying the holiday with comfort and joy."
+        description: "A dessert and snack box ideal for cozy Thanksgiving gatherings."
     },
     {
         id: 48,
@@ -521,8 +477,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 59.99,
-        description:
-            "A themed gift box designed for Thanksgiving, curated to enhance group celebrations. It’s a festive way to share gratitude with friends."
+        description: "A celebration pack perfect for Friendsgiving events."
     },
     {
         id: 49,
@@ -531,8 +486,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 64.99,
-        description:
-            "A themed gift box designed for Thanksgiving, curated to uplift coworkers with seasonal treats. It’s a great option for building team spirit."
+        description: "A seasonal box meant to uplift coworkers with Thanksgiving treats."
     },
     {
         id: 50,
@@ -541,14 +495,11 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 84.99,
-        description:
-            "A themed gift box designed for Thanksgiving, curated with home comforts ideal for the season. It’s perfect for creating a warm, inviting holiday atmosphere."
+        description: "A comfort-filled Thanksgiving box for warm home celebrations."
     },
 
-    // END OF PART 1 — Continue in PART 2
-];
     // ------------------------------
-    // CHRISTMAS (10 items)
+    // CHRISTMAS (10)
     // ------------------------------
     {
         id: 51,
@@ -557,8 +508,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 59.99,
-        description:
-            "A themed gift box designed for Christmas, curated with festive treats and seasonal items. It’s a joyful choice for spreading holiday cheer."
+        description: "A festive Christmas box filled with classic seasonal favorites."
     },
     {
         id: 52,
@@ -567,8 +517,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 69.99,
-        description:
-            "A themed gift box designed for Christmas, curated with breakfast favorites for a cozy morning. It’s a warm and inviting way to celebrate the holiday."
+        description: "A holiday breakfast-themed basket perfect for Christmas morning."
     },
     {
         id: 53,
@@ -577,8 +526,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 49.99,
-        description:
-            "A themed gift box designed for Christmas, curated with snacks and cozy essentials. It’s ideal for festive family nights at home."
+        description: "A movie-night themed Christmas box full of cozy treats."
     },
     {
         id: 54,
@@ -587,8 +535,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 44.99,
-        description:
-            "A themed gift box designed for Christmas, curated with baking tools and ingredients. It’s perfect for creating sweet holiday memories."
+        description: "Holiday baking essentials for festive cookie making."
     },
     {
         id: 55,
@@ -597,8 +544,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 39.99,
-        description:
-            "A themed gift box designed for Christmas, curated with warm and comforting drink mixes. It’s a delightful treat for anyone who loves winter flavors."
+        description: "Warm holiday drinks perfect for a cozy night in."
     },
     {
         id: 56,
@@ -607,8 +553,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 99.99,
-        description:
-            "A themed gift box designed for Christmas, curated with premium seasonal items for the whole family. It’s a luxurious option for celebrating together."
+        description: "A premium family-sized Christmas basket full of festive items."
     },
     {
         id: 57,
@@ -617,8 +562,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 29.99,
-        description:
-            "A themed gift box designed for Christmas, curated for holiday gift exchanges. It’s a fun and budget-friendly way to spread joy."
+        description: "A fun gift exchange-ready Christmas Secret Santa box."
     },
     {
         id: 58,
@@ -627,8 +571,7 @@ const products = [
         gender: "kids",
         maxAge: 12,
         price: 34.99,
-        description:
-            "A themed gift box designed for Christmas, curated with fun surprises for kids. It’s a playful option for bringing magic to the holiday."
+        description: "A magical Christmas box full of surprises for kids."
     },
     {
         id: 59,
@@ -637,8 +580,7 @@ const products = [
         gender: "female",
         maxAge: 99,
         price: 74.99,
-        description:
-            "A themed gift box designed for Christmas, curated with soothing spa items. It’s perfect for unwinding during the busy holiday season."
+        description: "A relaxing Christmas spa experience designed for unwinding."
     },
     {
         id: 60,
@@ -647,12 +589,11 @@ const products = [
         gender: "male",
         maxAge: 99,
         price: 84.99,
-        description:
-            "A themed gift box designed for Christmas, curated with sports-themed items. It's a great choice for holiday gifting to fans."
+        description: "A festive sports-themed Christmas gift box perfect for fans."
     },
 
     // ------------------------------
-    // HANUKKAH (5 items)
+    // HANUKKAH (5)
     // ------------------------------
     {
         id: 61,
@@ -661,8 +602,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 59.99,
-        description:
-            "A themed gift box designed for Hanukkah, curated with traditional treats and festive items. It’s a meaningful way to honor the holiday."
+        description: "Traditional Hanukkah treats and themed celebration items."
     },
     {
         id: 62,
@@ -671,8 +611,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 79.99,
-        description:
-            "A themed gift box designed for Hanukkah, curated for joyful family gatherings. It’s great for enhancing the warmth of the season."
+        description: "A celebration box for joyful Hanukkah family gatherings."
     },
     {
         id: 63,
@@ -681,8 +620,7 @@ const products = [
         gender: "kids",
         maxAge: 12,
         price: 39.99,
-        description:
-            "A themed gift box designed for Hanukkah, curated with interactive activities for children. It’s perfect for teaching and celebrating tradition."
+        description: "An interactive kids’ activity box for Hanukkah fun."
     },
     {
         id: 64,
@@ -691,8 +629,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 44.99,
-        description:
-            "A themed gift box designed for Hanukkah, curated with warm drink mixes and decorative elements. It’s a comforting addition to the holiday."
+        description: "Warm drinks and decorative holiday items for Hanukkah nights."
     },
     {
         id: 65,
@@ -701,12 +638,11 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 74.99,
-        description:
-            "A themed gift box designed for Hanukkah, curated with high-quality seasonal snacks. It’s ideal for sharing during the celebration."
+        description: "A premium snack assortment honoring Hanukkah traditions."
     },
 
     // ------------------------------
-    // KWANZAA (5 items)
+    // KWANZAA (5)
     // ------------------------------
     {
         id: 66,
@@ -715,8 +651,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 79.99,
-        description:
-            "A themed gift box designed for Kwanzaa, curated with cultural items and festive accents. It’s a meaningful way to honor the holiday’s traditions."
+        description: "A cultural celebration basket curated for the Kwanzaa holiday."
     },
     {
         id: 67,
@@ -725,8 +660,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 69.99,
-        description:
-            "A themed gift box designed for Kwanzaa, curated for family celebrations rooted in heritage. It’s perfect for bringing loved ones together."
+        description: "A family-focused gift box honoring Kwanzaa traditions."
     },
     {
         id: 68,
@@ -735,8 +669,7 @@ const products = [
         gender: "kids",
         maxAge: 12,
         price: 39.99,
-        description:
-            "A themed gift box designed for Kwanzaa, curated with educational activities for children. It’s a playful way to explore cultural values."
+        description: "A cultural activity box to teach and celebrate Kwanzaa values."
     },
     {
         id: 69,
@@ -745,8 +678,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 74.99,
-        description:
-            "A themed gift box designed for Kwanzaa, curated with creative and cultural-themed items. It’s a great gift for honoring tradition and expression."
+        description: "A creative gift box focused on Kwanzaa arts and culture."
     },
     {
         id: 70,
@@ -755,12 +687,11 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 49.99,
-        description:
-            "A themed gift box designed for Kwanzaa, curated for moments of reflection and self-growth. It’s an inspiring option for the holiday season."
+        description: "A reflective journaling gift celebrating Kwanzaa’s principles."
     },
 
     // ------------------------------
-    // BIRTHDAY – HIM (5 items)
+    // BIRTHDAY – HIM (5)
     // ------------------------------
     {
         id: 71,
@@ -769,8 +700,7 @@ const products = [
         gender: "male",
         maxAge: 99,
         price: 49.99,
-        description:
-            "A themed gift box designed for his birthday, curated with bold flavors and fun surprises. It’s an enjoyable way to celebrate his special day."
+        description: "Bold snacks and fun items curated for his birthday celebration."
     },
     {
         id: 72,
@@ -779,8 +709,7 @@ const products = [
         gender: "male",
         maxAge: 99,
         price: 59.99,
-        description:
-            "A themed gift box designed for his birthday, curated with self-care items he’ll appreciate. It’s a thoughtful way to help him look and feel great."
+        description: "A sleek grooming kit perfect for men on their birthday."
     },
     {
         id: 73,
@@ -789,8 +718,7 @@ const products = [
         gender: "male",
         maxAge: 99,
         price: 44.99,
-        description:
-            "A themed gift box designed for his birthday, curated with rich coffee blends and accessories. It’s ideal for men who enjoy a comforting brew."
+        description: "A warm and aromatic coffee-themed gift for his birthday."
     },
     {
         id: 74,
@@ -799,8 +727,7 @@ const products = [
         gender: "male",
         maxAge: 99,
         price: 79.99,
-        description:
-            "A themed gift box designed for his birthday, curated with sporty items and team-themed touches. It’s a great way to celebrate his passions."
+        description: "A sporty birthday box ideal for fans of all ages."
     },
     {
         id: 75,
@@ -809,12 +736,11 @@ const products = [
         gender: "male",
         maxAge: 99,
         price: 64.99,
-        description:
-            "A themed gift box designed for his birthday, curated with cozy and relaxing items. It’s perfect for unwinding and enjoying his day."
+        description: "A cozy at-home relaxation kit for the perfect birthday night in."
     },
 
     // ------------------------------
-    // BIRTHDAY – HER (5 items)
+    // BIRTHDAY – HER (5)
     // ------------------------------
     {
         id: 76,
@@ -823,8 +749,7 @@ const products = [
         gender: "female",
         maxAge: 99,
         price: 69.99,
-        description:
-            "A themed gift box designed for her birthday, curated with soothing spa essentials. It’s a pampering way to celebrate her special day."
+        description: "A soothing spa box curated for her birthday pampering."
     },
     {
         id: 77,
@@ -833,8 +758,7 @@ const products = [
         gender: "female",
         maxAge: 99,
         price: 49.99,
-        description:
-            "A themed gift box designed for her birthday, curated with indulgent sweet snacks. It’s a delightful option for anyone with a sweet tooth."
+        description: "A dessert-themed birthday box perfect for anyone with a sweet tooth."
     },
     {
         id: 78,
@@ -843,8 +767,7 @@ const products = [
         gender: "female",
         maxAge: 99,
         price: 59.99,
-        description:
-            "A themed gift box designed for her birthday, curated with morning treats and cozy items. It’s wonderful for starting her day with joy."
+        description: "Brunch-inspired birthday treats and cozy gifts."
     },
     {
         id: 79,
@@ -853,8 +776,7 @@ const products = [
         gender: "female",
         maxAge: 99,
         price: 79.99,
-        description:
-            "A themed gift box designed for her birthday, curated with high-quality beauty items. It’s a radiant way to make her feel valued."
+        description: "High-end beauty and self-care items for her luxurious birthday."
     },
     {
         id: 80,
@@ -863,12 +785,11 @@ const products = [
         gender: "female",
         maxAge: 99,
         price: 59.99,
-        description:
-            "A themed gift box designed for her birthday, curated with comfort-focused items. It’s a relaxing gift to help her unwind."
+        description: "A warm, comforting birthday night-in experience."
     },
 
     // ------------------------------
-    // BIRTHDAY – KIDS (5 items)
+    // BIRTHDAY – KIDS (5)
     // ------------------------------
     {
         id: 81,
@@ -877,8 +798,7 @@ const products = [
         gender: "kids",
         maxAge: 10,
         price: 39.99,
-        description:
-            "A themed gift box designed for kids’ birthdays, curated with exciting superhero-inspired items. It’s a fun and imaginative way to celebrate."
+        description: "A fun superhero-themed birthday box for kids."
     },
     {
         id: 82,
@@ -887,8 +807,7 @@ const products = [
         gender: "kids",
         maxAge: 10,
         price: 39.99,
-        description:
-            "A themed gift box designed for kids’ birthdays, curated with magical princess-themed surprises. It’s perfect for creating a memorable celebration."
+        description: "A magical princess-themed birthday surprise."
     },
     {
         id: 83,
@@ -897,8 +816,7 @@ const products = [
         gender: "kids",
         maxAge: 14,
         price: 49.99,
-        description:
-            "A themed gift box designed for kids’ birthdays, curated with gaming-inspired goodies. It’s ideal for young players who love fun challenges."
+        description: "Gaming-themed gifts perfect for young video game fans."
     },
     {
         id: 84,
@@ -907,8 +825,7 @@ const products = [
         gender: "kids",
         maxAge: 12,
         price: 34.99,
-        description:
-            "A themed gift box designed for kids’ birthdays, curated with art supplies and creative tools. It’s a wonderful way to inspire imagination."
+        description: "An arts-and-crafts birthday box inspiring creativity."
     },
     {
         id: 85,
@@ -917,12 +834,11 @@ const products = [
         gender: "kids",
         maxAge: 12,
         price: 49.99,
-        description:
-            "A themed gift box designed for kids’ birthdays, curated with active and outdoor play items. It’s great for energetic celebrations."
+        description: "Active outdoor toys and items for energetic kids’ birthdays."
     },
 
     // ------------------------------
-    // BABY SHOWER (5 items)
+    // BABY SHOWER (5)
     // ------------------------------
     {
         id: 86,
@@ -931,8 +847,7 @@ const products = [
         gender: "unisex",
         maxAge: 1,
         price: 69.99,
-        description:
-            "A themed gift box designed for Baby Showers, curated with practical newborn essentials. It’s perfect for supporting new parents."
+        description: "A practical newborn essentials kit great for baby showers."
     },
     {
         id: 87,
@@ -941,8 +856,7 @@ const products = [
         gender: "kids",
         maxAge: 1,
         price: 69.99,
-        description:
-            "A themed gift box designed for Baby Showers, curated with items to welcome a newborn boy. It’s a sweet and thoughtful gifting choice."
+        description: "A sweet newborn boy gift box perfect for welcoming baby."
     },
     {
         id: 88,
@@ -951,8 +865,7 @@ const products = [
         gender: "kids",
         maxAge: 1,
         price: 69.99,
-        description:
-            "A themed gift box designed for Baby Showers, curated with items to welcome a newborn girl. It’s a charming and heartfelt present."
+        description: "A charming newborn girl box ideal for gifting at showers."
     },
     {
         id: 89,
@@ -961,8 +874,7 @@ const products = [
         gender: "unisex",
         maxAge: 45,
         price: 79.99,
-        description:
-            "A themed gift box designed for Baby Showers, curated with essentials that help new parents adjust. It’s a caring and useful gift option."
+        description: "A supportive kit designed to help new parents adjust."
     },
     {
         id: 90,
@@ -971,12 +883,11 @@ const products = [
         gender: "kids",
         maxAge: 1,
         price: 84.99,
-        description:
-            "A themed gift box designed for Baby Showers, curated with adorable nursery décor pieces. It’s a lovely way to help prepare the baby’s room."
+        description: "Adorable nursery décor items for newborns."
     },
 
     // ------------------------------
-    // WEDDING (5 items)
+    // WEDDING (5)
     // ------------------------------
     {
         id: 91,
@@ -985,8 +896,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 99.99,
-        description:
-            "A themed gift box designed for Weddings, curated with elegant items for the couple. It’s a refined way to mark their special day."
+        description: "A premium wedding gift box celebrating the happy couple."
     },
     {
         id: 92,
@@ -995,8 +905,7 @@ const products = [
         gender: "unisex",
         maxAge: 45,
         price: 89.99,
-        description:
-            "A themed gift box designed for Weddings, curated with travel-friendly essentials. It’s perfect for helping newlyweds enjoy their honeymoon."
+        description: "Travel-friendly honeymoon items for newlyweds."
     },
     {
         id: 93,
@@ -1005,8 +914,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 84.99,
-        description:
-            "A themed gift box designed for Weddings, curated with decorative and useful household items. It’s ideal for couples starting their new life together."
+        description: "Elegant home essentials perfect for new couples."
     },
     {
         id: 94,
@@ -1015,8 +923,7 @@ const products = [
         gender: "female",
         maxAge: 45,
         price: 59.99,
-        description:
-            "A themed gift box designed for Weddings, curated to show gratitude to bridesmaids. It’s a thoughtful keepsake they’ll appreciate."
+        description: "A heartfelt thank-you gift for bridesmaids."
     },
     {
         id: 95,
@@ -1025,12 +932,11 @@ const products = [
         gender: "male",
         maxAge: 45,
         price: 59.99,
-        description:
-            "A themed gift box designed for Weddings, curated to thank groomsmen for their support. It’s a meaningful token of appreciation."
+        description: "A thoughtful appreciation box for groomsmen."
     },
 
     // ------------------------------
-    // ANNIVERSARY (5 items)
+    // ANNIVERSARY (5)
     // ------------------------------
     {
         id: 96,
@@ -1039,8 +945,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 79.99,
-        description:
-            "A themed gift box designed for Anniversaries, curated with romantic and enjoyable items. It’s perfect for celebrating love and milestones."
+        description: "A romantic anniversary box for couples celebrating love."
     },
     {
         id: 97,
@@ -1049,8 +954,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 89.99,
-        description:
-            "A themed gift box designed for Anniversaries, curated with gourmet pairings. It’s a sophisticated option for a memorable night."
+        description: "A gourmet pairing box for classy anniversary evenings."
     },
     {
         id: 98,
@@ -1059,8 +963,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 84.99,
-        description:
-            "A themed gift box designed for Anniversaries, curated with relaxing spa essentials. It’s an intimate and thoughtful way to celebrate together."
+        description: "A luxurious spa-themed anniversary gift."
     },
     {
         id: 99,
@@ -1069,8 +972,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 74.99,
-        description:
-            "A themed gift box designed for Anniversaries, curated to help preserve meaningful memories. It’s a heartfelt gift for long-lasting love."
+        description: "A meaningful keepsake box designed for lasting memories."
     },
     {
         id: 100,
@@ -1079,12 +981,11 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 99.99,
-        description:
-            "A themed gift box designed for Anniversaries, curated with luxurious items for a premium celebration. It’s a beautiful way to elevate the occasion."
+        description: "A high-end luxury gift for unforgettable anniversary nights."
     },
 
     // ------------------------------
-    // RETIREMENT (5 items)
+    // RETIREMENT (5)
     // ------------------------------
     {
         id: 101,
@@ -1093,8 +994,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 79.99,
-        description:
-            "A themed gift box designed for Retirement, curated with soothing and enjoyable items. It’s a thoughtful way to celebrate a new chapter."
+        description: "A soothing comfort-themed box for retirees."
     },
     {
         id: 102,
@@ -1103,8 +1003,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 89.99,
-        description:
-            "A themed gift box designed for Retirement, curated for future adventures. It’s perfect for encouraging exploration and enjoyment."
+        description: "Travel-focused retirement gifts inspiring adventure."
     },
     {
         id: 103,
@@ -1113,8 +1012,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 69.99,
-        description:
-            "A themed gift box designed for Retirement, curated with items to spark new hobbies. It’s an inspiring way to begin post-work life."
+        description: "A gift box encouraging new hobbies and exploration."
     },
     {
         id: 104,
@@ -1123,8 +1021,7 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 64.99,
-        description:
-            "A themed gift box designed for Retirement, curated with delicious high-quality treats. It’s great for savoring the freedom of retirement."
+        description: "A premium snack assortment celebrating retirement freedom."
     },
     {
         id: 105,
@@ -1133,8 +1030,8 @@ const products = [
         gender: "unisex",
         maxAge: 99,
         price: 79.99,
-        description:
-            "A themed gift box designed for Retirement, curated with warm and comforting items. It’s ideal for creating peaceful downtime."
+        description: "Warm, comforting items perfect for peaceful retired living."
     }
 
-]; // END OF FULL products.js
+];
+// END OF FULL products.js
