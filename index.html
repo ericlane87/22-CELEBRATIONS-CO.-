@@ -64,9 +64,7 @@
       </div>
     </section>
 
-    <!-- ============================= -->
-    <!-- FEATURED UPCOMING HOLIDAY -->
-    <!-- ============================= -->
+    <!-- FEATURED HOLIDAY SECTION -->
     <section id="featuredHolidaySection" class="featured-holiday">
       <div class="featured-header">
         <h2 id="featuredHolidayTitle">Featured Gifts</h2>
@@ -90,15 +88,12 @@
 
   <!-- CHATBOT -->
   <div id="chatbotBubble" class="chat-bubble">💬</div>
-
   <div id="chatbotWindow" class="chat-widget hidden">
     <div class="chat-header">
       ✨ Gift Finder by 22 Celebrations Co.
       <button id="chatClose">✖</button>
     </div>
-
     <div id="chatMessages" class="chat-messages"></div>
-
     <div class="chat-input-row">
       <input id="chatInput" type="text" placeholder="Type a message..." />
       <button id="chatSend">Send</button>
@@ -112,18 +107,9 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    /* ORDER OF HOLIDAYS */
-    const holidayOrder = [
-      "New Year", "Valentine's Day", "St. Patrick's Day",
-      "Easter", "Mother's Day", "Father's Day", "Graduation",
-      "Fourth of July", "Halloween", "Thanksgiving",
-      "Hanukkah", "Kwanzaa", "Christmas"
-    ];
-
-    /* DETERMINE UPCOMING HOLIDAY */
+    /* Determine upcoming holiday */
     function getUpcomingHoliday() {
-      const today = new Date();
-      const m = today.getMonth() + 1;
+      const m = new Date().getMonth() + 1;
 
       if (m === 12) return "Christmas";
       if (m === 11) return "Thanksgiving";
@@ -141,41 +127,33 @@
 
     const upcoming = getUpcomingHoliday();
 
-    /* TITLE TEXT */
-    const holidayGreeting =
-      upcoming === "Christmas"
-        ? "Merry Christmas"
-        : `Happy ${upcoming}`;
+    document.getElementById("featuredHolidayTitle").innerText =
+      upcoming === "Christmas" ? "Merry Christmas" : `Happy ${upcoming}`;
 
-    document.getElementById("featuredHolidayTitle").innerText = holidayGreeting;
     document.getElementById("featuredHolidaySubtitle").innerText =
       `Browse featured ${upcoming} gifts curated for you.`;
 
-    /* BUILD FEATURED PRODUCT CARDS */
+    /* Populate featured products */
     const featuredRow = document.getElementById("featuredRow");
-    featuredRow.innerHTML = "";
 
-    const featuredItems = products
+    const featuredProducts = products
       .filter(p => p.occasions.includes(upcoming))
       .slice(0, 5);
 
-    featuredItems.forEach(p => {
+    featuredProducts.forEach(p => {
       const card = document.createElement("div");
       card.className = "featured-card";
-
       card.innerHTML = `
         <div class="featured-img">Image Coming Soon</div>
         <div class="featured-name">${p.name}</div>
       `;
-
       featuredRow.appendChild(card);
     });
 
-    /* SEE MORE BUTTON -> auto filter store */
+    /* See More button → auto-filter store */
     document.getElementById("seeMoreBtn").addEventListener("click", () => {
       window.location.href = `store.html?holiday=${encodeURIComponent(upcoming)}`;
     });
-
   </script>
 
 </body>
