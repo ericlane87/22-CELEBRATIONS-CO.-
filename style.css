@@ -531,4 +531,105 @@ h1, h2, h3, h4 {
     font-size: 18px;
     padding: 20px;
 }
+/* === Featured Upcoming Holiday Section === */
+
+.featured-holiday {
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.featured-header h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.featured-header h2 span {
+  color: #d4a037; /* gold accent */
+}
+
+.featured-header p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Horizontal scroller */
+.featured-scroller-wrapper {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.featured-row {
+  display: flex;
+  gap: 1rem;
+  min-width: 100%;
+}
+
+.featured-card {
+  flex: 0 0 180px;
+  background: #f7f7f4; /* soft off-white */
+  border-radius: 14px;
+  border: 1px solid rgba(212, 160, 55, 0.45); /* subtle gold border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 0.9rem;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.featured-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+}
+
+.featured-img {
+  height: 110px;
+  border-radius: 10px;
+  border: 1px dashed rgba(0, 170, 170, 0.6); /* turquoise dashed */
+  background: rgba(0, 170, 170, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #008c8c;
+  margin-bottom: 0.6rem;
+}
+
+.featured-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #222;
+}
+
+/* See More button */
+.featured-footer {
+  margin-top: 1.2rem;
+  text-align: right;
+}
+
+.btn-see-more {
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #d4a037, #f0c75a);
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(212, 160, 55, 0.35);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.btn-see-more:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(212, 160, 55, 0.5);
+}
+
 
