@@ -1,25 +1,24 @@
 /* ==========================================================
-   CHATBOT.JS — STABLE VERSION
-   ✔ Auto-open for 1 second on load
-   ✔ Bubble click toggles window
-   ✔ Close button works
-   ✔ Greeting + holiday + relationship logic
-   ✔ Phone / contact info responses
+   CHATBOT.JS — STABLE CORE
+   ✔ Bubble toggles chat window
+   ✔ Close button hides chat
+   ✔ Smart logic for: wife / holidays / greetings / phone
+   ✔ NO auto-popup logic here (handled in index.html only)
 ========================================================== */
 
-// Grab elements safely
-const chatBubble  = document.getElementById("chatbotBubble");
-const chatWindow  = document.getElementById("chatbotWindow");
-const chatClose   = document.getElementById("chatClose");
+// Grab elements
+const chatBubble   = document.getElementById("chatbotBubble");
+const chatWindow   = document.getElementById("chatbotWindow");
+const chatClose    = document.getElementById("chatClose");
 const chatMessages = document.getElementById("chatMessages");
-const chatInput   = document.getElementById("chatInput");
-const chatSend    = document.getElementById("chatSend");
+const chatInput    = document.getElementById("chatInput");
+const chatSend     = document.getElementById("chatSend");
 
-// If the page doesn’t have the chat elements (like other pages), stop here
+// Guard: if this page doesn't have a chatbot, stop
 if (chatBubble && chatWindow && chatMessages && chatInput && chatSend && chatClose) {
 
   /* ========================================================
-     BASIC OPEN/CLOSE (NO ANIMATION FIGHTING)
+     BASIC OPEN/CLOSE
   ======================================================== */
   function openChat() {
     chatWindow.classList.remove("hidden");
@@ -29,8 +28,8 @@ if (chatBubble && chatWindow && chatMessages && chatInput && chatSend && chatClo
     chatWindow.classList.add("hidden");
   }
 
+  // Bubble click toggles
   chatBubble.addEventListener("click", () => {
-    // Toggle chat window
     if (chatWindow.classList.contains("hidden")) {
       openChat();
     } else {
@@ -38,23 +37,8 @@ if (chatBubble && chatWindow && chatMessages && chatInput && chatSend && chatClo
     }
   });
 
+  // Close button
   chatClose.addEventListener("click", closeChat);
-
-  /* ========================================================
-     AUTO POP-UP ON LOAD (SHOW ~1s, THEN HIDE)
-  ======================================================== */
-  window.addEventListener("load", () => {
-    // Start hidden (in case the HTML changed)
-    chatWindow.classList.add("hidden");
-
-    // Small delay so it feels natural
-    setTimeout(() => {
-      openChat(); // show
-      setTimeout(() => {
-        closeChat(); // hide after ~1 second
-      }, 1000);
-    }, 500);
-  });
 
   /* ========================================================
      MESSAGE HELPERS
@@ -76,7 +60,7 @@ if (chatBubble && chatWindow && chatMessages && chatInput && chatSend && chatClo
   }
 
   /* ========================================================
-     CONVERSATION STATE
+     CONVERSATION STATE & KEYWORDS
   ======================================================== */
   let expectingOccasion = false;
   let expectingRecipient = false;
@@ -109,6 +93,11 @@ if (chatBubble && chatWindow && chatMessages && chatInput && chatSend && chatClo
     "retirement"
   ];
 
+  const greetings = [
+    "hi","hello","hey","hola","what's up","whats up","sup",
+    "buenas","buenos dias","buenas tardes","buenas noches"
+  ];
+
   /* ========================================================
      INITIAL GREETING
   ======================================================== */
@@ -119,38 +108,33 @@ if (chatBubble && chatWindow && chatMessages && chatInput && chatSend && chatClo
   );
 
   /* ========================================================
-     MAIN MESSAGE HANDLER
+     MAIN MESSAGE LOGIC
   ======================================================== */
   function processMessage(rawText) {
-    const text = rawText.trim();
+    const text  = rawText.trim();
     const lower = text.toLowerCase();
-
     if (!text) return;
 
-    // Spanish trigger
+    // Spanish mode trigger
     if (lower.startsWith("espanol")) {
       bot("¡Perfecto! Cuéntame: ¿para quién es el regalo y para qué ocasión?");
       expectingRecipient = true;
-      expectingOccasion = true;
+      expectingOccasion  = true;
       return;
     }
 
-    // Greetings (English & Spanish-ish)
-    const greetings = [
-      "hi","hello","hey","hola","what's up","whats up","sup",
-      "buenas","buenos dias","buenas tardes","buenas noches"
-    ];
+    // Greetings (English/Spanish)
     if (greetings.some(g => lower.includes(g))) {
       bot("Hi there! Tell me who the gift is for and what the occasion is.");
       expectingRecipient = true;
-      expectingOccasion = true;
+      expectingOccasion  = true;
       return;
     }
 
-    // Phone / contact info questions
+    // Phone / contact / location questions
     if (
-      lower.includes("phone") || lower.includes("number") ||
-      lower.includes("call")  || lower.includes("location") ||
+      lower.includes("phone")   || lower.includes("number")  ||
+      lower.includes("call")    || lower.includes("location")||
       lower.includes("address") || lower.includes("contact")
     ) {
       bot(
@@ -160,13 +144,10 @@ if (chatBubble && chatWindow && chatMessages && chatInput && chatSend && chatClo
       return;
     }
 
-    // Check for relationship / recipient
     const hasRelationship = relationshipKeywords.some(k => lower.includes(k));
+    const hasHoliday      = holidayKeywords.some(k => lower.includes(k));
 
-    // Check for holiday
-    const hasHoliday = holidayKeywords.some(k => lower.includes(k));
-
-    // If they say "gift for my ____" but no holiday:
+    // Relationship but no holiday -> ask for occasion
     if (hasRelationship && !hasHoliday) {
       bot(
         "Great — I’d love to help you find a gift.\n" +
@@ -176,7 +157,7 @@ if (chatBubble && chatWindow && chatMessages && chatInput && chatSend && chatClo
       return;
     }
 
-    // If they mention a holiday but not who it's for:
+    // Holiday but no relationship -> ask who it's for
     if (hasHoliday && !hasRelationship) {
       bot(
         "Nice choice of occasion! Who is the gift for? (For example: wife, husband, mom, friend, coworker, etc.)"
@@ -185,20 +166,20 @@ if (chatBubble && chatWindow && chatMessages && chatInput && chatSend && chatClo
       return;
     }
 
-    // If they mention both holiday + relationship in one sentence:
+    // Holiday + relationship in the same line
     if (hasHoliday && hasRelationship) {
-      // Holiday takes precedence in our logic, just like you requested
+      // Holiday takes precedence like you wanted
       bot(
         "Perfect — I’ve got a good sense of what you need.\n" +
         "I’d recommend a few themed boxes that match that occasion and relationship.\n" +
         "You can also head to the Shop page and filter by that holiday for more options."
       );
       expectingRecipient = false;
-      expectingOccasion = false;
+      expectingOccasion  = false;
       return;
     }
 
-    // If we were already expecting the occasion and they respond with something
+    // They answered with a holiday while we were waiting for one
     if (expectingOccasion && hasHoliday) {
       bot(
         "Got it — that’s a great occasion.\n" +
@@ -208,7 +189,7 @@ if (chatBubble && chatWindow && chatMessages && chatInput && chatSend && chatClo
       return;
     }
 
-    // If we were expecting the recipient and they give some relationship-ish words
+    // They answered with a relationship while we were waiting for recipient
     if (expectingRecipient && hasRelationship) {
       bot(
         "Wonderful. Based on who it’s for and the occasion, we can match a themed box.\n" +
@@ -218,7 +199,7 @@ if (chatBubble && chatWindow && chatMessages && chatInput && chatSend && chatClo
       return;
     }
 
-    // Fallback response
+    // Generic fallback
     bot(
       "Thanks for sharing! To help best, tell me:\n" +
       "1) Who is the gift for?\n" +
@@ -227,7 +208,7 @@ if (chatBubble && chatWindow && chatMessages && chatInput && chatSend && chatClo
   }
 
   /* ========================================================
-     SEND MESSAGE
+     SEND HANDLERS
   ======================================================== */
   function handleSend() {
     const text = chatInput.value.trim();
