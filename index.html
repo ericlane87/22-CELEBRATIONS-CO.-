@@ -5,7 +5,7 @@
   <title>22 Celebration Co.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Your existing theme (unchanged) -->
+  <!-- Existing theme (unchanged) -->
   <link rel="stylesheet" href="style.css" />
 
   <style>
@@ -93,15 +93,8 @@
       word-wrap: break-word;
     }
 
-    .chat-msg.bot {
-      background: #e8faf6;
-      align-self: flex-start;
-    }
-
-    .chat-msg.user {
-      background: #f0f0f0;
-      align-self: flex-end;
-    }
+    .chat-msg.bot { background: #e8faf6; align-self: flex-start; }
+    .chat-msg.user { background: #f0f0f0; align-self: flex-end; }
 
     .typing-indicator {
       font-style: italic;
@@ -129,6 +122,80 @@
       cursor: pointer;
       font-weight: bold;
     }
+
+    /* FEATURED HOLIDAY SECTION */
+    .featured-holiday {
+      margin: 3rem auto;
+      padding: 2rem 1rem;
+      max-width: 1100px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .featured-holiday h2 span {
+      color: #d4af37;
+    }
+
+    .featured-row {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .featured-card {
+      flex: 0 0 180px;
+      background: #f7f7f4;
+      border-radius: 14px;
+      border: 1px solid rgba(212,160,55,0.45);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 0.9rem;
+      text-decoration: none;
+      color: inherit;
+      transition: 0.15s ease;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.14);
+    }
+
+    .featured-img {
+      height: 110px;
+      border-radius: 10px;
+      border: 1px dashed rgba(0,170,170,0.6);
+      background: rgba(0,170,170,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #008c8c;
+      margin-bottom: 0.6rem;
+    }
+
+    .featured-footer {
+      margin-top: 1.2rem;
+      text-align: right;
+    }
+
+    .btn-see-more {
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #d4af37, #f0c75a);
+      color: #1a1a1a;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 12px rgba(212,160,55,0.35);
+      transition: 0.12s ease;
+    }
+
+    .btn-see-more:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(212,160,55,0.5);
+    }
   </style>
 </head>
 
@@ -153,9 +220,7 @@
 
   <main>
     <section class="section hero">
-      <h1 class="section-title">
-        Elegant Gifts for All 22 Celebrations & More
-      </h1>
+      <h1 class="section-title">Elegant Gifts for All 22 Celebrations & More</h1>
       <p class="section-subtitle">
         Theme-oriented gift boxes & baskets for every meaningful occasion.
       </p>
@@ -189,35 +254,110 @@
         <div class="holiday-card">🎉 Retirement</div>
       </div>
     </section>
+
+    <!-- FEATURED HOLIDAY SECTION -->
+    <section class="featured-holiday">
+      <h2>
+        <span id="featuredTitle">Holiday Gifts</span>
+      </h2>
+      <div id="featuredRow" class="featured-row"></div>
+
+      <div class="featured-footer">
+        <button id="seeMoreBtn" class="btn-see-more">See More</button>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
   </footer>
 
-  <!-- CHAT BUBBLE -->
+  <!-- CHAT ELEMENTS (UNCHANGED) -->
   <div id="chatbotBubble">💬</div>
-
-  <!-- CHAT WINDOW -->
   <div id="chatbotWindow">
     <div class="chat-header">
       ✨ Gift Finder by 22 Celebrations Co.
       <button id="chatClose" class="chat-close">✖</button>
     </div>
-
     <div id="chatMessages" class="chat-messages"></div>
-
     <div class="chat-input-row">
       <input id="chatInput" type="text" placeholder="Type a message..." />
       <button id="chatSend">Send</button>
     </div>
   </div>
 
+  <!-- SCRIPTS -->
   <script src="products.js"></script>
   <script src="chatbot.js"></script>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // --- Simplified holiday logic ---
+    const holidayNames = [
+      "New Year","Valentine's Day","St. Patrick's Day","Easter","Mother's Day",
+      "Father's Day","Fourth of July","Halloween","Thanksgiving","Hanukkah","Kwanzaa","Christmas"
+    ];
+
+    function getNextHoliday() {
+      const now = new Date();
+      const year = now.getFullYear();
+
+      const fixedDates = {
+        "New Year": new Date(year, 0, 1),
+        "Valentine's Day": new Date(year, 1, 14),
+        "St. Patrick's Day": new Date(year, 2, 17),
+        "Easter": new Date(year, 3, 9), 
+        "Mother's Day": new Date(year, 4, 12),
+        "Father's Day": new Date(year, 5, 16),
+        "Fourth of July": new Date(year, 6, 4),
+        "Halloween": new Date(year, 9, 31),
+        "Thanksgiving": new Date(year, 10, 28),
+        "Hanukkah": new Date(year, 11, 25),
+        "Kwanzaa": new Date(year, 11, 26),
+        "Christmas": new Date(year, 11, 25)
+      };
+
+      let upcoming = null;
+
+      holidayNames.forEach(h => {
+        const date = fixedDates[h];
+        if (date >= now && (!upcoming || date < upcoming.date)) {
+          upcoming = { name: h, date };
+        }
+      });
+
+      return upcoming ? upcoming.name : "Christmas";
+    }
+
+    function populateFeatured() {
+      const holiday = getNextHoliday();
+      const title = holiday === "Christmas" ? "Merry Christmas!" : `Happy ${holiday}!`;
+
+      document.getElementById("featuredTitle").textContent = title;
+
+      const filtered = products.filter(p => p.occasions.includes(holiday)).slice(0,5);
+
+      const row = document.getElementById("featuredRow");
+      row.innerHTML = "";
+
+      filtered.forEach(prod => {
+        const card = document.createElement("a");
+        card.href = "#";
+        card.className = "featured-card";
+        card.innerHTML = `
+          <div class="featured-img">Image Coming Soon</div>
+          <div class="featured-name">${prod.name}</div>
+        `;
+        row.appendChild(card);
+      });
+
+      document.getElementById("seeMoreBtn").onclick = () => {
+        window.location.href = "store.html?occasion=" + encodeURIComponent(holiday);
+      };
+    }
+
+    populateFeatured();
   </script>
 </body>
 </html>
