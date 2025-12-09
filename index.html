@@ -90,12 +90,15 @@
 
   <!-- CHATBOT -->
   <div id="chatbotBubble" class="chat-bubble">💬</div>
+
   <div id="chatbotWindow" class="chat-widget hidden">
     <div class="chat-header">
       ✨ Gift Finder by 22 Celebrations Co.
       <button id="chatClose">✖</button>
     </div>
+
     <div id="chatMessages" class="chat-messages"></div>
+
     <div class="chat-input-row">
       <input id="chatInput" type="text" placeholder="Type a message..." />
       <button id="chatSend">Send</button>
@@ -107,12 +110,9 @@
   <script src="chatbot.js"></script>
 
   <script>
-    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    /* -------------------------------
-       DETERMINE UPCOMING HOLIDAY
-    --------------------------------*/
+    /* ORDER OF HOLIDAYS */
     const holidayOrder = [
       "New Year", "Valentine's Day", "St. Patrick's Day",
       "Easter", "Mother's Day", "Father's Day", "Graduation",
@@ -120,27 +120,28 @@
       "Hanukkah", "Kwanzaa", "Christmas"
     ];
 
+    /* DETERMINE UPCOMING HOLIDAY */
     function getUpcomingHoliday() {
       const today = new Date();
-      const month = today.getMonth() + 1;
+      const m = today.getMonth() + 1;
 
-      if (month === 12) return "Christmas";
-      if (month === 11) return "Thanksgiving";
-      if (month === 10) return "Halloween";
-      if (month === 7)  return "Fourth of July";
-      if (month === 6)  return "Father's Day";
-      if (month === 5)  return "Mother's Day";
-      if (month === 4)  return "Easter";
-      if (month === 3)  return "St. Patrick's Day";
-      if (month === 2)  return "Valentine's Day";
-      if (month === 1)  return "New Year";
-      // fallback
+      if (m === 12) return "Christmas";
+      if (m === 11) return "Thanksgiving";
+      if (m === 10) return "Halloween";
+      if (m === 7) return "Fourth of July";
+      if (m === 6) return "Father's Day";
+      if (m === 5) return "Mother's Day";
+      if (m === 4) return "Easter";
+      if (m === 3) return "St. Patrick's Day";
+      if (m === 2) return "Valentine's Day";
+      if (m === 1) return "New Year";
+
       return "Christmas";
     }
 
     const upcoming = getUpcomingHoliday();
 
-    // Set title + subtitle
+    /* TITLE TEXT */
     const holidayGreeting =
       upcoming === "Christmas"
         ? "Merry Christmas"
@@ -150,51 +151,31 @@
     document.getElementById("featuredHolidaySubtitle").innerText =
       `Browse featured ${upcoming} gifts curated for you.`;
 
-    /* -----------------------------------------
-       POPULATE FEATURED ROW (5 items)
-    -----------------------------------------*/
+    /* BUILD FEATURED PRODUCT CARDS */
     const featuredRow = document.getElementById("featuredRow");
+    featuredRow.innerHTML = "";
 
-    const featuredProducts = (window.products || [])
-      .filter(p => p.occasions && p.occasions.includes(upcoming))
+    const featuredItems = products
+      .filter(p => p.occasions.includes(upcoming))
       .slice(0, 5);
 
-    featuredProducts.forEach(p => {
+    featuredItems.forEach(p => {
       const card = document.createElement("div");
       card.className = "featured-card";
+
       card.innerHTML = `
         <div class="featured-img">Image Coming Soon</div>
         <div class="featured-name">${p.name}</div>
       `;
+
       featuredRow.appendChild(card);
     });
 
-    /* -----------------------------------------
-       SEE MORE -> store.html?holiday=_______
-    -----------------------------------------*/
+    /* SEE MORE BUTTON -> auto filter store */
     document.getElementById("seeMoreBtn").addEventListener("click", () => {
       window.location.href = `store.html?holiday=${encodeURIComponent(upcoming)}`;
     });
 
-    /* -----------------------------------------
-       AUTO POP-UP: SHOW CHAT FOR 1s ON LOAD
-       (Index page ONLY — chatbot.js stays clean)
-    -----------------------------------------*/
-    window.addEventListener("load", () => {
-      const chatWindow = document.getElementById("chatbotWindow");
-      if (!chatWindow) return;
-
-      // Start hidden (ensure consistent state)
-      chatWindow.classList.add("hidden");
-
-      // Brief preview after a short delay
-      setTimeout(() => {
-        chatWindow.classList.remove("hidden");  // show
-        setTimeout(() => {
-          chatWindow.classList.add("hidden");   // hide again
-        }, 1000); // 1 second visible
-      }, 500);   // wait 0.5s after page load
-    });
   </script>
 
 </body>
