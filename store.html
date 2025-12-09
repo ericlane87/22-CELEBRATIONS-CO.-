@@ -1,226 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>22 Celebrations Co. | Store</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <title>Shop – 22 Celebration Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <style>
-        /* Store Page Layout */
-        .store-container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 2rem 1rem;
-        }
-
-        .store-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .filters {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-
-        .filters input,
-        .filters select {
-            padding: 0.6rem;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            width: 220px;
-            font-size: 1rem;
-        }
-
-        .filters button {
-            padding: 0.6rem 1.4rem;
-            background: linear-gradient(135deg, #d4a037, #f0c75a);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            color: #1a1a1a;
-            font-weight: 600;
-            font-size: 1rem;
-            box-shadow: 0 4px 12px rgba(212, 160, 55, 0.35);
-            transition: 0.15s;
-        }
-        .filters button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(212, 160, 55, 0.5);
-        }
-
-        /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.4rem;
-        }
-
-        .product-card {
-            background: #f7f7f4;
-            border-radius: 14px;
-            padding: 1rem;
-            border: 1px solid rgba(212, 160, 55, 0.45);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            text-decoration: none;
-            color: inherit;
-            transition: 0.15s;
-            display: block;
-        }
-        .product-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
-        }
-
-        .product-img {
-            height: 150px;
-            width: 100%;
-            background: rgba(0, 170, 170, 0.08);
-            border: 2px dashed rgba(0, 170, 170, 0.6);
-            border-radius: 10px;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #008c8c;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .product-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.4rem;
-        }
-
-        .product-desc {
-            font-size: 0.9rem;
-            color: #333;
-        }
-    </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-    <div class="store-container">
-        <div class="store-header">
-            <h1>Our Gift Boxes & Baskets</h1>
-            <p>Browse curated gifts for every special occasion.</p>
-        </div>
+<header class="site-header">
+  <div class="logo">
+    <span class="logo-mark">22</span>
+    <span class="logo-text">Celebration Co.</span>
+  </div>
 
-        <!-- FILTERS -->
-        <div class="filters">
-            <select id="occasionFilter">
-                <option value="">All Occasions</option>
-                <option>New Year</option>
-                <option>Valentine's Day</option>
-                <option>St. Patrick's Day</option>
-                <option>Easter</option>
-                <option>Mother's Day</option>
-                <option>Father's Day</option>
-                <option>Fourth of July</option>
-                <option>Halloween</option>
-                <option>Thanksgiving</option>
-                <option>Hanukkah</option>
-                <option>Kwanzaa</option>
-                <option>Birthday - Him</option>
-                <option>Birthday - Her</option>
-                <option>Birthday - Kids</option>
-                <option>Baby Shower</option>
-                <option>Wedding</option>
-                <option>Anniversary</option>
-                <option>Retirement</option>
-            </select>
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="store.html" class="active">Shop</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-            <input type="text" id="searchBar" placeholder="Search products..." />
+  <a href="tel:17708201456" class="btn-phone">(770) 820-1456</a>
+</header>
 
-            <button id="searchBtn">Search</button>
-        </div>
+<main class="section">
+  <h1 class="section-title">Shop All Gifts</h1>
 
-        <!-- PRODUCT GRID -->
-        <div id="productGrid" class="product-grid"></div>
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <div class="filter-group">
+      <label>Keyword</label>
+      <input id="keywordInput" type="text" placeholder="Search..." />
     </div>
 
-    <!-- LOAD PRODUCTS -->
-    <script src="products.js"></script>
+    <div class="filter-group">
+      <label>Holiday</label>
+      <select id="holidaySelect">
+        <option value="">All Holidays</option>
+        <option>Christmas</option>
+        <option>New Year</option>
+        <option>Valentine's Day</option>
+        <option>St. Patrick's Day</option>
+        <option>Easter</option>
+        <option>Mother's Day</option>
+        <option>Father's Day</option>
+        <option>Graduation</option>
+        <option>Fourth of July</option>
+        <option>Halloween</option>
+        <option>Thanksgiving</option>
+        <option>Hanukkah</option>
+        <option>Kwanzaa</option>
+        <option>Birthday - Him</option>
+        <option>Birthday - Her</option>
+        <option>Birthday - Kids</option>
+        <option>Baby Shower</option>
+        <option>Wedding</option>
+        <option>Anniversary</option>
+        <option>Retirement</option>
+      </select>
+    </div>
 
-    <script>
-        const grid = document.getElementById("productGrid");
-        const searchBar = document.getElementById("searchBar");
-        const occasionSelect = document.getElementById("occasionFilter");
-        const searchBtn = document.getElementById("searchBtn");
+    <div class="filter-group">
+      <button id="searchBtn">Search</button>
+    </div>
+  </div>
 
-        function renderProducts(list) {
-            grid.innerHTML = "";
+  <!-- PRODUCT GRID -->
+  <div id="productGrid" class="product-grid"></div>
+</main>
 
-            if (!list.length) {
-                grid.innerHTML = "<p>No products found.</p>";
-                return;
-            }
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
+</footer>
 
-            list.forEach(p => {
-                const card = document.createElement("a");
-                card.href = "#";
-                card.className = "product-card";
+<script src="products.js"></script>
 
-                card.innerHTML = `
-                    <div class="product-img">Image Coming Soon</div>
-                    <div class="product-name">${p.name}</div>
-                    <div class="product-desc">${p.description}</div>
-                `;
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-                grid.appendChild(card);
-            });
-        }
+  const grid = document.getElementById("productGrid");
+  const holidaySelect = document.getElementById("holidaySelect");
+  const keywordInput = document.getElementById("keywordInput");
 
-        function applyFilters() {
-            const term = searchBar.value.toLowerCase().trim();
-            const occasion = occasionSelect.value;
+  function renderProducts(list) {
+    grid.innerHTML = "";
 
-            let results = products;
+    if (list.length === 0) {
+      grid.innerHTML = `<div class="no-results">No matching products found.</div>`;
+      return;
+    }
 
-            if (occasion) {
-                results = results.filter(p => p.occasions.includes(occasion));
-            }
+    list.forEach(p => {
+      const card = document.createElement("a");
+      card.href = "#"; /* Dead link */
+      card.className = "product-card";
 
-            if (term) {
-                results = results.filter(p =>
-                    p.name.toLowerCase().includes(term) ||
-                    p.description.toLowerCase().includes(term)
-                );
-            }
+      card.innerHTML = `
+        <div class="product-img">Image Coming Soon</div>
+        <h3>${p.name}</h3>
+        <p class="product-desc">${p.description}</p>
+        <div class="product-price">$${p.price.toFixed(2)}</div>
+      `;
+      grid.appendChild(card);
+    });
+  }
 
-            renderProducts(results);
-        }
+  function applyFilters() {
+    const kw = keywordInput.value.toLowerCase().trim();
+    const h = holidaySelect.value;
 
-        searchBtn.addEventListener("click", applyFilters);
+    const results = products.filter(p => {
+      const matchKw =
+        kw === "" ||
+        p.name.toLowerCase().includes(kw) ||
+        p.description.toLowerCase().includes(kw);
 
-        // AUTO-FILTER FROM URL ?occasion=
-        function autoFilterFromURL() {
-            const params = new URLSearchParams(window.location.search);
-            const occasion = params.get("occasion");
+      const matchHoliday =
+        h === "" || p.occasions.includes(h);
 
-            if (occasion) {
-                // Try to match dropdown label exactly
-                const options = [...occasionSelect.options];
-                const match = options.find(opt => opt.value === occasion);
+      return matchKw && matchHoliday;
+    });
 
-                if (match) {
-                    occasionSelect.value = occasion;
-                }
+    renderProducts(results);
+  }
 
-                applyFilters();
-            } else {
-                // No auto-filter → display all
-                renderProducts(products);
-            }
-        }
+  document.getElementById("searchBtn").addEventListener("click", applyFilters);
 
-        document.addEventListener("DOMContentLoaded", autoFilterFromURL);
-    </script>
+  /* -----------------------------------------------------
+     AUTO-FILTER: store.html?holiday=Hanukkah
+  ----------------------------------------------------- */
+  const params = new URLSearchParams(window.location.search);
+  const holidayParam = params.get("holiday");
+
+  if (holidayParam) {
+    holidaySelect.value = holidayParam;
+  }
+
+  applyFilters();
+</script>
 
 </body>
 </html>
