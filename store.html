@@ -1,122 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>22 Celebration Co. – Store</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>22 Celebrations Co. | Store</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        /* Store Page Layout */
+        .store-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 2rem 1rem;
+        }
+
+        .store-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .filters input,
+        .filters select {
+            padding: 0.6rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 220px;
+            font-size: 1rem;
+        }
+
+        .filters button {
+            padding: 0.6rem 1.4rem;
+            background: linear-gradient(135deg, #d4a037, #f0c75a);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(212, 160, 55, 0.35);
+            transition: 0.15s;
+        }
+        .filters button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(212, 160, 55, 0.5);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.4rem;
+        }
+
+        .product-card {
+            background: #f7f7f4;
+            border-radius: 14px;
+            padding: 1rem;
+            border: 1px solid rgba(212, 160, 55, 0.45);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-decoration: none;
+            color: inherit;
+            transition: 0.15s;
+            display: block;
+        }
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+        }
+
+        .product-img {
+            height: 150px;
+            width: 100%;
+            background: rgba(0, 170, 170, 0.08);
+            border: 2px dashed rgba(0, 170, 170, 0.6);
+            border-radius: 10px;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #008c8c;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: #333;
+        }
+    </style>
 </head>
+
 <body>
 
-    <!-- NAVIGATION -->
-    <header class="header">
-        <div class="logo">22 Celebration Co.</div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="store.html" class="active">Store</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
+    <div class="store-container">
+        <div class="store-header">
+            <h1>Our Gift Boxes & Baskets</h1>
+            <p>Browse curated gifts for every special occasion.</p>
+        </div>
 
-    <main class="store-container">
-
-        <h1 class="store-title">Shop Our Celebration Boxes</h1>
-
-        <!-- SEARCH + FILTERS -->
-        <div class="store-controls">
+        <!-- FILTERS -->
+        <div class="filters">
             <select id="occasionFilter">
                 <option value="">All Occasions</option>
-                <option value="New Year">New Year</option>
-                <option value="Valentine's Day">Valentine's Day</option>
-                <option value="St. Patrick's Day">St. Patrick's Day</option>
-                <option value="Easter">Easter</option>
-                <option value="Mother's Day">Mother's Day</option>
-                <option value="Father's Day">Father's Day</option>
-                <option value="Graduation">Graduation</option>
-                <option value="Fourth of July">Fourth of July</option>
-                <option value="Halloween">Halloween</option>
-                <option value="Thanksgiving">Thanksgiving</option>
-                <option value="Christmas">Christmas</option>
-                <option value="Hanukkah">Hanukkah</option>
-                <option value="Kwanzaa">Kwanzaa</option>
-                <option value="Birthday - Him">Birthday - Him</option>
-                <option value="Birthday - Her">Birthday - Her</option>
-                <option value="Birthday - Kids">Birthday - Kids</option>
-                <option value="Baby Shower">Baby Shower</option>
-                <option value="Wedding">Wedding</option>
-                <option value="Anniversary">Anniversary</option>
-                <option value="Retirement">Retirement</option>
+                <option>New Year</option>
+                <option>Valentine's Day</option>
+                <option>St. Patrick's Day</option>
+                <option>Easter</option>
+                <option>Mother's Day</option>
+                <option>Father's Day</option>
+                <option>Fourth of July</option>
+                <option>Halloween</option>
+                <option>Thanksgiving</option>
+                <option>Hanukkah</option>
+                <option>Kwanzaa</option>
+                <option>Birthday - Him</option>
+                <option>Birthday - Her</option>
+                <option>Birthday - Kids</option>
+                <option>Baby Shower</option>
+                <option>Wedding</option>
+                <option>Anniversary</option>
+                <option>Retirement</option>
             </select>
 
-            <input type="text" id="searchInput" placeholder="Search products...">
+            <input type="text" id="searchBar" placeholder="Search products..." />
 
             <button id="searchBtn">Search</button>
         </div>
 
         <!-- PRODUCT GRID -->
         <div id="productGrid" class="product-grid"></div>
+    </div>
 
-    </main>
-
+    <!-- LOAD PRODUCTS -->
     <script src="products.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const grid = document.getElementById("productGrid");
-            const filter = document.getElementById("occasionFilter");
-            const search = document.getElementById("searchInput");
-            const searchBtn = document.getElementById("searchBtn");
+        const grid = document.getElementById("productGrid");
+        const searchBar = document.getElementById("searchBar");
+        const occasionSelect = document.getElementById("occasionFilter");
+        const searchBtn = document.getElementById("searchBtn");
 
-            function displayProducts(list) {
-                grid.innerHTML = "";
+        function renderProducts(list) {
+            grid.innerHTML = "";
 
-                if (list.length === 0) {
-                    grid.innerHTML = "<p class='no-results'>No products found.</p>";
-                    return;
+            if (!list.length) {
+                grid.innerHTML = "<p>No products found.</p>";
+                return;
+            }
+
+            list.forEach(p => {
+                const card = document.createElement("a");
+                card.href = "#";
+                card.className = "product-card";
+
+                card.innerHTML = `
+                    <div class="product-img">Image Coming Soon</div>
+                    <div class="product-name">${p.name}</div>
+                    <div class="product-desc">${p.description}</div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function applyFilters() {
+            const term = searchBar.value.toLowerCase().trim();
+            const occasion = occasionSelect.value;
+
+            let results = products;
+
+            if (occasion) {
+                results = results.filter(p => p.occasions.includes(occasion));
+            }
+
+            if (term) {
+                results = results.filter(p =>
+                    p.name.toLowerCase().includes(term) ||
+                    p.description.toLowerCase().includes(term)
+                );
+            }
+
+            renderProducts(results);
+        }
+
+        searchBtn.addEventListener("click", applyFilters);
+
+        // AUTO-FILTER FROM URL ?occasion=
+        function autoFilterFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            const occasion = params.get("occasion");
+
+            if (occasion) {
+                // Try to match dropdown label exactly
+                const options = [...occasionSelect.options];
+                const match = options.find(opt => opt.value === occasion);
+
+                if (match) {
+                    occasionSelect.value = occasion;
                 }
 
-                list.forEach(product => {
-                    const card = document.createElement("a");
-                    card.href = "#"; 
-                    card.className = "product-card";
-
-                    card.innerHTML = `
-                        <div class="product-img">Image Coming Soon</div>
-                        <h3>${product.name}</h3>
-                        <p class="product-desc">${product.description}</p>
-                        <p class="product-price">$${product.price.toFixed(2)}</p>
-                    `;
-
-                    grid.appendChild(card);
-                });
+                applyFilters();
+            } else {
+                // No auto-filter → display all
+                renderProducts(products);
             }
+        }
 
-            function applyFilters() {
-                const occasionVal = filter.value.toLowerCase();
-                const searchVal = search.value.toLowerCase();
-
-                const results = products.filter(prod => {
-                    const matchOccasion = occasionVal === "" || prod.occasions.some(o => o.toLowerCase() === occasionVal);
-                    const matchSearch =
-                        prod.name.toLowerCase().includes(searchVal) ||
-                        prod.description.toLowerCase().includes(searchVal);
-                    return matchOccasion && matchSearch;
-                });
-
-                displayProducts(results);
-            }
-
-            // Load all products on page load
-            displayProducts(products);
-
-            // Search + Filter Events
-            filter.addEventListener("change", applyFilters);
-            searchBtn.addEventListener("click", applyFilters);
-            search.addEventListener("keyup", e => {
-                if (e.key === "Enter") applyFilters();
-            });
-        });
+        document.addEventListener("DOMContentLoaded", autoFilterFromURL);
     </script>
 
 </body>
