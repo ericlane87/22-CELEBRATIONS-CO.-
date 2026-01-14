@@ -19,8 +19,18 @@
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="store.html" class="active">Shop</a>
-    <a href="cart.html">Cart</a>
     <a href="contact.html">Contact</a>
+    <a class="cart-link" href="cart.html" aria-label="Cart">
+      <span class="cart-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 6h15l-1.5 9h-11z"></path>
+          <circle cx="9" cy="20" r="1.5"></circle>
+          <circle cx="18" cy="20" r="1.5"></circle>
+          <path d="M6 6l-1-3H2"></path>
+        </svg>
+      </span>
+      <span class="cart-count" data-cart-count>0</span>
+    </a>
   </nav>
 
   <a href="tel:17708201456" class="btn-phone">(770) 820-1456</a>
@@ -49,54 +59,70 @@
 
   <section class="product-custom">
     <div class="custom-header">
-      <p class="custom-kicker">Step 1</p>
-      <h2 class="section-title">Customize this gift</h2>
-      <p class="section-subtitle">Pick the basics first, then add details. When ready, click “Add to cart.”</p>
+      <p class="custom-kicker">Customization</p>
+      <h2 class="section-title">Build your gift</h2>
+      <p class="section-subtitle">Three quick steps. We will confirm pricing after checkout.</p>
     </div>
 
     <form class="custom-form" id="customForm">
-      <div class="custom-grid">
-        <label>
-          Gift size <span class="field-note">Choose one</span>
-          <select name="size" required>
-            <option value="standard">Standard</option>
-            <option value="deluxe">Deluxe</option>
-            <option value="luxe">Luxe</option>
-          </select>
-        </label>
+      <div class="custom-step">
+        <div class="step-label">
+          <span class="step-pill">Step 1</span>
+          <h3>Choose the essentials</h3>
+        </div>
+        <div class="custom-grid">
+          <label>
+            Gift size <span class="field-note">Required</span>
+            <select name="size" required>
+              <option value="standard">Standard</option>
+              <option value="deluxe">Deluxe</option>
+              <option value="luxe">Luxe</option>
+            </select>
+          </label>
 
-        <label>
-          Theme palette <span class="field-note">Choose one</span>
-          <select name="palette" required>
-            <option value="classic">Classic ivory + gold</option>
-            <option value="modern">Modern neutral</option>
-            <option value="bold">Bold color pop</option>
-          </select>
-        </label>
+          <label>
+            Theme palette <span class="field-note">Required</span>
+            <select name="palette" required>
+              <option value="classic">Classic ivory + gold</option>
+              <option value="modern">Modern neutral</option>
+              <option value="bold">Bold color pop</option>
+            </select>
+          </label>
 
-        <label>
-          Event date <span class="field-note">Optional</span>
-          <input type="date" name="eventDate" />
-        </label>
+          <label>
+            Event date <span class="field-note">Optional</span>
+            <input type="date" name="eventDate" />
+          </label>
+        </div>
       </div>
 
-      <fieldset class="custom-addons">
-        <legend>Step 2: Add extras (optional)</legend>
-        <label><input type="checkbox" name="addons" value="note" /> Handwritten note</label>
-        <label><input type="checkbox" name="addons" value="candles" /> Scented candle</label>
-        <label><input type="checkbox" name="addons" value="snacks" /> Gourmet snacks</label>
-        <label><input type="checkbox" name="addons" value="balloons" /> Mini balloon bundle</label>
-      </fieldset>
+      <div class="custom-step">
+        <div class="step-label">
+          <span class="step-pill">Step 2</span>
+          <h3>Add extras</h3>
+        </div>
+        <div class="custom-addons">
+          <label><input type="checkbox" name="addons" value="note" /> Handwritten note</label>
+          <label><input type="checkbox" name="addons" value="candles" /> Scented candle</label>
+          <label><input type="checkbox" name="addons" value="snacks" /> Gourmet snacks</label>
+          <label><input type="checkbox" name="addons" value="balloons" /> Mini balloon bundle</label>
+        </div>
+      </div>
 
-      <label class="custom-message">
-        Step 3: Personal message (optional)
-        <textarea name="message" rows="5" placeholder="Tell us about the recipient, colors they love, hobbies, or theme ideas."></textarea>
-      </label>
+      <div class="custom-step">
+        <div class="step-label">
+          <span class="step-pill">Step 3</span>
+          <h3>Personal message</h3>
+        </div>
+        <label class="custom-message">
+          <textarea name="message" rows="5" placeholder="Tell us about the recipient, favorite colors, hobbies, or theme ideas."></textarea>
+        </label>
+      </div>
     </form>
 
     <div class="custom-footer">
       <div class="custom-tip">
-        Step 4: Add to cart when your customizations look right.
+        When you are done, add to cart and checkout.
       </div>
       <div class="custom-actions">
         <button id="addToCartBtn" class="btn-primary" type="button">Add to cart</button>
@@ -113,6 +139,7 @@
 
 <script src="products.js"></script>
 <script src="cart.js"></script>
+<script src="cart-count.js"></script>
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -171,6 +198,7 @@
 
     window.Cart.addToCart(item);
     notice.textContent = "Added to cart. Next: open your cart and checkout.";
+    if (window.CartCount) window.CartCount.update();
   });
 </script>
 </body>

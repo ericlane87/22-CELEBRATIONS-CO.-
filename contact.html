@@ -20,8 +20,18 @@
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="store.html">Shop</a>
-        <a href="cart.html">Cart</a>
         <a href="contact.html" class="active">Contact</a>
+        <a class="cart-link" href="cart.html" aria-label="Cart">
+            <span class="cart-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 6h15l-1.5 9h-11z"></path>
+                    <circle cx="9" cy="20" r="1.5"></circle>
+                    <circle cx="18" cy="20" r="1.5"></circle>
+                    <path d="M6 6l-1-3H2"></path>
+                </svg>
+            </span>
+            <span class="cart-count" data-cart-count>0</span>
+        </a>
     </nav>
 
     <a href="tel:17708201456" class="btn-phone">(770) 820-1456</a>
@@ -63,6 +73,7 @@
     <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
 </footer>
 
+<script src="cart-count.js"></script>
 <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 

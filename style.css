@@ -143,6 +143,43 @@ a {
   color: var(--turquoise);
 }
 
+.cart-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+}
+
+.cart-icon {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+}
+
+.cart-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cart-count {
+  min-width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--turquoise);
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 .35rem;
+}
+
+.cart-count.is-empty {
+  background: rgba(31,27,24,0.15);
+  color: var(--ink);
+}
+
 .btn-phone {
   background: var(--turquoise);
   color: #fff;
@@ -550,6 +587,38 @@ a {
   margin-bottom: .4rem;
 }
 
+.custom-step {
+  border-radius: 16px;
+  border: 1px solid rgba(15,161,137,0.15);
+  background: rgba(255,255,255,0.9);
+  padding: 1.2rem;
+  box-shadow: 0 12px 24px var(--shadow);
+}
+
+.step-label {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin-bottom: .8rem;
+}
+
+.step-label h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.step-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .2rem .7rem;
+  border-radius: 999px;
+  background: rgba(15,161,137,0.15);
+  color: #0e6b60;
+  font-weight: 700;
+  font-size: .75rem;
+}
+
 .custom-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -582,26 +651,23 @@ a {
 }
 
 .custom-addons {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1rem;
   display: grid;
-  gap: .6rem;
-}
-
-.custom-addons legend {
-  font-weight: 700;
-  margin-bottom: .4rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: .8rem;
 }
 
 .custom-addons input[type="checkbox"] {
-  margin-right: .5rem;
+  margin-right: .6rem;
 }
 
 .custom-addons label {
   flex-direction: row;
   align-items: center;
-  font-weight: 500;
+  font-weight: 600;
+  padding: .7rem .8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(15,161,137,0.2);
+  background: rgba(15,161,137,0.06);
 }
 
 .custom-footer {
@@ -625,6 +691,7 @@ a {
 .custom-message textarea {
   min-height: 120px;
   resize: vertical;
+  background: rgba(255,255,255,0.9);
 }
 
 .cart-notice {
@@ -904,6 +971,10 @@ a {
   }
 
   .custom-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .custom-grid {
     grid-template-columns: 1fr;
   }
 
