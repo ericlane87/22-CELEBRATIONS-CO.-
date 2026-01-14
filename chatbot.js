@@ -14,18 +14,16 @@ const input = document.getElementById("chatInput");
 const sendBtn = document.getElementById("chatSend");
 
 let chatOpen = false;
+let greeted = false;
 
 /* ---------------------------------------------
    SHOW CHAT FOR 1 SECOND ON PAGE LOAD
 --------------------------------------------- */
 window.addEventListener("load", () => {
   setTimeout(() => {
-    windowBox.classList.remove("hidden");
+    openChat();
+    showGreeting();
   }, 300);
-
-  setTimeout(() => {
-    windowBox.classList.add("hidden");
-  }, 1300);
 });
 
 /* ---------------------------------------------
@@ -49,6 +47,7 @@ function closeChat() {
 --------------------------------------------- */
 bubble.addEventListener("click", () => {
   if (!chatOpen) openChat();
+  showGreeting();
 });
 
 /* ---------------------------------------------
@@ -67,6 +66,19 @@ function addMessage(text, sender = "bot") {
   msg.textContent = text;
   messages.appendChild(msg);
   messages.scrollTop = messages.scrollHeight;
+}
+
+function getGreeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning";
+  if (hour < 18) return "Good afternoon";
+  return "Good evening";
+}
+
+function showGreeting() {
+  if (greeted) return;
+  greeted = true;
+  addMessage(`${getGreeting()}! How can I help you today?`, "bot");
 }
 
 /* ---------------------------------------------
