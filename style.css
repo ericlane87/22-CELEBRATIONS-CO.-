@@ -606,15 +606,20 @@ a {
 
 .custom-footer {
   margin-top: 1.4rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  display: grid;
+  gap: .6rem;
 }
 
 .custom-tip {
   color: var(--muted);
   font-size: .95rem;
+}
+
+.custom-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+  align-items: center;
 }
 
 .custom-message textarea {
@@ -899,8 +904,7 @@ a {
   }
 
   .custom-footer {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: 1fr;
   }
 
   .chat-widget {
