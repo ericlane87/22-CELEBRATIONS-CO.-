@@ -20,8 +20,7 @@ function buildCustomizationSummary(custom) {
   const parts = [];
   if (custom.size) parts.push(`Size: ${custom.size}`);
   if (custom.palette) parts.push(`Palette: ${custom.palette}`);
-  if (custom.delivery) parts.push(`Delivery: ${custom.delivery}`);
-  if (custom.age) parts.push(`Age: ${custom.age}`);
+  if (custom.eventDate) parts.push(`Event date: ${custom.eventDate}`);
   if (custom.addons && custom.addons.length) parts.push(`Add-ons: ${custom.addons.join(", ")}`);
   if (custom.message) parts.push(`Message: ${custom.message}`);
   return parts.join(" | ");

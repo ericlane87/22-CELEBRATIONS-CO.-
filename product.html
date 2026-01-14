@@ -51,15 +51,16 @@
 
   <section class="product-custom">
     <div class="custom-header">
+      <p class="custom-kicker">Step 1</p>
       <h2 class="section-title">Customize this gift</h2>
-      <p class="section-subtitle">Choose a size, theme, and add-on details. We will confirm pricing after review.</p>
+      <p class="section-subtitle">Pick the basics first, then add details. When ready, click “Add to cart.”</p>
     </div>
 
     <form class="custom-form" id="customForm">
       <div class="custom-grid">
         <label>
-          Gift size
-          <select name="size">
+          Gift size <span class="field-note">Choose one</span>
+          <select name="size" required>
             <option value="standard">Standard</option>
             <option value="deluxe">Deluxe</option>
             <option value="luxe">Luxe</option>
@@ -67,8 +68,8 @@
         </label>
 
         <label>
-          Theme palette
-          <select name="palette">
+          Theme palette <span class="field-note">Choose one</span>
+          <select name="palette" required>
             <option value="classic">Classic ivory + gold</option>
             <option value="modern">Modern neutral</option>
             <option value="bold">Bold color pop</option>
@@ -76,23 +77,13 @@
         </label>
 
         <label>
-          Delivery date
-          <input type="date" name="delivery" />
-        </label>
-
-        <label>
-          Recipient age range
-          <select name="age">
-            <option value="any">Any</option>
-            <option value="kids">Kids</option>
-            <option value="teens">Teens</option>
-            <option value="adults">Adults</option>
-          </select>
+          Event date <span class="field-note">Optional</span>
+          <input type="date" name="eventDate" />
         </label>
       </div>
 
       <fieldset class="custom-addons">
-        <legend>Optional add-ons</legend>
+        <legend>Step 2: Add extras (optional)</legend>
         <label><input type="checkbox" name="addons" value="note" /> Handwritten note</label>
         <label><input type="checkbox" name="addons" value="candles" /> Scented candle</label>
         <label><input type="checkbox" name="addons" value="snacks" /> Gourmet snacks</label>
@@ -100,10 +91,17 @@
       </fieldset>
 
       <label class="custom-message">
-        Personal message
-        <textarea name="message" rows="5" placeholder="Share recipient details, favorite colors, hobbies, or theme ideas."></textarea>
+        Step 3: Personal message (optional)
+        <textarea name="message" rows="5" placeholder="Tell us about the recipient, colors they love, hobbies, or theme ideas."></textarea>
       </label>
     </form>
+
+    <div class="custom-footer">
+      <div class="custom-tip">
+        Tip: Add to cart first, then checkout when you are done shopping.
+      </div>
+      <a class="btn-secondary" href="cart.html">View cart</a>
+    </div>
   </section>
 </main>
 
@@ -150,8 +148,7 @@
     return {
       size: data.get("size"),
       palette: data.get("palette"),
-      delivery: data.get("delivery"),
-      age: data.get("age"),
+      eventDate: data.get("eventDate"),
       addons,
       message: data.get("message")?.trim(),
     };
@@ -171,7 +168,7 @@
     };
 
     window.Cart.addToCart(item);
-    notice.textContent = "Added to cart. You can continue shopping or checkout.";
+    notice.textContent = "Added to cart. Next: open your cart and checkout.";
   });
 </script>
 </body>

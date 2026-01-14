@@ -541,6 +541,15 @@ a {
   gap: 1.2rem;
 }
 
+.custom-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--clay);
+  margin-bottom: .4rem;
+}
+
 .custom-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -554,6 +563,13 @@ a {
   gap: .4rem;
   font-weight: 600;
   color: var(--ink);
+}
+
+.field-note {
+  font-size: .75rem;
+  color: var(--muted);
+  font-weight: 500;
+  margin-left: .3rem;
 }
 
 .custom-form select,
@@ -586,6 +602,19 @@ a {
   flex-direction: row;
   align-items: center;
   font-weight: 500;
+}
+
+.custom-footer {
+  margin-top: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.custom-tip {
+  color: var(--muted);
+  font-size: .95rem;
 }
 
 .custom-message textarea {
@@ -866,6 +895,11 @@ a {
   .cart-summary {
     flex-direction: column;
     gap: .8rem;
+    align-items: flex-start;
+  }
+
+  .custom-footer {
+    flex-direction: column;
     align-items: flex-start;
   }
 
