@@ -26,6 +26,7 @@ let greeted = false;
 function openChat() {
   windowBox.classList.remove("hidden");
   chatOpen = true;
+  showGreeting();
 }
 
 /* ---------------------------------------------
@@ -70,9 +71,16 @@ function getGreeting() {
 }
 
 function showGreeting() {
-  if (greeted) return;
+  if (greeted || !messages) return;
+  if (messages.children.length > 0) {
+    greeted = true;
+    return;
+  }
   greeted = true;
-  addMessage(`${getGreeting()}! Tell me the occasion, who it's for, and your budget — I can recommend the best gift.`, "bot");
+  addMessage(
+    `${getGreeting()}! Tell me the occasion, who it's for, and your budget — I can recommend the best gift.`,
+    "bot"
+  );
 }
 
 /* ---------------------------------------------

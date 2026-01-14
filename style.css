@@ -933,16 +933,32 @@ a {
   font-size: 26px;
   cursor: pointer;
   z-index: 10000;
+  position: fixed;
   box-shadow: 0 0 0 rgba(15,161,137,0.6);
   animation: chatPulse 2.4s ease-in-out infinite;
 }
 
 .hidden { display: none !important; }
 
+.chat-bubble::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid rgba(15,161,137,0.35);
+  animation: chatRing 2.4s ease-in-out infinite;
+}
+
 @keyframes chatPulse {
   0% { box-shadow: 0 0 0 0 rgba(15,161,137,0.55); }
   70% { box-shadow: 0 0 0 16px rgba(15,161,137,0); }
   100% { box-shadow: 0 0 0 0 rgba(15,161,137,0); }
+}
+
+@keyframes chatRing {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  70% { transform: scale(1.25); opacity: 0; }
+  100% { transform: scale(0.9); opacity: 0; }
 }
 
 /* -----------------------------------------------------------
