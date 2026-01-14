@@ -21,6 +21,7 @@
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="store.html" class="active">Shop</a>
+    <a href="cart.html">Cart</a>
     <a href="contact.html">Contact</a>
   </nav>
 
@@ -96,7 +97,7 @@
 
     list.forEach(p => {
       const card = document.createElement("a");
-      card.href = "#"; /* Dead link */
+      card.href = `product.html?id=${encodeURIComponent(p.id)}`;
       card.className = "product-card";
 
       card.innerHTML = `

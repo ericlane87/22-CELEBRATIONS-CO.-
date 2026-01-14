@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Cart – 22 Celebration Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<header class="site-header">
+  <div class="logo">
+    <span class="logo-mark">22</span>
+    <span class="logo-rule"></span>
+    <span class="logo-text">Celebration Co.</span>
+  </div>
+
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="store.html">Shop</a>
+    <a href="cart.html" class="active">Cart</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <a href="tel:17708201456" class="btn-phone">(770) 820-1456</a>
+</header>
+
+<main class="section">
+  <h1 class="section-title">Your cart</h1>
+  <p class="section-subtitle">Review your selections and proceed to checkout.</p>
+
+  <div id="cartItems" class="cart-list"></div>
+
+  <div class="cart-summary">
+    <div>
+      <span>Total</span>
+      <strong id="cartTotal">$0.00</strong>
+    </div>
+    <button id="checkoutBtn" class="btn-primary" type="button">Checkout with Stripe</button>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
+</footer>
+
+<script src="cart.js"></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const container = document.getElementById("cartItems");
+  window.Cart.renderCart(container);
+
+  container.addEventListener("change", event => {
+    if (event.target.matches("input[data-qty]")) {
+      const id = event.target.getAttribute("data-qty");
+      const qty = Math.max(1, Number(event.target.value));
+      window.Cart.updateQuantity(id, qty);
+      window.Cart.renderCart(container);
+    }
+  });
+
+  container.addEventListener("click", event => {
+    if (event.target.matches("button[data-remove]")) {
+      const id = event.target.getAttribute("data-remove");
+      window.Cart.removeFromCart(id);
+      window.Cart.renderCart(container);
+    }
+  });
+
+  document.getElementById("checkoutBtn").addEventListener("click", () => {
+    window.Cart.startCheckout();
+  });
+</script>
+</body>
+</html>

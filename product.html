@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product – 22 Celebration Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<header class="site-header">
+  <div class="logo">
+    <span class="logo-mark">22</span>
+    <span class="logo-rule"></span>
+    <span class="logo-text">Celebration Co.</span>
+  </div>
+
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="store.html" class="active">Shop</a>
+    <a href="cart.html">Cart</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <a href="tel:17708201456" class="btn-phone">(770) 820-1456</a>
+</header>
+
+<main class="section">
+  <div id="productDetail" class="product-detail">
+    <div class="product-visual">
+      <div class="product-image">Image coming soon</div>
+      <div class="product-meta">
+        <span id="productOccasions" class="meta-pill">Occasion</span>
+        <span id="productAudience" class="meta-pill">Audience</span>
+      </div>
+    </div>
+
+    <div class="product-info">
+      <h1 id="productName" class="product-title">Gift Box</h1>
+      <p id="productDescription" class="product-copy"></p>
+      <div id="productPrice" class="product-price-lg"></div>
+
+      <div class="product-actions">
+        <button id="addToCartBtn" class="btn-primary" type="button">Add to cart</button>
+        <a class="btn-secondary" href="store.html">Back to shop</a>
+      </div>
+      <p id="cartNotice" class="cart-notice"></p>
+    </div>
+  </div>
+
+  <section class="product-custom">
+    <div class="custom-header">
+      <h2 class="section-title">Customize this gift</h2>
+      <p class="section-subtitle">Choose a size, theme, and add-on details. We will confirm pricing after review.</p>
+    </div>
+
+    <form class="custom-form" id="customForm">
+      <div class="custom-grid">
+        <label>
+          Gift size
+          <select name="size">
+            <option value="standard">Standard</option>
+            <option value="deluxe">Deluxe</option>
+            <option value="luxe">Luxe</option>
+          </select>
+        </label>
+
+        <label>
+          Theme palette
+          <select name="palette">
+            <option value="classic">Classic ivory + gold</option>
+            <option value="modern">Modern neutral</option>
+            <option value="bold">Bold color pop</option>
+          </select>
+        </label>
+
+        <label>
+          Delivery date
+          <input type="date" name="delivery" />
+        </label>
+
+        <label>
+          Recipient age range
+          <select name="age">
+            <option value="any">Any</option>
+            <option value="kids">Kids</option>
+            <option value="teens">Teens</option>
+            <option value="adults">Adults</option>
+          </select>
+        </label>
+      </div>
+
+      <fieldset class="custom-addons">
+        <legend>Optional add-ons</legend>
+        <label><input type="checkbox" name="addons" value="note" /> Handwritten note</label>
+        <label><input type="checkbox" name="addons" value="candles" /> Scented candle</label>
+        <label><input type="checkbox" name="addons" value="snacks" /> Gourmet snacks</label>
+        <label><input type="checkbox" name="addons" value="balloons" /> Mini balloon bundle</label>
+      </fieldset>
+
+      <label class="custom-message">
+        Personal message
+        <textarea name="message" rows="5" placeholder="Share recipient details, favorite colors, hobbies, or theme ideas."></textarea>
+      </label>
+    </form>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
+</footer>
+
+<script src="products.js"></script>
+<script src="cart.js"></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const params = new URLSearchParams(window.location.search);
+  const id = Number(params.get("id"));
+  const product = products.find(p => p.id === id);
+
+  const nameEl = document.getElementById("productName");
+  const descEl = document.getElementById("productDescription");
+  const priceEl = document.getElementById("productPrice");
+  const occasionsEl = document.getElementById("productOccasions");
+  const audienceEl = document.getElementById("productAudience");
+  const addBtn = document.getElementById("addToCartBtn");
+  const notice = document.getElementById("cartNotice");
+  const form = document.getElementById("customForm");
+
+  if (!product) {
+    nameEl.textContent = "Product not found";
+    descEl.textContent = "Please return to the shop and choose another gift.";
+    priceEl.textContent = "";
+    occasionsEl.textContent = "";
+    audienceEl.textContent = "";
+    addBtn.disabled = true;
+  } else {
+    nameEl.textContent = product.name;
+    descEl.textContent = product.description;
+    priceEl.textContent = `$${product.price.toFixed(2)}`;
+    occasionsEl.textContent = product.occasions.join(", ");
+    audienceEl.textContent = product.gender === "unisex" ? "All recipients" : product.gender;
+  }
+
+  function getFormValues() {
+    const data = new FormData(form);
+    const addons = data.getAll("addons");
+    return {
+      size: data.get("size"),
+      palette: data.get("palette"),
+      delivery: data.get("delivery"),
+      age: data.get("age"),
+      addons,
+      message: data.get("message")?.trim(),
+    };
+  }
+
+  addBtn.addEventListener("click", () => {
+    if (!product) return;
+    const custom = getFormValues();
+    const item = {
+      cartItemId: `${product.id}-${Date.now()}`,
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      custom,
+      customSummary: window.Cart.buildCustomizationSummary(custom),
+    };
+
+    window.Cart.addToCart(item);
+    notice.textContent = "Added to cart. You can continue shopping or checkout.";
+  });
+</script>
+</body>
+</html>

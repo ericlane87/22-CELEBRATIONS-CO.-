@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checkout Canceled – 22 Celebration Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="logo">
+    <span class="logo-mark">22</span>
+    <span class="logo-rule"></span>
+    <span class="logo-text">Celebration Co.</span>
+  </div>
+
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="store.html">Shop</a>
+    <a href="cart.html">Cart</a>
+  </nav>
+
+  <a href="tel:17708201456" class="btn-phone">(770) 820-1456</a>
+</header>
+
+<main class="section">
+  <h1 class="section-title">Checkout canceled</h1>
+  <p class="section-subtitle">No worries — your cart is still saved. You can continue when you are ready.</p>
+  <div class="product-actions">
+    <a class="btn-primary" href="cart.html">Return to cart</a>
+    <a class="btn-secondary" href="store.html">Keep shopping</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

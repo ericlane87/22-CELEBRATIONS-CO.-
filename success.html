@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Order Complete – 22 Celebration Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="logo">
+    <span class="logo-mark">22</span>
+    <span class="logo-rule"></span>
+    <span class="logo-text">Celebration Co.</span>
+  </div>
+
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="store.html">Shop</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <a href="tel:17708201456" class="btn-phone">(770) 820-1456</a>
+</header>
+
+<main class="section">
+  <h1 class="section-title">Thank you for your order!</h1>
+  <p class="section-subtitle">We are preparing your gift and will be in touch with any customization follow-ups.</p>
+  <div class="product-actions">
+    <a class="btn-primary" href="store.html">Shop more gifts</a>
+    <a class="btn-secondary" href="index.html">Return home</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> 22 Celebration Co.</p>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+  localStorage.removeItem("cc_cart_v1");
+</script>
+</body>
+</html>

@@ -21,6 +21,7 @@
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
       <a href="store.html">Shop</a>
+      <a href="cart.html">Cart</a>
       <a href="contact.html">Contact</a>
     </nav>
 
@@ -170,7 +171,8 @@
     const featuredProducts = products.filter(p => p.occasions.includes(upcoming)).slice(0, 5);
 
     featuredProducts.forEach(p => {
-      const card = document.createElement("div");
+      const card = document.createElement("a");
+      card.href = `product.html?id=${encodeURIComponent(p.id)}`;
       card.className = "featured-card";
       card.innerHTML = `
         <div class="featured-img">Image Coming Soon</div>

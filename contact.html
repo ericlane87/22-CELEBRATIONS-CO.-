@@ -20,6 +20,7 @@
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="store.html">Shop</a>
+        <a href="cart.html">Cart</a>
         <a href="contact.html" class="active">Contact</a>
     </nav>
 
@@ -64,6 +65,13 @@
 
 <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const params = new URLSearchParams(window.location.search);
+    const product = params.get("product");
+    if (product) {
+        const message = document.getElementById("message");
+        message.value = `I want to customize the ${decodeURIComponent(product)}.\\n\\nDetails:`;
+    }
 </script>
 
 </body>
