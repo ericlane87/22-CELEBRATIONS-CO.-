@@ -17,14 +17,8 @@ let chatOpen = false;
 let greeted = false;
 
 /* ---------------------------------------------
-   SHOW CHAT FOR 1 SECOND ON PAGE LOAD
+   READY (NO AUTO-OPEN)
 --------------------------------------------- */
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    openChat();
-    showGreeting();
-  }, 300);
-});
 
 /* ---------------------------------------------
    OPEN CHAT WINDOW
@@ -78,7 +72,7 @@ function getGreeting() {
 function showGreeting() {
   if (greeted) return;
   greeted = true;
-  addMessage(`${getGreeting()}! How can I help you today?`, "bot");
+  addMessage(`${getGreeting()}! Tell me the occasion, who it's for, and your budget — I can recommend the best gift.`, "bot");
 }
 
 /* ---------------------------------------------
@@ -89,7 +83,7 @@ function botReply(userText) {
 
   // Basic rules
   if (t.includes("hi") || t.includes("hello")) {
-    return "Hi there! Tell me who you're shopping for and the occasion.";
+    return "Hi there! Share the occasion, who it's for, and your budget — I will suggest the right gift.";
   }
 
   if (t.includes("birthday")) return "Lovely! We have Birthday Boxes for Him, Her, and Kids.";
@@ -101,7 +95,7 @@ function botReply(userText) {
   if (t.includes("father") || t.includes("dad")) return "Father’s Day boxes feature grilling, gadgets, snacks, and more.";
 
   // Fallback
-  return "Tell me the occasion and who the gift is for — I’ll match you with the perfect box!";
+  return "Tell me the occasion, who it's for, and your budget — I’ll match you with the perfect box!";
 }
 
 /* ---------------------------------------------
