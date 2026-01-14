@@ -159,8 +159,8 @@ a {
 }
 
 .header-actions .btn-phone {
-  padding: .38rem .7rem;
-  font-size: .78rem;
+  padding: .4rem .75rem;
+  font-size: .8rem;
 }
 
 .cart-link {
@@ -168,7 +168,7 @@ a {
   display: inline-flex;
   align-items: center;
   gap: .35rem;
-  padding: .15rem .25rem;
+  padding: .2rem .35rem;
   border-radius: 999px;
   border: 1px solid rgba(15,161,137,0.2);
   background: rgba(255,255,255,0.8);
@@ -176,8 +176,8 @@ a {
 
 .cart-icon {
   display: inline-flex;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
 }
 
 .cart-icon svg {
@@ -186,17 +186,17 @@ a {
 }
 
 .cart-count {
-  min-width: 10px;
-  height: 10px;
+  min-width: 12px;
+  height: 12px;
   border-radius: 999px;
   background: var(--turquoise);
   color: #fff;
-  font-size: .5rem;
+  font-size: .55rem;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 .25rem;
+  padding: 0 .3rem;
 }
 
 .cart-count.is-empty {
