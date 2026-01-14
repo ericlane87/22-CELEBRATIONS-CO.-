@@ -30,12 +30,14 @@ function addToCart(item) {
   const cart = loadCart();
   cart.push(item);
   saveCart(cart);
+  if (window.CartCount) window.CartCount.update();
   return cart.length;
 }
 
 function removeFromCart(id) {
   const cart = loadCart().filter(item => item.cartItemId !== id);
   saveCart(cart);
+  if (window.CartCount) window.CartCount.update();
   return cart;
 }
 
@@ -47,6 +49,7 @@ function updateQuantity(id, quantity) {
     return item;
   });
   saveCart(cart);
+  if (window.CartCount) window.CartCount.update();
   return cart;
 }
 
